@@ -2,7 +2,7 @@
 
 Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, como funciona o processo de criação de imagens docker.
 
-![docker](http://techfree.com.br/wp-content/uploads/2016/03/docker-600x400.png)
+![docker](imagens/docker-imagens.png)
 
 Esse texto tem como público alvo pessoas que já sabem um pouco sobre docker, mas ainda não sabiam como criar imagens docker. Caso não sabia nada sobre docker ainda, veja esse link.
 
@@ -16,7 +16,7 @@ Antes de explicarmos como criar sua imagem, vale a pena tocarmos em uma questão
 
 Fazendo um paralelo com o conceito de orientação a objeto, a imagem é a classe e o container o objeto, ou seja, a imagem é a abstração da infraestrutura em um estado somente leitura, que é de onde será instanciado o container.
 
-![layer](http://techfree.com.br/wp-content/uploads/2016/03/layer04-768x576.png)
+![layer](imagens/layers.png)
 
 Todo container é iniciado a partir de uma imagem, dessa forma podemos concluir que nunca teremos uma imagem em execução.
 
@@ -112,7 +112,7 @@ Vale salientar que o método commit não é a melhor opção para criar imagens,
 
 Quando se utiliza Dockerfile para gerar uma imagem, basicamente é apresentado uma lista de instruções que serão aplicadas em uma determinada imagem para que outra seja gerada com base nessas modificações.
 
-![Dockerfile](http://techfree.com.br/wp-content/uploads/2016/03/dockefile_imagem.png)
+![Dockerfile](imagens/dockerfile.png)
 
 Podemos resumir que o arquivo Dockerfile na verdade representa a exata diferença entre uma determinada imagem, que aqui chamamos de base, e a imagem que se deseja criar, ou seja, nesse modelo temos total rastreabilidade sobre o que será modificado essa nova imagem.
 
