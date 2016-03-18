@@ -1,3 +1,4 @@
 chapter1.txt
 proposito.txt
 todo.txt
+criandoimagem.txt
