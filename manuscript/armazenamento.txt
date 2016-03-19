@@ -1,22 +1,22 @@
 # Entendendo armazenamento no Docker
 
-Para entender como o docker gerencia seus volumes, primeiro precisamos explicar como funciona ao menos um backend de armazenamento do Docker. Faremos aqui com o AUFS, que foi o primeiro e ainda é um padrão em boa parte das instalações do Docker.
+Para entender como o docker gerencia seus volumes, primeiro precisamos explicar como funciona ao menos um [backend](http://searchdatacenter.techtarget.com/definition/back-end) de armazenamento do Docker. Faremos aqui com o AUFS, que foi o primeiro e ainda é um padrão em boa parte das instalações do Docker.
 
-![Entendo imagens](http://techfree.com.br/wp-content/uploads/2015/12/aufs_layers.jpg)
+![Entendo imagens](images/aufs_layers.png)
 
 ### Como funciona um backend do Docker (Ex. AUFS)
 
 Backend de armazenamento é a parte da solução do Docker que cuida do gerenciamento dos dados. No Docker temos várias possibilidades de backend de armazenamento, mas nesse texto falaremos apenas do que implementa o AUFS.
 
-AUFS é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilha-os uns sobre os outros e fornece uma única e unificada visão. Como se todos juntos fossem apenas um diretório apenas.
+[AUFS](https://en.wikipedia.org/wiki/Aufs) é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilha-os uns sobre os outros e fornece uma única e unificada visão. Como se todos juntos fossem apenas um diretório apenas.
 
 Esse único diretório é o utilizado para apresentar ao contêiner, e funciona como se fosse um único sistema de arquivo comum. Cada diretório usado nessa pilha é correspondente a uma camada, e é dessa forma que o Docker unifica as camadas e proporciona a reutilização entre contêineres, pois o mesmo diretório correspondente a uma imagem pode ser montado em várias pilhas de vários contêineres.
 
 Com exceção da pasta (camada) correspondente ao contêiner, todas as outras são montadas com permissão de somente leitura, pois caso contrário as mudanças de um contêiner poderia interferir em um outro, o que de fato é totalmente contra os princípios do Linux Container.
 
-Caso seja necessário modificar um arquivo que esteja nas camadas (pastas) referentes a imagens é utilizado a tecnologia Copy-on-write (CoW), que é responsável por copiar o arquivo necessário para a pasta (camada) do contêiner e fazer todas as modificações nesse nível, dessa forma o arquivo original da camada inferior é sobreposto nessa pilha, ou seja, o contêiner em questão sempre verá apenas os arquivos das camadas mais altas.
+Caso seja necessário modificar um arquivo que esteja nas camadas (pastas) referentes a imagens é utilizado a tecnologia [Copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write) (CoW), que é responsável por copiar o arquivo necessário para a pasta (camada) do contêiner e fazer todas as modificações nesse nível, dessa forma o arquivo original da camada inferior é sobreposto nessa pilha, ou seja, o contêiner em questão sempre verá apenas os arquivos das camadas mais altas.
 
-![Entendendo AUFS](http://techfree.com.br/wp-content/uploads/2015/12/aufs_delete.jpg)
+![Removendo um arquivo](images/aufs_delete.png)
 
 No caso da remoção o arquivo da camada superior é marcado como whiteout file e assim viabilizando a visualização do arquivo de camadas inferiores.
 
