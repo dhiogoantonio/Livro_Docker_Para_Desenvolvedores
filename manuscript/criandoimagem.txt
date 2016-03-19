@@ -1,4 +1,4 @@
-## Criando sua própria imagem no Docker
+# Criando sua própria imagem no Docker
 
 
 Antes de explicarmos como criar sua imagem, vale a pena tocarmos em uma questão que normalmente confunde iniciantes do docker: “Imagem ou container?”

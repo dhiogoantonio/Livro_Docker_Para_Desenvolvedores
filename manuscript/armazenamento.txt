@@ -1,4 +1,4 @@
-## Entendendo armazenamento no Docker
+# Entendendo armazenamento no Docker
 
 Para entender como o docker gerencia seus volumes, primeiro precisamos explicar como funciona ao menos um [backend](http://searchdatacenter.techtarget.com/definition/back-end) de armazenamento do Docker. Faremos aqui com o AUFS, que foi o primeiro e ainda é um padrão em boa parte das instalações do Docker.
 
