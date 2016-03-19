@@ -2,7 +2,7 @@
 
 Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, como funciona o processo de criação de imagens docker.
 
-![docker](/docker_imagens.png)
+![](/docker_imagens.png)
 
 Esse texto tem como público alvo pessoas que já sabem um pouco sobre docker, mas ainda não sabiam como criar imagens docker. Caso não sabia nada sobre docker ainda, veja esse link.
 
@@ -16,7 +16,7 @@ Antes de explicarmos como criar sua imagem, vale a pena tocarmos em uma questão
 
 Fazendo um paralelo com o conceito de orientação a objeto, a imagem é a classe e o container o objeto, ou seja, a imagem é a abstração da infraestrutura em um estado somente leitura, que é de onde será instanciado o container.
 
-![layer](/layers.png)
+![](/layers.png)
 
 Todo container é iniciado a partir de uma imagem, dessa forma podemos concluir que nunca teremos uma imagem em execução.
 
