@@ -16,7 +16,7 @@ Antes de explicarmos como criar sua imagem, vale a pena tocarmos em uma questão
 
 Fazendo um paralelo com o conceito de orientação a objeto, a imagem é a classe e o container o objeto, ou seja, a imagem é a abstração da infraestrutura em um estado somente leitura, que é de onde será instanciado o container.
 
-![layer](/manuscript/layers.png)
+![layer](/layers.png)
 
 Todo container é iniciado a partir de uma imagem, dessa forma podemos concluir que nunca teremos uma imagem em execução.
 
