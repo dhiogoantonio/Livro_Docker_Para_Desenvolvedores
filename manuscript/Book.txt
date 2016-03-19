@@ -1,3 +1,4 @@
+organizacao.txt
 proposito.txt
 todo.txt
 criandoimagem.txt
