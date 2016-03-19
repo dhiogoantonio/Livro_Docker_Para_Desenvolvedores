@@ -1,4 +1,4 @@
-# Entendendo a rede no Docker
+## Entendendo a rede no Docker
 
 O que o docker chama de rede, na verdade é uma abstração criada para facilitar o gerenciamento da comunicação de dados entre containers e os nós externos ao ambiente docker.
 

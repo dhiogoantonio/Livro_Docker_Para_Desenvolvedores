@@ -1,4 +1,4 @@
-# Como usar Docker sem GNU/Linux
+## Como usar Docker sem GNU/Linux
 
 Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, como funciona o uso de docker em estações MacOS e Windows.
 

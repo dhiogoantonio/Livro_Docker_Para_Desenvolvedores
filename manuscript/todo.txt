@@ -2,14 +2,16 @@
 
 **Breve...**
 
-# O que é docker
+# Parte 1
+
+## O que é docker
 
 **Breve...**
 
-# Instalação
+## Instalação
 
 **Breve...**
 
-# Comandos básicos
+## Comandos básicos
 
 **Breve...**
