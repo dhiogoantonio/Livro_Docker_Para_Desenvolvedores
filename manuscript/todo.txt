@@ -13,7 +13,7 @@ Mesmo que você já use o Docker, ler essa parte do livro em algum momento da su
 
 De forma bem resumida podemos dizer que é uma plataforma aberta criada com objetivo de facilitar o desenvolvimento, implantação e execução de aplicações em ambientes isolados. Ela foi desenhada especialmente para disponibilizar sua aplicação da forma mais rápida possível.
 
-![](images/docker.png)
+![](images/docker.jpg)
 
 Usando o Docker você pode gerenciar facilmente a infraestrutura da sua aplicação, ou seja, isso agilizará o processo de criação, manutenção e modificação do ambiente completo do seu serviço. O melhor é que tudo isso pode ser feito sem a necessidade de qualquer acesso privilegiado a sua infraestrutura corporativa. A equipe responsável pela aplicação poderá participar da especificação do ambiente, onde nesse caso eles devem fornecer um determinado arquivo com a descrição dessa solução, que conterá a informação de como a aplicação será disposta nesse espaço, em qual porta fornecerá seu serviço, quais dados de volumes externos serão requisitados e outras possíveis necessidades.
 
