@@ -2,7 +2,7 @@
 
 Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, como funciona o processo de criação de imagens docker.
 
-![docker](/docker-imagens.png)
+![docker](/docker_imagens.png)
 
 Esse texto tem como público alvo pessoas que já sabem um pouco sobre docker, mas ainda não sabiam como criar imagens docker. Caso não sabia nada sobre docker ainda, veja esse link.
 
