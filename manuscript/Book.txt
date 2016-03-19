@@ -3,3 +3,4 @@ proposito.txt
 todo.txt
 criandoimagem.txt
 armazenamento.txt
+rede.txt
