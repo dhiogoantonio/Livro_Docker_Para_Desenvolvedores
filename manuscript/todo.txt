@@ -2,14 +2,14 @@
 
 **Breve...**
 
-# Introdução
+# Introdução #
 
 Essa parte do livro é direcionado a todos que não tem conhecimento básico do Docker. Caso você já sabe usar, não precisa ler essa parte. Por outro lado, mesmo que você já saiba usar aqui teremos a explicação de muitos recursos que você usa e como eles funcionam de verdade.
 
 Mesmo que você já use o Docker, ler essa parte do livro em algum momento da sua vida será importante para saber de forma mais consistente o que acontece com cada comando executado.
 
 
-## O que é docker
+# O que é docker
 
 De forma bem resumida podemos dizer que é uma plataforma aberta criada com objetivo de facilitar o desenvolvimento, implantação e execução de aplicações em ambientes isolados. Ela foi desenhada especialmente para disponibilizar sua aplicação da forma mais rápida possível.
 
@@ -36,10 +36,10 @@ Para criar o isolamento necessário desse processo, o Docker usa a funcionalidad
 Para evitar a exaustão dos recursos da máquina por apenas um ambiente isolado, o Docker usa a funcionalidade [cgroups](https://en.wikipedia.org/wiki/Cgroups) do kernel, que é responsável por criar limites de uso do hardware a disposição. Com isso é possível coexistir no mesmo host diferentes containers, sem que um afete diretamente o outro por uso exagerado dos recursos compartilhados.
 
 
-## Instalação
+# Instalação
 
 **Breve...**
 
-## Comandos básicos
+# Comandos básicos
 
 **Breve...**
