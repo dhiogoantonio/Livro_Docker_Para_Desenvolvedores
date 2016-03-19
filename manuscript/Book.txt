@@ -4,3 +4,5 @@ todo.txt
 criandoimagem.txt
 armazenamento.txt
 rede.txt
+todo2.txt
+macos_e_windows.txt
