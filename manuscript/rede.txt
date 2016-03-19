@@ -12,7 +12,7 @@ docker network ls
 
 O retorno será:
 
-![retorno1_rede](http://techfree.com.br/wp-content/uploads/2016/02/Screen-Shot-2016-02-26-at-1.07.24-PM.png)
+![retorno1_rede](images/resultado_rede.png)
 
 #### Bridge
 
@@ -57,7 +57,7 @@ Essa rede tem como objetivo isolar o container para comunicações externas, ou 
 
 Essa rede normalmente é utilizada para containers que manipulam apenas arquivos, sem a necessidade de enviá-los via rede para outro local. (Ex. container de backup que utiliza os volumes de container de banco de dados para realizar o dump, que será usado no processo de retenção dos dados).
 
-![Rede host](http://techfree.com.br/wp-content/uploads/2016/02/teste.png)
+![Rede host](images/rede_none.png)
 
 Em caso de duvida sobre utilização de volumes no docker. Visite esse artigo e entenda um pouco mais sobre armazenamento do docker.
 
@@ -95,7 +95,7 @@ docker network ls
 ```
 O resultado será:
 
-![Resultado 2](http://techfree.com.br/wp-content/uploads/2016/02/Screen-Shot-2016-02-26-at-6.31.16-PM.png)
+![Resultado 2](images/resultado_rede2.png)
 
 Agora vamos iniciar um container na rede, chamada isolated_nw, que acabamos de criar:
 
@@ -103,13 +103,13 @@ Agora vamos iniciar um container na rede, chamada isolated_nw, que acabamos de c
 docker run -itd --net isolated_nw alpine sh
 ```
 
-![rede_usuario_1](https://docs.docker.com/engine/userguide/networking/images/bridge_network.png)
+![rede_usuario_1](images/bridge_network.png)
 
 Vale salientar que um container que está em uma determinada rede não acessará um que está em outra, mesmo que você conheça o IP de destino. Para que ele acesse um outro container de outra rede, é necessário que a origem esteja nas duas redes que deseja alcançar.
 
 Os containers que estão na rede isolated_nw poderão expor suas portas no docker host normalmente e essas portas poderão ser acessadas tanto por containers externos a rede, chamada isolated_nw, como máquinas externas com acesso ao docker host.
 
-![rede_usuario_2](https://docs.docker.com/engine/userguide/networking/images/network_access.png)
+![rede_usuario_2](images/network_access.png)
 
 Para descobrir quais containers estão associados a uma determinada rede, execute o comando abaixo:
 
@@ -119,7 +119,7 @@ docker network inspect isolated_nw
 
 O resultado será:
 
-![resultado2](http://techfree.com.br/wp-content/uploads/2016/02/Screen-Shot-2016-02-26-at-6.32.28-PM.png)
+![resultado2](images/resultado_rede3.png)
 
 Dentro da sessão “Containers” será possível verificar quais containers fazem parte dessa rede, ou seja, todos os containers que estiverem na mesma rede poderão se comunicar tranquilamente utilizando apenas os seus respectivos nomes. Como podemos ver no exemplo acima, caso um container novo acesse a rede isolated_nw, ele poderá acessar o container amazing_noyce utilizando apenas seu nome.
 
