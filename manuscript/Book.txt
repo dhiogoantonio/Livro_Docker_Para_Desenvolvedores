@@ -6,3 +6,5 @@ armazenamento.txt
 rede.txt
 todo2.txt
 macos_e_windows.txt
+apendice.txt
+container_vm.txt
