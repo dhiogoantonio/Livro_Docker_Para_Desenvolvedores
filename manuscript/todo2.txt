@@ -1,6 +1,13 @@
 # Enviando suas imagens docker para nuvem
 
+**Breve...**
+
 # Utilizando docker em múltiplos ambientes
 
+**Breve...**
+
 # Gerenciando múltiplos containers docker
+
+**Breve...**
+
 
