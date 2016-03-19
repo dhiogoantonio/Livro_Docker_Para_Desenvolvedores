@@ -37,7 +37,7 @@ O comando acima mostrará apenas ambientes criados e mantidos por seu docker-mac
 docker-machine create --driver virtualbox default
 ```
 
-![Arquitetura do Docker toolbox](images/docker-toolbox1.png)
+![Arquitetura do Docker toolbox](images/docker_toolbox1.png)
 
 O comando acima criou um ambiente que se chama “default”, que na verdade é uma máquina virtual (“Linux VM” que aparece na imagem) criada no virtualbox. Com o comando abaixo será possível visualizar a máquina que acabou de criar:
 
