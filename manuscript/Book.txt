@@ -6,9 +6,9 @@ armazenamento.txt
 rede.txt
 todo2.txt
 macos_e_windows.txt
-boas_praticas.txt
 dockerizarando_app.txt
 base_de_codigo.txt
 dependencias.txt
+boas_praticas.txt
 apendice.txt
 container_vm.txt
