@@ -9,6 +9,7 @@ macos_e_windows.txt
 dockerizarando_app.txt
 base_de_codigo.txt
 dependencias.txt
+configuracoes.txt
 boas_praticas.txt
 apendice.txt
 container_vm.txt
