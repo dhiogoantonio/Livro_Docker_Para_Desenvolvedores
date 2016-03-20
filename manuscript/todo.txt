@@ -113,7 +113,7 @@ docker-compose version
 
 #### Instalando Docker compose com pip
 
-O pip é um gerenciador de pacotes Python, e como o docker-compose é escrito nessa linguagem, é possível instalá-lo desse jeito:
+O [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)) é um gerenciador de pacotes Python, e como o docker-compose é escrito nessa linguagem, é possível instalá-lo desse jeito:
 
 ```
 pip install docker-compose
@@ -143,6 +143,14 @@ Para testar execute o comando abaixo:
 ```
 docker-machine version
 ```
+
+## Instalando no MacOS
+
+**Breve**
+
+## Instalando no Windows
+
+**Breve**
 
 # Comandos básicos
 

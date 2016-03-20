@@ -30,3 +30,39 @@ redis:
 Esse arquivo tem todos os detalhes de configuração implantados até então, ou seja, essa boa prática é seguida com ajuda do Docker, pois o código é o mesmo e a configuração é um anexo da solução e pode ser parametrizada de maneira distinta com base no que for configurado nesse arquivo.
 
 Se aplicação crescer bastante, as variáveis podem ser carregadas em arquivo e parametrizadas no docker-compose.yml com a opção **"env_file"**.
+
+# Serviços de Apoio
+
+**Breve**
+
+# Build, release, run
+
+**Breve**
+
+# Processos
+
+**Breve**
+
+# Vínculo de porta
+
+**Breve**
+
+# Concorrência
+
+**Breve**
+
+# Descartabilidade
+
+**Breve**
+
+# Dev/prod semelhantes
+
+**Breve**
+
+# Logs
+
+**Breve**
+
+# Procesos de Admin
+
+**Breve**
