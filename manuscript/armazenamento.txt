@@ -2,7 +2,7 @@
 
 Para entender como o docker gerencia seus volumes, primeiro precisamos explicar como funciona ao menos um [backend](http://searchdatacenter.techtarget.com/definition/back-end) de armazenamento do Docker. Faremos aqui com o AUFS, que foi o primeiro e ainda é um padrão em boa parte das instalações do Docker.
 
-![](images/aufs_layers.png)
+![](images/aufs_layers.jpg)
 
 ### Como funciona um backend do Docker (Ex. AUFS)
 
@@ -16,7 +16,7 @@ Com exceção da pasta (camada) correspondente ao container, todas as outras sã
 
 Caso seja necessário modificar um arquivo que esteja nas camadas (pastas) referentes a imagens é utilizado a tecnologia [Copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write) (CoW), que é responsável por copiar o arquivo necessário para a pasta (camada) do container e fazer todas as modificações nesse nível, dessa forma o arquivo original da camada inferior é sobreposto nessa pilha, ou seja, o container em questão sempre verá apenas os arquivos das camadas mais altas.
 
-![Removendo um arquivo](images/aufs_delete.png)
+![Removendo um arquivo](images/aufs_delete.jpg)
 
 No caso da remoção o arquivo da camada superior é marcado como whiteout file e assim viabilizando a visualização do arquivo de camadas inferiores.
 
