@@ -1,0 +1,32 @@
+# Dependências
+
+Com o objetivo evitar que as aplicações tenham problemas de portabilidade, essa boa prática sugere a declaração de todas as dependências necessárias para executar seu código, ou seja, você nunca deve assumir que algum componente já estará previamente instalado no host responsável por hospedar essa aplicação.
+
+Caso não use essa boa prática é possível que quando suas aplicações migrarem de infraestrutura a sua instalação não seja automática o suficiente para viabilizar sua inicialização sem erros. Isso ajuda a manter a integridade da informação, uma vez que todo controle sobre versão e nome das dependências estaria especificado explicitamente em um arquivo no repositório.
+
+O Docker se encaixa perfeitamente com essa boa prática, pois é possível entregar um perfil mínimo de infraestrutura para essa aplicação, que por sua vez se fará necessária a declaração explícita de suas dependências para que a aplicação funcione nesse ambiente.
+
+No caso do código exemplo que estamos usando ele necessita de dois pacotes python:
+
+```
+from flask import Flask
+from redis import Redis
+```
+Esses dois pacotes estão especificados no arquivo [requirements.txt](https://github.com/gomex/exemplo-12factor-docker/blob/master/requirements.txt) e esse arquivo é usado como parâmetro para a criação da imagem, como foi demonstrado no Dockerfile da boa prática anterior (codebase):
+
+```
+FROM python:2.7
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD python app.py
+```
+
+Perceba que um dos passos do **Dockerfile** é instalar as dependências explicitamente descritas no arquivo requirements.txt com o gerenciador de pacotes pip do Python. Veja o conteúdo do arquivo **requirements.txt**:
+
+```
+flask
+redis
+```
+
+Com isso, estamos seguindo perfeitamente essa boa prática.

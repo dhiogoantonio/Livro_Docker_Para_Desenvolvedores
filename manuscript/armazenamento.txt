@@ -30,9 +30,9 @@ Ao utilizar volumes o Docker montará essa pasta (camada) no nível imediatament
 
 O volume também resolve questões de persistência de dados, pois as informações armazenadas na camada (pasta) do container são perdidas ao remover o container, ou seja, ao utilizar volumes temos uma maior garantia no armazenamento desses dados.
 
-## Usando volumes
+### Usando volumes
 
-### Mapeamento de pasta específica do host
+#### Mapeamento de pasta específica do host
 
 
 Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e mapea ela com uma pasta interna do container (Ex. /var), ou seja, dessa forma tudo que é escrita na pasta /var do container é escrita também na pasta /var/lib/container1 do host.
@@ -45,7 +45,7 @@ docker run -v /var/lib/container1:/var ubuntu
 
 Esse modelo não é portável, pois necessita que o host tenha uma pasta específica para que o container funciona adequadamente.
 
-### Mapeamento via container de dados
+#### Mapeamento via container de dados
 
 Nesse modelo é criado um container e dentro desse é nomeado um volume a ser consumido por outros containeres. Dessa forma não precisa criar uma pasta específica no host para persistir dados, essa pasta será criada automaticamente dentro da pasta raiz do Docker daemon, mas você não precisa se preocupar que pasta é essa, pois toda referência será feita para o container detentor do volume e não a pasta diretamente.
 
@@ -65,7 +65,7 @@ Agora o container db2 tem uma pasta /dbdata que é a mesma do container dbdata. 
 
 Uma desvantagem desse modelo é a necessidade de se manter um container apenas pra isso, pois em alguns ambiente os containeres são removidos com certa regularidade e dessa forma é necessário ter cuidado com esses containeres especiais. O que de uma certa forma é um problema adicional de gerenciamento.
 
-### Mapeamento de volumes
+#### Mapeamento de volumes
 
 Na versão 1.9 do Docker foi acrescentado a possibilidade de se criar volumes isolados de containeres, ou seja, agora é possível criar um volume portável, sem a necessidade de associá-lo a um container especial.
 
