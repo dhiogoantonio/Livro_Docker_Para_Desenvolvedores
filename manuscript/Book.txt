@@ -1,10 +1,15 @@
 organizacao.txt
 proposito.txt
-todo.txt
+agradecimentos.txt
+introducao.txt
+oquee.txt
+instalacao.txt
+comandos.txt
 criandoimagem.txt
 armazenamento.txt
 rede.txt
-todo2.txt
+machine.txt
+compose.txt
 macos_e_windows.txt
 dockerizarando_app.txt
 base_de_codigo.txt

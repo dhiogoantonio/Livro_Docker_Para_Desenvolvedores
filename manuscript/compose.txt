@@ -1,7 +1,3 @@
-# Utilizando docker em múltiplos ambientes
-
-**Breve...**
-
 # Gerenciando múltiplos containers docker
 
 **Breve...**
