@@ -109,7 +109,7 @@ Para entendimento, vamos imaginar que três containers foram colocados em execu�
 
 ## Verificando a lista de containers
 
-Para visualizar a list de containers de um determinado **Docker host** utilizamos o comando **docker ps**.
+Para visualizar a list de containers de um determinado **Docker host** utilizamos o comando [docker ps](https://docs.docker.com/engine/reference/commandline/ps/).
 
 Esse comando é responsável por mostrar todos os containers, mesmo aqueles que não estão mais em execução.
 
@@ -130,7 +130,7 @@ Parâmetro   | Explicação
 
 Uma vez iniciado o container a partir de uma imagem é possível gerenciar sua utilização com novos comandos.
 
-Caso deseje desligar o container basta utilizar o comando **docker stop**. Ele recebe como argumento o **ID** ou **nome** do container. Ambos dados podem ser obtidos com o **docker ps**, que foi explicado no tópico anterior.
+Caso deseje desligar o container basta utilizar o comando [docker stop](https://docs.docker.com/engine/reference/commandline/stop/). Ele recebe como argumento o **ID** ou **nome** do container. Ambos dados podem ser obtidos com o **docker ps**, que foi explicado no tópico anterior.
 
 Um exemplo de uso seria:
 
@@ -140,7 +140,7 @@ docker stop meu_python
 
 No comando acima, caso houvesse um container chamado **meu_python** em execução ele receberia um sinal **SIGTERM** e caso não fosse desligado ele receberia um **SIGKILL** depois de 10 segundos.
 
-Caso deseje reiniciar o container que foi desligado e não iniciar um novo, basta iniciar o comando abaixo:
+Caso deseje reiniciar o container que foi desligado e não iniciar um novo, basta executar o comando [docker start](https://docs.docker.com/engine/reference/commandline/start/):
 
 ```
 docker start meu_python
