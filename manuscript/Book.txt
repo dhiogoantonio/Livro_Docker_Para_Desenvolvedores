@@ -2,6 +2,7 @@ organizacao.txt
 proposito.txt
 agradecimentos.txt
 introducao.txt
+porque.txt
 oquee.txt
 instalacao.txt
 comandos.txt
