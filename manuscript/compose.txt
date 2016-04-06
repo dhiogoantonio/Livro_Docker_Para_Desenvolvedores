@@ -1,4 +1,4 @@
-# Gerenciando múltiplos containers docker
+# Gerenciando múltiplos containers docker com Docker Compose
 
 Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, como funciona o processo de gerenciamento de múltiplos containers Docker, pois a medida que sua confiança em utilizar Docker aumenta, sua necessidade de utilizar um maior número de containers ao mesmo tempo cresce na mesma proporção, e seguir a boa prática de manter apenas um serviço por container comumente resulta em alguma demanda extra.
 
