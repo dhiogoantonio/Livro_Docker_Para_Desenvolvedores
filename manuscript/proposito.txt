@@ -4,6 +4,6 @@ Esse livro tem como objetivo explicar de formas simples e direta como os desenvo
 
 Esse livro **não** é sobre se aprofundar na infraestrutura do Docker!
 
-Esse livre é sobre apresentar basicamente a utilização do Docker e se aprofundar nas melhores práticas de uso.
+Esse livro é sobre apresentar basicamente a utilização do Docker e se aprofundar nas melhores práticas de uso.
 
 Usaremos o 12factor como espinha dorsal para demonstrar as melhores práticas de construção da sua aplicação usando Docker.
