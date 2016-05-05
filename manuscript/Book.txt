@@ -13,6 +13,6 @@ machine.txt
 compose.txt
 macos_e_windows.txt
 dockerizarando_app_todo.txt
-boas_praticas.txt
+dicas.txt
 apendice.txt
 container_vm.txt
