@@ -29,7 +29,7 @@ A atualização também é positivamente afetada, pois a [estrutura de camadas](
 
 Como as imagens Docker são construídas através de [arquivos de definição](https://docs.docker.com/engine/reference/builder/), é possível garantir que um determinado padrão seja seguido e assim aumentar confiança em sua replicação, ou seja, basta que as imagens sigam as [melhores práticas](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) de construção para que seja viável [escalarmos](https://pt.wikipedia.org/wiki/Escalabilidade) a nossa estrutura rapidamente.
 
-Caso a equipe receba um nova pessoa para trabalhar no desenvolvimento, essa poderá receber o ambiente de trabalho em alguns comandos. Esse processo durará o tempo do download das imagens a se utilizar, assim como os arquivos de definições da orquestração das mesmas, ou seja, isso que dizer que no início de uma nova pessoa no processo de desenvolvimento da aplicação ela poderá reproduzir rapidamente o ambiente em sua estação e assim desenvolver códigos seguindo o padrão da equipe.
+Caso a equipe receba um nova pessoa para trabalhar no desenvolvimento, essa poderá receber o ambiente de trabalho em alguns comandos. Esse processo durará o tempo do download das imagens a se utilizar, assim como os arquivos de definições da orquestração das mesmas, ou seja, isso quer dizer que no início de uma nova pessoa no processo de desenvolvimento da aplicação ela poderá reproduzir rapidamente o ambiente em sua estação e assim desenvolver códigos seguindo o padrão da equipe.
 
 Na necessidade de se testar uma nova versão de uma determinada parte da sua solução, usando imagens Docker normalmente basta a mudança de um ou mais parâmetros de um arquivo de definição para se iniciar um ambiente modificado com a versão requerida para a avaliação, ou seja, criar e modificar sua infraestrutura ficou bem mais fácil e rápido.
 
@@ -47,7 +47,7 @@ Um exemplo é o [nginx](https://hub.docker.com/_/nginx/) como proxy reverso e [m
 
 Utilizar essas imagens não significa ficar “refém” da configuração trazida com elas, pois é possível enviar sua própria configuração para esses ambientes e evitar apenas o trabalho da sua instalação básica.
 
-### Duvidas
+### Dúvidas
 
 Algumas pessoas enviaram dúvidas relacionadas as vantagens que explicitei nesse texto, sendo assim ao invés de respondê-las pontualmente, resolvi publicar as perguntas e minhas respectivas respostas aqui.
 
@@ -67,9 +67,9 @@ Ainda sobre o processo de imagem Docker como produto no repositório, isso pode 
 
 Não! A diferença está na perspectiva do hospedeiro, pois no caso do Docker não importa qual distribuição GNU/Linux utilizada no host, pois há uma parte da imagem que carrega todos os arquivos de uma mini distribuição, que será o suficiente para suportar tudo que a aplicação precisa, ou seja, caso seu Docker host seja Fedora e o fato de sua aplicação em questão precisa de arquivos do Debian, não se preocupe, pois a imagem em questão trará arquivos Debian para suportar seu ambiente e como já foi dito anteriormente, isso normalmente não chega a impactar negativamente no consumo de espaço em disco.
 
-#### Quer dizer então que agora eu desenvolvedor preciso me preocupar com tudo da Infraestrutura?
+#### Quer dizer então que agora eu, desenvolvedor, preciso me preocupar com tudo da Infraestrutura?
 
-Não! Quando citamos que é possível o desenvolvedor especificar a infraestrutura, estamos falando que é aquela camada mais próxima da aplicação e não toda arquitetura necessária (Sistema operacional básico, regras de firewall, rotas de rede e etc)
+Não! Quando citamos que é possível o desenvolvedor especificar a infraestrutura, estamos falando que é aquela camada mais próxima da aplicação e não toda arquitetura necessária (Sistema operacional básico, regras de firewall, rotas de rede e etc).
 
 A ideia do Docker é que os assuntos relevantes e diretamente ligados a aplicação possam ser configurados pelo desenvolvedor, mas isso não o obriga a realizar essa atividade, é uma possibilidade que agrada muitos desenvolvedores, mas caso não seja esse sua situação, pode ficar tranquilo que outra equipe tratará dessa parte. Apenas o seu processo de implantação será um pouco mais lento.
 
