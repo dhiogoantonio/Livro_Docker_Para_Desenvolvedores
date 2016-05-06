@@ -1,16 +1,20 @@
 # Dicas para uso do Docker
 
-Se você leu a primeira parte desse livro, você já sabe o básico de Docker, mas quando começar a usar com mais frequência alguns desconfortos surgem. Como qualquer ferramenta, Docker tem seu próprio conjunto de boas práticas e dicas para ser efetivo.
+Se você leu a primeira parte desse livro já sabe o básico de Docker, mas agora que pretende começar a usar com mais frequência alguns desconfortos podem surgir, pois como qualquer ferramenta, Docker tem seu próprio conjunto de boas práticas e dicas para ser efetivo.
 
-O objetivo dessse texto é demonstrar algumas dicas para o bom uso do Docker. Isso não quer dizer que a forma que você executa hoje é errada. Apenas que para toda ferramenta existem algumas sugestões para tornar o seu uso mais efetivo e com menos problemas futuros.
+O objetivo dessse texto é demonstrar algumas dicas para o bom uso do Docker. Isso não quer dizer que a forma que você executa hoje seja necessariamente errada. 
 
-Esse documento está separado em duas seções: Dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
+Toda ferramenta demanda de algumas melhores práticas para tornar o seu uso mais efetivo e com menor possibilidade de problemas futuros.
+
+Esse capítulo está separado em duas seções: Dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
 
 ## Dicas para Rodar
 
-Lembre-se cada `docker run` cria um novo container com a imagem especificada e inicia um comando dentro dele (`CMD` especificado no Dockerfile).
-É comum que, principalmente em desenvolvimento, criarmos e rodarmos vários containers que são descartados em breve.
-Nesse caso de usarmos containers verdadeiramente efêmeros, utilize o argumento `--rm`. Isso faz com que todos dados do container sejam removidos após o termino da execução, evitando consumir disco de maneira desnecessária.
+Lembre-se cada comando  `docker run`  cria um novo container com base em uma imagem especificada e inicia um processo dentro dentro dele a partir de um comando (`CMD` especificado no Dockerfile).
+
+É esperado que os containers executados possam ser descartados sem qualquer problema, sendo assim é importante utilizar containers verdadeiramente efêmeros. 
+
+Para tal utilize o argumento  `--rm`. Isso faz com que todos o container, e todos seus dados, sejam removidos após o termino da execução, evitando consumir disco de maneira desnecessária.
 
 Em geral, pode-se utilizar o comando `run` conforme o exemplo:
 
@@ -18,7 +22,7 @@ Em geral, pode-se utilizar o comando `run` conforme o exemplo:
 docker run --rm -it debian /bin/bash
 ```
 
-Note aqui que `-it` significa `--interactive --tty`. Ele é usado para fixar a linha de comando com o container, assim após esse `docker run` todos comandos serão executados pelo `bash` de dentro do container. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um container em primeiro plano.
+Note aqui que  `-it`  significa  `--interactive --tty`. Ele é usado para fixar a linha de comando com o container, assim após esse `docker run` todos comandos serão executados pelo `bash` de dentro do container. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um container em primeiro plano.
 
 ### Verifique variáveis de ambiente
 
