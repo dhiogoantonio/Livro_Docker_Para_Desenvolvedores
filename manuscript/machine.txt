@@ -46,11 +46,11 @@ docker-machine create --driver=<nome do driver>  <nome do ambiente>
 
 Para o driver **virtualbox** temos alguns parâmetros que podem ser utilizadas:
 
-Parâmetro   | Explicação | 
------------|------------|
---virtualbox-memory  | Especifica a quantidade de memória RAM que esse ambiente poderá utilizar. O valor padrão é 1024MB. (Sempre em MB) |
---virtualbox-cpu-count | Especifica a quantidade de núcleos de CPU que esse ambiente poderá utilizar. O valor padrão é 1 |
---virtualbox-disk-size | Especifica o tamanho do disco que esse ambiente poderá utilizar. O valor padrão é 20000MB (Sempre em MB) |
+|Parâmetro   | Explicação | 
+|-----------|------------|
+|--virtualbox-memory  | Especifica a quantidade de memória RAM que esse ambiente poderá utilizar. O valor padrão é 1024MB. (Sempre em MB) |
+|--virtualbox-cpu-count | Especifica a quantidade de núcleos de CPU que esse ambiente poderá utilizar. O valor padrão é 1 |
+|--virtualbox-disk-size | Especifica o tamanho do disco que esse ambiente poderá utilizar. O valor padrão é 20000MB (Sempre em MB) |
 
 Como teste vamos utilizar o seguinte comando:
 
@@ -130,14 +130,14 @@ Quando criado um ambiente utilizando o comando **docker-machine create**, isso �
 
 Os parâmetros mais utilizados na criação desse ambiente são:
 
-Parâmetro   | Explicação |
------------|------------|
---amazonec2-region | Informa qual região da AWS será utilizada para hospedar seu ambiente. O valor padrão é us-east-1. |
---amazonec2-zone | É a letra que representa a zona utilizada. O valor padrão é "a" |
---amazonec2-subnet-id | Informa qual a sub-rede utilizada nessa instância EC2. Ela precisa ter sido criada previamente. |
---amazonec2-security-group | Informa qual o security group será utilizado nessa instância EC2. Ele precisa ter sido criado previamente |
---amazonec2-use-private-address | Será criado uma interface com IP privado, pois por default ele só especifica uma com IP público |
---amazonec2-vpc-id | Informa qual o ID do VPC desejado para essa instância EC2. Ela precisa ter sido criado previamente. |
+|Parâmetro   | Explicação |
+|-----------|------------|
+|--amazonec2-region | Informa qual região da AWS será utilizada para hospedar seu ambiente. O valor padrão é us-east-1. |
+|--amazonec2-zone | É a letra que representa a zona utilizada. O valor padrão é "a" |
+|--amazonec2-subnet-id | Informa qual a sub-rede utilizada nessa instância EC2. Ela precisa ter sido criada previamente. |
+|--amazonec2-security-group | Informa qual o security group será utilizado nessa instância EC2. Ele precisa ter sido criado previamente |
+|--amazonec2-use-private-address | Será criado uma interface com IP privado, pois por default ele só especifica uma com IP público |
+|--amazonec2-vpc-id | Informa qual o ID do VPC desejado para essa instância EC2. Ela precisa ter sido criado previamente. |
 
 Como exemplo, usarei o seguinte comando de criação do ambiente:
 
