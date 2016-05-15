@@ -59,7 +59,7 @@ Essa rede normalmente é utilizada para containers que manipulam apenas arquivos
 
 ![Exemplo de uso da rede none](images/rede_none.png)
 
-Em caso de duvida sobre utilização de volumes no docker. Visite esse artigo e entenda um pouco mais sobre armazenamento do docker.
+Em caso de duvida sobre utilização de volumes no docker. Visite [esse artigo](http://techfree.com.br/2015/12/entendendo-armazenamentos-de-dados-no-docker/) e entenda um pouco mais sobre armazenamento do docker.
 
 #### Host
 
@@ -131,7 +131,7 @@ Esse driver demanda uma configuração mais complexa, sendo assim tratarei do se
 
 ### Utilizando redes no docker compose
 
-Esse assunto merece um artigo inteiro pra isso, sendo assim, no momento, vou apenas informar um link interessante de referência sobre esse assunto.
+Esse assunto merece um artigo inteiro pra isso, sendo assim, no momento, vou apenas informar [um link interessante](https://docs.docker.com/compose/networking/) de referência sobre esse assunto.
 
 ### Conclusão
 
