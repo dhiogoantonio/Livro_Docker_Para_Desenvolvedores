@@ -1,4 +1,4 @@
-##  Base de código
+#  Base de código
 
 Com o objetivo de facilitar o controle das mudanças de código, viabilizando a rastreabilidade das alterações, essa boa prática indica que cada aplicação deve ter apenas uma base de código e, a partir do mesmo, uma aplicação pode ser implantada em distintos ambientes, mas a base precisa ser a mesma. Vale salientar que essa boa prática é necessária caso pretenda praticar o Continuous Integration ([CI](https://www.thoughtworks.com/continuous-integration)), ou seja, o mesmo código deverá ser consumido pelo processo de integração contínua e posteriormente implantado em desenvolvimento, teste e produção, mudando apenas parâmetros específicos ao ambiente em questão.
 

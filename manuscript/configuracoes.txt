@@ -1,4 +1,4 @@
-## Configurações
+# Configurações
 
 Seguindo a lista do modelo [12factor](http://12factor.net/), temos **“Configurações”** como terceira boa prática.
 
