@@ -2,7 +2,7 @@
 
 Estamos evoluindo continuamente para entregar aplicações cada vez melhores, em menor tempo, replicáveis e escaláveis. Porém os esforços e aprendizados para atingir esse nível de maturidade muitas vezes não são simples de se alcançar.
 
-Atualmente notamos o surgimento de várias opções de plataformas para facilitar a implantação, configuração e escalabilidade das aplicações que desenvolvemos. Porém, para melhorar nossa maturidade não podemos apenas depender da plataforma, precisamos construir nossa aplicação seguindo boas práticas.
+Atualmente notamos o surgimento de várias opções de plataformas para facilitar a implantação, configuração e escalabilidade das aplicações que desenvolvemos. Porém, para aumentar nosso grau de maturidade não podemos apenas depender da plataforma, precisamos construir nossa aplicação seguindo boas práticas.
 
 Visando sugerir uma série de boas práticas comuns a aplicações web modernas, alguns desenvolvedores do [Heroku](https://www.heroku.com/) escreveram o [12Factor app](http://12factor.net/pt_br/), baseado em uma larga experiência em desenvolvimento desse tipo de aplicação.
 

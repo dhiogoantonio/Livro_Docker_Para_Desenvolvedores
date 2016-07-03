@@ -13,6 +13,10 @@ machine.txt
 compose.txt
 macos_e_windows.txt
 dockerizarando_app_todo.txt
+basecode.txt
+dependencia.txt
+configuracoes.txt
+servicosdeapoio.txt
 dicas.txt
 apendice.txt
 container_vm.txt

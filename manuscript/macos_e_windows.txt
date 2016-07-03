@@ -135,7 +135,7 @@ touch teste
 Vamos iniciar um container e mapear nossa pasta atual dentro dele:
 
 ```
-docker run -itd -v "$PWD:/tmp" alpine --name teste sh
+docker run -itd -v "$PWD:/tmp" --name teste alpine sh
 ```
 No comando acima iniciamos um container que será nomeado como “teste” e terá mapeado a pasta atual (a variável PWD indica o endereço atual no MacOS) na pasta /tmp dentro do container.
 
