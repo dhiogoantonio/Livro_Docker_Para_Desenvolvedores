@@ -17,6 +17,8 @@ basecode.txt
 dependencia.txt
 configuracoes.txt
 servicosdeapoio.txt
+construa-lance-execute.txt
+processos.txt
 dicas.txt
 apendice.txt
 container_vm.txt
