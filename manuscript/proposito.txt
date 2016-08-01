@@ -1,9 +1,9 @@
 # Propósito desse livro
 
-Esse livro tem como objetivo explicar de formas simples e direta como os desenvolvedores podem usar Docker.
+Esse livro tem como objetivo explicar, de forma simples e direta, como os desenvolvedores podem usar o Docker.
 
-Esse livro **não** é sobre se aprofundar na infraestrutura do Docker!
+Esse livro **não** é sobre a infraestrutura do Docker!
 
-Esse livro é sobre apresentar basicamente a utilização do Docker e se aprofundar nas melhores práticas de uso.
+Esse livro irá apresentar a utilização do Docker e aprofundar-se nas melhores práticas de uso.
 
-Usaremos o 12factor como espinha dorsal para demonstrar as melhores práticas de construção da sua aplicação usando Docker.
+Usaremos o [12factor](http://12factor.net/pt_br/) como espinha dorsal para demonstrar as melhores práticas de construção da sua aplicação usando Docker.
