@@ -24,6 +24,7 @@ concorrencia.md
 descartabilidade.md
 paridade.md
 logs.md
+admin.md
 dicas.md
 apendice.md
 container_vm.md
