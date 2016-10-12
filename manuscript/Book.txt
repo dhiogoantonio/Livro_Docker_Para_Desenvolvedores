@@ -20,6 +20,7 @@ servicosdeapoio.md
 construa-lance-execute.md
 processos.md
 vinculos.md
+concorrencia.md
 dicas.md
 apendice.md
 container_vm.md
