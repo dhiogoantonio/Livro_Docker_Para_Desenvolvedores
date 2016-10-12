@@ -21,6 +21,7 @@ construa-lance-execute.md
 processos.md
 vinculos.md
 concorrencia.md
+descartabilidade.md
 dicas.md
 apendice.md
 container_vm.md
