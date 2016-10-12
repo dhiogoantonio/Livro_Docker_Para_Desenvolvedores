@@ -22,6 +22,7 @@ processos.md
 vinculos.md
 concorrencia.md
 descartabilidade.md
+paridade.md
 dicas.md
 apendice.md
 container_vm.md
