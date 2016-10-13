@@ -97,7 +97,7 @@ sudo su - root
 Agora execute o comando abaixo:
 
 ```
-$ curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+$ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
 chmod +x /usr/local/bin/docker-machine
 ```
 Para testar execute o comando abaixo:
@@ -105,6 +105,8 @@ Para testar execute o comando abaixo:
 ```
 docker-machine version
 ```
+
+Obs.: O exemplo anterior utiliza a versão mais recente no momento desta publicação. Verifique se há alguma versão mais atualizada consultando a [documentação oficial](https://docs.docker.com/machine/install-machine/).
 
 ## Instalando no MacOS
 
