@@ -27,7 +27,7 @@ docker inspect python
 ```
 O comando [inspect](https://docs.docker.com/engine/reference/commandline/inspect/) é responsável por informar todos os dados referentes a essa imagem. 
 
-Agora que temos a imagem atualizada e inspecionada, podemos iniciar o container, mas antes de simplesmente copiarmos a colarmos o comandos, vamos entender como ele realmente funciona.
+Agora que temos a imagem atualizada e inspecionada, podemos iniciar o container, mas antes de simplesmente copiarmos e colarmos o comando, vamos entender como ele realmente funciona.
 
 ```
 docker run <parâmetros> <imagem> <CMD> <argumentos>
@@ -35,17 +35,17 @@ docker run <parâmetros> <imagem> <CMD> <argumentos>
 
 Os parâmetros mais utilizados na execução do container são:
 
-Parâmetro   | Explicação  
------------|------------
--d | Execução do container em background
--i | Modo interativo. Mantém o STDIN aberto mesmo sem console anexado
--t | Aloca uma pseudo TTY
---rm | Automaticamente remove o continer após finalização (**Não funciona com -d**)
---name | Nomear o container
--v  | Mapeamento de volume
--p  | Mapemento de porta
--m  | Limitar o uso de memória RAM
--c  | Balancear o uso de CPU 
+|Parâmetro   | Explicação                                                                   |
+|------------|------------------------------------------------------------------------------|
+|-d          | Execução do container em background                                          |
+|-i          | Modo interativo. Mantém o STDIN aberto mesmo sem console anexado             |
+|-t          | Aloca uma pseudo TTY                                                         |
+|--rm        | Automaticamente remove o continer após finalização (**Não funciona com -d**) |
+|--name      | Nomear o container                                                           |
+|-v          | Mapeamento de volume                                                         |
+|-p          | Mapemento de porta                                                           |
+|-m          | Limitar o uso de memória RAM                                                 |
+|-c          | Balancear o uso de CPU                                                       |
 
 Segue um exemplo simples no seguinte comando:
 
@@ -54,7 +54,7 @@ docker run -it --rm --name meu_python python bash
 ```
 De acordo com o comando acima será iniciado um container que terá o nome **meu_python**, que será criado a partir da imagem **python** e o processo que será executado nesse container será o **bash**.
 
-Vale lembra que caso o **CMD** não seja especificado no comando **docker run** será utilizado o valor padrão definido no **Dockerfile** da imagem utilizada em questão, que no nosso caso é **python** e seu comando padrão seria executar o binário **python**, ou seja, se não fosse especificado o **bash** no final do comando de exemplo acima, ao invés de um shell bash do GNU/Linux seria exibido um shell do **python**.
+Vale lembrar que caso o **CMD** não seja especificado no comando **docker run** será utilizado o valor padrão definido no **Dockerfile** da imagem utilizada em questão, que no nosso caso é **python** e seu comando padrão seria executar o binário **python**, ou seja, se não fosse especificado o **bash** no final do comando de exemplo acima, ao invés de um shell bash do GNU/Linux seria exibido um shell do **python**.
 
 ### Mapeamento de volumes
 
@@ -109,7 +109,7 @@ Para entendimento, vamos imaginar que três containers foram colocados em execu�
 
 ## Verificando a lista de containers
 
-Para visualizar a list de containers de um determinado **Docker host** utilizamos o comando [docker ps](https://docs.docker.com/engine/reference/commandline/ps/).
+Para visualizar a lista de containers de um determinado **Docker host** utilizamos o comando [docker ps](https://docs.docker.com/engine/reference/commandline/ps/).
 
 Esse comando é responsável por mostrar todos os containers, mesmo aqueles que não estão mais em execução.
 
@@ -119,12 +119,12 @@ docker ps <parâmetros>
 
 Os parâmetros mais utilizados na execução do container são:
 
-Parâmetro   | Explicação  
------------|------------
--a | Lista todos os containers, inclusive os desligados
--l | Lista os ultimos containers, inclusive os desligados
--n | Lista os últimos N containers,  inclusive os desligados
--q | Lista apenas os ids dos containers, ótimo para utilização em scripts
+|Parâmetro   | Explicação|  
+|-----------|------------|
+|-a | Lista todos os containers, inclusive os desligados|
+|-l | Lista os ultimos containers, inclusive os desligados|
+|-n | Lista os últimos N containers,  inclusive os desligados|
+|-q | Lista apenas os ids dos containers, ótimo para utilização em scripts|
 
 ## Gerenciamento de containers
 

@@ -1,6 +1,6 @@
 # Dependência
 
-Seguindo a lista do modelo [12factor](http://12factor.net/), logo após o base de código que tratamos nesse [artigo](http://techfree.com.br/2016/06/dockerizando-aplicacoes-base-de-codigo/), agora temos **“Dependência”** como segunda boa prática.
+Seguindo a lista do modelo [12factor](http://12factor.net/), logo após a base de código que tratamos nesse [artigo](http://techfree.com.br/2016/06/dockerizando-aplicacoes-base-de-codigo/), agora temos **“Dependência”** como segunda boa prática.
 
 ![](images/dependencia.png)
 

@@ -35,7 +35,7 @@ O volume também resolve questões de persistência de dados, pois as informaç�
 #### Mapeamento de pasta específica do host
 
 
-Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e mapea ela com uma pasta interna do container (Ex. /var), ou seja, dessa forma tudo que é escrita na pasta /var do container é escrita também na pasta /var/lib/container1 do host.
+Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e mapeia ela com uma pasta interna do container (Ex. /var), ou seja, dessa forma tudo que é escrita na pasta /var do container é escrita também na pasta /var/lib/container1 do host.
 
 Segue abaixo o exemplo de comando usado para esse modelo de mapeamento:
 
@@ -43,7 +43,7 @@ Segue abaixo o exemplo de comando usado para esse modelo de mapeamento:
 docker run -v /var/lib/container1:/var ubuntu
 ```
 
-Esse modelo não é portável, pois necessita que o host tenha uma pasta específica para que o container funciona adequadamente.
+Esse modelo não é portável, pois necessita que o host tenha uma pasta específica para que o container funcione adequadamente.
 
 #### Mapeamento via container de dados
 
@@ -54,7 +54,7 @@ Segue abaixo um exemplo do uso desse modelo de mapeamento:
 ```
 docker create -v /dbdata --name dbdata postgres /bin/true
 ```
-No comando acima criamos um container de dados, onde a sua pasta /dbdata pode ser consumida por outros container, ou seja, o conteúdo da pasta /dbtada poderá ser visualizado e/ou editado por outros containeres.
+No comando acima criamos um container de dados, onde a sua pasta /dbdata pode ser consumida por outros containeres, ou seja, o conteúdo da pasta /dbtada poderá ser visualizado e/ou editado por outros containeres.
 
 Para consumir esse volume do container, basta utilizar esse comando:
 
@@ -63,7 +63,7 @@ docker run -d --volumes-from dbdata --name db2 postgres
 ```
 Agora o container db2 tem uma pasta /dbdata que é a mesma do container dbdata. Com isso tornando esse modelo completamente portável.
 
-Uma desvantagem desse modelo é a necessidade de se manter um container apenas pra isso, pois em alguns ambiente os containeres são removidos com certa regularidade e dessa forma é necessário ter cuidado com esses containeres especiais. O que de uma certa forma é um problema adicional de gerenciamento.
+Uma desvantagem desse modelo é a necessidade de se manter um container apenas pra isso, pois em alguns ambientes os containeres são removidos com certa regularidade e dessa forma é necessário ter cuidado com esses containeres especiais. O que de uma certa forma é um problema adicional de gerenciamento.
 
 #### Mapeamento de volumes
 

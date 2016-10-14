@@ -132,7 +132,7 @@ Marque todas as opções e clique **Install**.
 
 Será solicitado seu usuário e senha para liberar a instalação dos softwares. Preencha e continue o processo.
 
-Na próxima tela será apenas apresantado as ferramentas que podem ser usadas para facilitar sua utilização do Docker no MacOS.
+Na próxima tela será apenas apresentado as ferramentas que podem ser usadas para facilitar sua utilização do Docker no MacOS.
 
 ![](images/mac3.png)
 
@@ -158,7 +158,7 @@ A instalação das ferramentas do Ecosistema Docker no Windows será realizada a
 
 O **Docker Toolbox** funcionará apenas em [versões 64bit](https://support.microsoft.com/en-us/kb/827218) do Windows e apenas as versões superiores ao Windows 7.
 
-É importante atentar também que é necessário que o suporte a virtualização esteja habilitado. Na versões 8 do Windows é possível verificar através do **Task Manager**, na aba **Performance**, clicando em **CPU** é possível visualizar a janela abaixo:
+É importante atentar também que é necessário que o suporte a virtualização esteja habilitado. Na versão 8 do Windows é possível verificar através do **Task Manager**, na aba **Performance**, clicando em **CPU** é possível visualizar a janela abaixo:
 
 ![](images/windows1.png)
 
