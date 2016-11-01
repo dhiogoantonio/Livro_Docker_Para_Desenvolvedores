@@ -84,7 +84,7 @@ No próximo nível de indentação (feito novamente com mais dois espaços) temo
       args:
         versao: 1
 ```
-Voltando dois nível de indentação (quatro espaços a menos em relação a linha anterior) temos a definição **ports**, que seria o equivalente ao parâmetro [“-p”](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port-p-expose) do comando [docker run](https://docs.docker.com/engine/reference/commandline/run/). Ele define qual porta do container será exposta no **Docker host**. Que no nosso caso será a porta *5000 do container, com a 5000 do **Docker host**.
+Voltando dois níveis de indentação (quatro espaços a menos em relação a linha anterior) temos a definição **ports**, que seria o equivalente ao parâmetro [“-p”](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port-p-expose) do comando [docker run](https://docs.docker.com/engine/reference/commandline/run/). Ele define qual porta do container será exposta no **Docker host**. Que no nosso caso será a porta *5000 do container, com a 5000 do **Docker host**.
 
 ```
   web:
@@ -104,7 +104,7 @@ No próximo nível de indentação (feito novamente com mais dois espaços) temo
 
 ### Executando o docker compose
 
-Após entender e criar seu próprio **arquivo de definição** precisamos saber como gerencia-lo e para isso utilizaremos o binário docker-compose, que entre várias opções de uso temos as seguintes mais comuns:
+Após entender e criar seu próprio **arquivo de definição** precisamos saber como gerenciá-lo e para isso utilizaremos o binário docker-compose, que entre várias opções de uso temos as seguintes mais comuns:
 
  * **build** : Usada para construir todas as imagens dos **serviços** que estão descritos com a definição **build** em seu bloco de código.
  * **up** : Iniciar todos os **serviços** que estão no arquivo **docker-compose.yml**

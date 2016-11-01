@@ -20,7 +20,7 @@ Cada container iniciado no docker é associado a uma rede especifica, e essa é 
 
 Ela confere ao container uma interface que faz bridge com a interface docker0 do docker host. Essa interface receberá automaticamente o próximo endereço disponível na rede IP 172.17.0.0/16.
 
-Todos os containers que estão nessa rede poderão se comunicar via protocolo TCP/IP, ou seja, caso você saiba qual endereço IP do container que se deseja conectar, é possível enviar tráfego pra ele, pois a final de contas estão todos na mesma rede IP (172.17.0.0/16).
+Todos os containers que estão nessa rede poderão se comunicar via protocolo TCP/IP, ou seja, caso você saiba qual endereço IP do container que se deseja conectar, é possível enviar tráfego pra ele, pois afinal de contas estão todos na mesma rede IP (172.17.0.0/16).
 
 Um detalhe a se observar é que como os IPs são cedidos automaticamente, não é uma tarefa trivial descobrir qual IP do container de destino. Para ajudar com essa localização, o docker disponibiliza na inicialização de um container a opção “–link“.
 

@@ -130,7 +130,7 @@ No arquivo acima eu utilizei quatro [instruções](https://docs.docker.com/engin
 
 **COPY** é usado para copiar arquivos da estação onde está executando a construção para dentro da imagem. Usamos um arquivo de teste apenas para exemplificar essa possibilidade, mas essa instrução é muito utilizada para enviar arquivos de configuração de ambiente e códigos para serem executados em serviços de aplicação.
 
-**CMD** é usado informar qual comando será executado por padrão, caso nenhum seja informado na inicialização de um container a partir dessa imagem. No nosso caso colocamos o comando bash, ou seja, caso essa imagem seja usada para iniciar um container e não informamos o comando, ele executará o bash.
+**CMD** é usado para informar qual comando será executado por padrão, caso nenhum seja informado na inicialização de um container a partir dessa imagem. No nosso caso colocamos o comando bash, ou seja, caso essa imagem seja usada para iniciar um container e não informamos o comando, ele executará o bash.
 
 Após construir seu Dockerfile basta executar o [comando](https://docs.docker.com/engine/reference/commandline/build/) abaixo:
 

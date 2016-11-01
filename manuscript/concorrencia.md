@@ -10,7 +10,7 @@ Quando uma aplicação é colocada em produção normalmente ela é dimensionada
 
 Com objetivo de evitar que exista qualquer problema na escalabilidade do serviço, esta boa prática indica que as aplicações devem suportar execuções concorrentes, tal que quando um processo está em execução deve ser possível instanciar um outro em paralelo e o serviço possa ser atendido sem perda alguma.
 
-Para que isto aconteça, é importante dividir as tarefas corretamente. É interessante que os processos se atenham aos seus objetivos, ou seja, caso seja necessário executar alguma atividade em backend e depois retornar uma página para o navegador, é salutar que existam dois serviços que tratem as duas atividades de forma separada. O Docker torna essa tarefa mais simples, pois nesse modelo basta especificar um contêineres para cada função e configurar corretamente a rede entre eles.
+Para que isto aconteça, é importante dividir as tarefas corretamente. É interessante que os processos se atenham aos seus objetivos, ou seja, caso seja necessário executar alguma atividade em backend e depois retornar uma página para o navegador, é salutar que existam dois serviços que tratem as duas atividades de forma separada. O Docker torna essa tarefa mais simples, pois nesse modelo basta especificar um container para cada função e configurar corretamente a rede entre eles.
 
 Para exemplificar essa boa prática, usaremos a arquitetura demonstrada na figura abaixo:
 
