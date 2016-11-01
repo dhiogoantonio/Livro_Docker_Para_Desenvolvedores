@@ -1,5 +1,11 @@
 # Docker para desenvolvedores
 
+Esse livro apresenta a utilização do Docker focando nas melhores práticas de uso.
+
+> Autor: *[Rafael Gomes](https://github.com/gomex)
+
+## Sumário
+
 1. [Organização](organizacao.md)
 1. [Propósito desse livro](proposito.md)
 1. [Agradecimentos](agradecimentos.md)
