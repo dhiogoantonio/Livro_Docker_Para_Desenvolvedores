@@ -8,7 +8,7 @@ Toda aplicação demanda administração, isso quer dizer que uma vez implantada
 
 Essa boa prática recomenda processos de administração executados em ambientes idênticos ao utilizado no código em execução, ou seja, seguindo todas as práticas explicadas até então.
 
-Usando Docker, é possível rodar esses processos usando a mesma imagem base no ambiente de execução que se desejar. Tudo isso podendo se beneficiar da comunicação entre os contêineres, uso de volumes que forem necessários e afins.
+Usando Docker, é possível rodar esses processos utilizando a mesma imagem base no ambiente de execução que se desejar. Tudo isso podendo se beneficiar da comunicação entre os contêineres, uso de volumes que forem necessários e afins.
 
 Para exemplificar essa boa prática criamos o arquivo **reset.py**:
 
@@ -38,7 +38,7 @@ Acesse a aplicação em seu navegador. Caso esteja usando GNU/Linux ou Docker Fo
 
 Acesse a aplicação mais algumas vezes para o marcador aumentar bastante.
 
-Depois vamos executar o comando de administração a partir do serviço worker:
+Depois execute o comando de administração a partir do serviço worker:
 
 ```
 docker-compose exec worker python reset.py
