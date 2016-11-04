@@ -6,7 +6,7 @@ Quero agradecer também a minha segunda mãe, Dona Maria, que tanto cuidou de mi
 Aproveito para agradecer a pessoa que me apresentou o Docker, [Robinho](https://twitter.com/robinhopeixoto), também conhecido como Robson Peixoto. Em uma conversa informal no evento Linguágil, em Salvador-BA, ele me falou: "Estude Docker!" e aqui estou eu terminando um livro que transformou a minha vida. Obrigado de verdade Robinho!
 
 Obrigado a Luís Armando Bianchin, que começou como autor junto comigo, mas depois por força do destino
-acabou não podendo continuar, mas fica aqui me agradecimento, pois foi com seu feedback constante que
+acabou não podendo continuar, mas fica aqui meu agradecimento, pois foi com seu feedback constante que
 pude continuar a fazer o livro.
 
 Obrigado a Paulo Caroli que tanto me incentivou a escrever o livro e me indicou a plataforma Leanpub pra fazer isso. Se não fosse ele, o livro não teria saído tão rápido.
