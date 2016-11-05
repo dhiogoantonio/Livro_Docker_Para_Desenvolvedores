@@ -115,7 +115,7 @@ A instalação das ferramentas do Ecosistema Docker no MacOS será realizada atr
 Você pode instalar via brew cask com o comando abaixo:
 
 ```
-brew cask install dockertoolbox
+brew cask install docker-toolbox
 ```
 
 Você pode instalar manualmente acessando [a página de download](https://www.docker.com/products/docker-toolbox) do **Docker toolbox** e baixando o instalador correspondente ao MacOS.
