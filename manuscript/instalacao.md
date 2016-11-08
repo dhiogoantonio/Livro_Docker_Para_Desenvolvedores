@@ -4,8 +4,8 @@ O Docker há algum tempo já deixou de ser apenas um software para virar um conj
 
 Nesse ecosistema temos os seguintes softwares:
 
-* **Docker Engine:** É o software base de toda solução. É tanto o daemon que responsável pelo os containers como também é o cliente usado para enviar comandos pro daemon.
-* **Docker Compose:** É o ferramenta responsável pela definição e execução de múltiplos containers com base em arquivo de definição.
+* **Docker Engine:** É o software base de toda solução. É tanto o daemon responsável pelos containers como também é o cliente usado para enviar comandos pro daemon.
+* **Docker Compose:** É a ferramenta responsável pela definição e execução de múltiplos containers com base em arquivo de definição.
 * **Docker Machine:** é a ferramenta que possibilita criar e manter ambientes docker em máquinas virtuais, ambientes de nuvem e até mesmo em máquina física.
 
 Não vamos citar o [Swarm](https://docs.docker.com/swarm/overview/) e outras ferramentas por não estarem alinhados com o objetivo desse livro, que é ser introdutório para os desenvolvedores.
