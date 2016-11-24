@@ -20,8 +20,8 @@ considero como os "12 mandamentos para aplicações web no Docker", ou seja, uma
 vez que sua aplicação siga todas as boas práticas apresentadas neste documento,
 você possivelmente estará usando todo potencial que o Docker tem a lhe proporcionar.
 
-Essa segunda parte é dividida por cada boa prática do **12factor**, dessa forma
-será apresentada um código de exemplo no primeiro capítulo dessa parte e ele
+Essa segunda parte é dividida por cada boa prática do **12factor**. Dessa forma,
+será apresentado um código de exemplo no primeiro capítulo dessa parte e ele
 será evoluído ao longo do desenvolvimento do livro, ou seja, a ideia é que você
 possa exercitar com um código de verdade e assim assimilar o conteúdo de forma
 mais prática.
