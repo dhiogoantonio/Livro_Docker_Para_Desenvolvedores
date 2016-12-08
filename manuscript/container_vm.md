@@ -30,7 +30,7 @@ Atualmente as máquinas virtuais são uma realidade para qualquer organização 
 
 Esse modelo de virtualização está no nível de sistema operacional, ou seja, ao contrário da máquina virtual um container não tem visão de uma máquina inteira, ele é apenas um processo em execução em um kernel compartilhado entre todos os outros containers.
 
-Ele utiliza o namespace para prover o devido isolamento de memória RAM, processamento, disco e acesso a rede, ou seja, mesmo compartilhamento o mesmo kernel, esse processo em execução tem a visão de estar usando um sistema operacional dedicado.
+Ele utiliza o namespace para prover o devido isolamento de memória RAM, processamento, disco e acesso à rede, ou seja, mesmo compartilhando o mesmo kernel, esse processo em execução tem a visão de estar usando um sistema operacional dedicado.
 
 Esse modelo de virtualização é relativamente antigo, meados de 1982 o chroot já fazia algo que podemos considerar que era uma virtualização a nível de sistema operacional e em 2008 o LXC já fazia algo relativamente parecido ao que o Docker faz hoje. Inclusive o Docker usava o LXC no início, mas hoje já tem interface própria para acessar o namespace, cgroup e afins.
 
@@ -42,7 +42,7 @@ A configuração de um ambiente LXC não era uma tarefa relativamente simples. E
 
 Outra novidade do Docker foi a criação do conceito de “imagens”, que grosseiramente podemos descrever que as imagens são definições estáticas de como os containers devem ser no momento da sua inicialização. São como fotografias de um ambiente. Uma vez instanciadas, colocadas em execução, elas assumem a função de containers, ou seja, saem da abstração de definição e se transformam em processos em execução, dentro de um contexto isolado, que enxergam um sistema operacional dedicado pra sí, mas na verdade compartilham o mesmo kernel.
 
-Junto a facilidade de uso dos containers, o Docker agregou o conceito de nuvem, que dispõe de serviço um para carregar e “baixar” imagens Dockers, ou seja, se trata de uma aplicação web que disponibiliza um repositório de ambientes prontos, onde viabilizou um nível absurdo de compartilhamento de ambientes.
+Junto a facilidade de uso dos containers, o Docker agregou o conceito de nuvem, que dispõe de serviço um para carregar e “baixar” imagens Docker, ou seja, se trata de uma aplicação web que disponibiliza um repositório de ambientes prontos, onde viabilizou um nível absurdo de compartilhamento de ambientes.
 
 Com o uso do serviço de nuvem do Docker, podemos perceber que a adoção do modelo de containers ultrapassa a questão técnica e adentra nos assuntos de processo, gerência e atualização do ambiente. Onde agora é possível compartilhar facilmente as mudanças e viabilizar uma gestão centralizada das definições de ambiente.
 

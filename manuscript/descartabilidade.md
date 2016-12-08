@@ -67,7 +67,7 @@ Depois execute o comando abaixo para finalizar os contêineres:
 time docker-compose stop
 ```
 
-Você verá que a finalização do worker demorará cerca de 11 segundos, isso porque o comportamento do docker-compose para finalizar é primeiro tentar um **SIGTERM** e esperar por 10 segundos que a aplicação finalize sozinha, caso contrário é enviado um **SIGKILL** que finalizar o processo mais bruscamente. Esse timeout é configurável. Caso deseje modificar basta usar o parâmetro **“-t”** ou **“–timeout“**. Vejam um exemplo:
+Você verá que a finalização do worker demorará cerca de 11 segundos, isso porque o comportamento do docker-compose para finalizar é primeiro tentar um **SIGTERM** e esperar por 10 segundos que a aplicação finalize sozinha, caso contrário é enviado um **SIGKILL** que finaliza o processo mais bruscamente. Esse timeout é configurável. Caso deseje modificar basta usar o parâmetro **“-t”** ou **“–timeout“**. Vejam um exemplo:
 
 ```
 docker-compose stop -t 5

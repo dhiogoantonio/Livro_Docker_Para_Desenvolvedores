@@ -24,7 +24,7 @@ redis = Redis(host=host_redis, port=port_redis)
 redis.set('hits', 0)
 ```
 
-Ele é responsável por reinicializar o contado de visitas do Redis. Esse comando será dado usando um contêiner diferente a partir da mesma imagem docker. Primeiro vamos iniciar o ambiente. Baixe o repositório e acesse a pasta factor12 e execute o comando abaixo:
+Ele é responsável por reinicializar o contador de visitas do Redis. Esse comando será dado usando um contêiner diferente a partir da mesma imagem docker. Primeiro vamos iniciar o ambiente. Baixe o repositório e acesse a pasta factor12 e execute o comando abaixo:
 
 ```
 docker-compose up 
@@ -36,7 +36,7 @@ Acesse a aplicação em seu navegador. Caso esteja usando GNU/Linux ou Docker Fo
 “Hello World! 1 times.”
 ```
 
-Acesse a aplicação mais algumas vezes para o marcado aumentar bastante.
+Acesse a aplicação mais algumas vezes para o marcador aumentar bastante.
 
 Depois vamos executar o comando de administração a partir do serviço worker:
 
@@ -46,5 +46,5 @@ docker-compose exec worker python reset.py
 
 O comando **“python reset.py”** será executado dentro de um novo contêiner, mas usando a mesma imagem de um worker regular.
 
-Acesse novamente a aplicação e verifique se o marcado iniciou a partir de 1 novamente.
+Acesse novamente a aplicação e verifique se o marcador iniciou a partir de 1 novamente.
 
