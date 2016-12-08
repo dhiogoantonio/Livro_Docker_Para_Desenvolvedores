@@ -8,9 +8,9 @@ Para entender como o docker gerencia seus volumes, primeiro precisamos explicar 
 
 Backend de armazenamento é a parte da solução do Docker que cuida do gerenciamento dos dados. No Docker temos várias possibilidades de backend de armazenamento, mas nesse texto falaremos apenas do que implementa o AUFS.
 
-[AUFS](https://en.wikipedia.org/wiki/Aufs) é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilha-os uns sobre os outros e fornece uma única e unificada visão. Como se todos juntos fossem apenas um diretório apenas.
+[AUFS](https://en.wikipedia.org/wiki/Aufs) é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilhá-los uns sobre os outros e fornecer uma única e unificada visão. Como se todos juntos fossem apenas um diretório.
 
-Esse único diretório é o utilizado para apresentar ao container, e funciona como se fosse um único sistema de arquivo comum. Cada diretório usado nessa pilha é correspondente a uma camada, e é dessa forma que o Docker unifica as camadas e proporciona a reutilização entre containeres, pois o mesmo diretório correspondente a uma imagem pode ser montado em várias pilhas de vários containeres.
+Esse único diretório é utilizado para apresentar o container, e funciona como se fosse um único sistema de arquivo comum. Cada diretório usado nessa pilha é correspondente a uma camada, e é dessa forma que o Docker unifica as camadas e proporciona a reutilização entre containeres, pois o mesmo diretório correspondente a uma imagem pode ser montado em várias pilhas de vários containeres.
 
 Com exceção da pasta (camada) correspondente ao container, todas as outras são montadas com permissão de somente leitura, pois caso contrário as mudanças de um container poderia interferir em um outro, o que de fato é totalmente contra os princípios do Linux Container.
 
@@ -22,7 +22,7 @@ No caso da remoção o arquivo da camada superior é marcado como whiteout file 
 
 ### Problema com performance
 
-Como o Docker aproveita da tecnologia Copy-on-write (CoW) do AUFS para permitir o compartilhamento de imagem e minimizar o uso de espaço em disco. AUFS funciona no nível de arquivo . Isto significa que todas as operações AUFS CoW copiarão arquivos inteiros, mesmo que apenas uma pequena parte do arquivo está sendo modificado. Esse comportamento pode ter um impacto notável no desempenho do container, especialmente se os arquivos que estão sendo copiados são grandes e estão localizados abaixo de um monte de camadas de imagem, ou seja, nesse caso o procedimento copy-on-write dedicará muito tempo para uma cópia interna.
+O Docker tira proveito da tecnologia Copy-on-write (CoW) do AUFS para permitir o compartilhamento de imagem e minimizar o uso de espaço em disco. AUFS funciona no nível de arquivo. Isto significa que todas as operações AUFS CoW copiarão arquivos inteiros, mesmo que apenas uma pequena parte do arquivo esteja sendo modificada. Esse comportamento pode ter um impacto notável no desempenho do container, especialmente se os arquivos que estão sendo copiados são grandes e estão localizados abaixo de um monte de camadas de imagem, ou seja, nesse caso o procedimento copy-on-write dedicará muito tempo para uma cópia interna.
 
 ### Volume como solução para performance
 
