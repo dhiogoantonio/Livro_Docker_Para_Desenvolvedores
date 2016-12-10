@@ -20,7 +20,7 @@ Quero agradecer a mãe do meu filho, minha ex-companheira, Eriane Soares, que ho
 Como todo produto de conhecimento aberto, esse livro não seria possível sem ajuda dessa vibrante comunidade Docker Brasil. Alguns membros aqui darei destaque pelo empenho ao ler diversos capítulos inúmeras vezes e gastar seu precioso tempo sugerindo melhorias:
 
  * Gjuniioor <gjuniioor@protonmail.ch>
- * [Marcos Junior](https://twitter.com/somatorio)
+ * [Marco Antonio Martins Junior](https://twitter.com/somatorio)
  * [Jorge Flávio Costa](https://twitter.com/JFCostta)
  * [Glesio Paiva](https://twitter.com/glesio)
  * [Bruno Emanuel Silva](https://twitter.com/jwalker_pe)
