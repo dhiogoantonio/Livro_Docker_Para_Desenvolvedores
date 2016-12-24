@@ -1,5 +1,5 @@
+prefacio.md
 organizacao.md
-proposito.md
 agradecimentos.md
 introducao.md
 porque.md
