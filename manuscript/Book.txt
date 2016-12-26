@@ -28,3 +28,5 @@ admin.md
 dicas.md
 apendice.md
 container_vm.md
+comandos_uteis.md
+rodando_aplicacoes_gui.md
