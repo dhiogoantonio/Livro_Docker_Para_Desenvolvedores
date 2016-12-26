@@ -1,9 +1,9 @@
-# Posso rodar aplicações GUI?
+## Posso rodar aplicações GUI?
 Com certeza, é plenamente possível rodar aplicações GUI (ou X11) em containers, o que significa que todas as vantagens de utilizar o Docker se aplicam também a aplicações gráficas.
 
 Além disso é possível fazer a aplicação funcionar em multiplos sistemas (Linux, Windows e macOS) apenas construindo ela para Linux.
 
-## Como?
+### Como?
 Antes de mais nada... Em 99% dos casos é preciso liberar ,o acesso ao X: `xhost local` (essa liberação ficará vigente até desligar/reinicar o host)
 
 Comando mais simples o possível, monta o socket X11 do host no container e define o display (note que vamos "evoluindo" o comando aos poucos, mas pode usar apenas as flags que achar necessário - as únicas obrigatórias são a montagem de volume do `/tmp/.X11-unix` e a variável de ambiente `DISPLAY`):
@@ -94,12 +94,12 @@ docker run [--rm [-it]|-d] \
 imagem [comando]
 ```
 
-## E o docker-compose?
+### E o docker-compose?
 Funciona normalmente... Basta montar o socket X11 e definir a variável de ambiente no docker-compose.yml e será possível iniciar multiplos aplicativos com apenas um comando.
 
-## No Windows e macOS
+### No Windows e macOS
 
-### [Mac OS X](https://github.com/docker/docker/issues/8710#issuecomment-71113263)  
+#### [Mac OS X](https://github.com/docker/docker/issues/8710#issuecomment-71113263)  
 Instalar o Docker for Mac
 
 ```
@@ -110,7 +110,7 @@ open -a XQuartz
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
 docker run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
 ```  
-### [Windows](https://github.com/docker/docker/issues/8710#issuecomment-135109677)  
+#### [Windows](https://github.com/docker/docker/issues/8710#issuecomment-135109677)  
 Instalar o xming  
 Instalar o Docker for Windows
 
