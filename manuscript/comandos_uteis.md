@@ -1,4 +1,6 @@
-Seguem alguns comandos úteis e simples
+## Comandos úteis
+
+Seguem alguns comandos úteis e simples abaixo:
 
 -   Remover todos os containers  
 `docker rm -f $(docker ps -qa)`
