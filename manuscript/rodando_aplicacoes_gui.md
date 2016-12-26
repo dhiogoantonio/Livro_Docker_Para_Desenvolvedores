@@ -99,7 +99,7 @@ Funciona normalmente... Basta montar o socket X11 e definir a variável de ambie
 
 ## No Windows e macOS
 
-*   [Mac OS X](https://github.com/docker/docker/issues/8710#issuecomment-71113263)  
+### [Mac OS X](https://github.com/docker/docker/issues/8710#issuecomment-71113263)  
 Instalar o Docker for Mac
 
 ```
@@ -110,7 +110,7 @@ open -a XQuartz
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
 docker run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
 ```  
-*   [Windows](https://github.com/docker/docker/issues/8710#issuecomment-135109677)  
+### [Windows](https://github.com/docker/docker/issues/8710#issuecomment-135109677)  
 Instalar o xming  
 Instalar o Docker for Windows
 
