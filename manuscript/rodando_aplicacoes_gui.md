@@ -7,17 +7,18 @@ Além disso é possível fazer a aplicação funcionar em multiplos sistemas (Li
 Antes de mais nada... Em 99% dos casos é preciso liberar ,o acesso ao X: `xhost local` (essa liberação ficará vigente até desligar/reinicar o host)
 
 Comando mais simples o possível, monta o socket X11 do host no container e define o display (note que vamos "evoluindo" o comando aos poucos, mas pode usar apenas as flags que achar necessário - as únicas obrigatórias são a montagem de volume do `/tmp/.X11-unix` e a variável de ambiente `DISPLAY`):
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 imagem [comando]
 ```
-Em alguns casos a variável `DISPLAY` tem de ser `DISPLAY=unix$DISPLAY` (mas pra ser sincero até agora eu não sei bem o motivo, somente que era o indicado pela pessoa que fez a imagem)  
-*Obs: "`[--rm [-it]|-d]`" quer dizer "Opcionalmente pode usar o `--rm` que pode ou não estar em conjunto com `-it` OU pode (ou não :p) usar o `-d`"*
+Em alguns casos a variável `DISPLAY` tem de ser `DISPLAY=unix$DISPLAY` (mas pra ser sincero até agora eu não sei bem o motivo, somente que era o indicado pela pessoa que fez a imagem).
 
 
-Com suporte a aceleração 3D por hardware:
+Para utilizar o suporte a aceleração 3D por hardware:
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -27,6 +28,7 @@ imagem [comando]
 ```
 
 Adicionando audio:
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -37,6 +39,7 @@ imagem [comando]
 ```
 
 Adicionando webcam:
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -48,6 +51,7 @@ imagem [comando]
 ```
 
 Usando a mesma data/hora do host:
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -61,6 +65,7 @@ imagem [comando]
 Atenção: dependendo da distribuição, não há um /etc/localtime, tem de averiguar como ela define o timezone e "replicar" no container.
 
 Mantendo as configurações do aplicativo:
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -74,7 +79,8 @@ imagem [comando]
 ```
 Obs: o caminho é apenas um exemplo.
 
-**Bônus:** Controle do video-game (na verdade qualquer dispositivo de entrada).
+**Bônus:** Controle do video-game (na verdade qualquer dispositivo de entrada):
+
 ```
 docker run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
