@@ -83,7 +83,7 @@ pip install docker-compose
 
 ### Docker machine no GNU/Linux
 
-Para instalar o docker engine é muito simples. Acesse o seu terminal preferido do GNU/Linux e se torne usuário root:
+Para instalar o docker machine é muito simples. Acesse o seu terminal preferido do GNU/Linux e se torne usuário root:
 
 ```
 su - root
