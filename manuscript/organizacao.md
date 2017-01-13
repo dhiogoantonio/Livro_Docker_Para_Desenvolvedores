@@ -1,7 +1,7 @@
 # Como ler esse livro
 
 
-Esse material foi dividido em duas grandes partes; A primeira trata das questões
+Esse material foi dividido em duas grandes partes. A primeira trata das questões
 mais básicas do Docker. É exatamente o mínimo necessário que um desenvolvedor
 precisa saber para utilizar essa tecnologia com propriedade, ou seja,
 ciente do que exatamente acontece ao executar cada comando.
@@ -12,8 +12,8 @@ pois são de maior apelo para a equipe responsável pela infraestrutura.
 Caso você não saiba nada sobre Docker, aconselho **muito** a leitura dessa primeira
 parte, pois somente assim conseguirá aproveitar a segunda parte sem pausas.
 
-Na segunda parte será focada na construção de uma aplicação web no Docker
-seguindo as melhores práticas, que nesse caso foi utilizado o [12factor](https://12factor.net/pt_br/).
+A segunda parte será focada na construção de uma aplicação web no Docker
+seguindo as melhores práticas. Neste livro adotamos as práticas do [12factor](https://12factor.net/pt_br/).
 
 O **12factor** será detalhado no início da segunda parte, mas posso adiantar que o
 considero como os "12 mandamentos para aplicações web no Docker", ou seja, uma
