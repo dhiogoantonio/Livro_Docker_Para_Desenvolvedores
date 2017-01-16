@@ -28,5 +28,6 @@ Como todo produto de conhecimento aberto, esse livro não seria possível sem aj
  * [Felipe de Morais](https://twitter.com/felipedemorais_)
  * [Waldemar Neto](https://twitter.com/waldemarnt)
  * Igor Garcia
+ * Diogo Fernandes
 
 Obs: É bem possível que eu tenha esquecido o nome de pessoas aqui, mas a medida que eu for resgatando meus logs, vou atualizar.
