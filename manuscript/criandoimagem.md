@@ -103,7 +103,7 @@ Quando se utiliza Dockerfile para gerar uma imagem, basicamente é apresentado u
 
 ![Dockerfile](images/dockerfile.png)
 
-Podemos resumir que o arquivo Dockerfile na verdade representa a exata diferença entre uma determinada imagem, que aqui chamamos de **base**, e a imagem que se deseja criar, ou seja, nesse modelo temos total rastreabilidade sobre o que será modificado essa nova imagem.
+Podemos resumir que o arquivo Dockerfile na verdade representa a exata diferença entre uma determinada imagem, que aqui chamamos de **base**, e a imagem que se deseja criar, ou seja, nesse modelo temos total rastreabilidade sobre o que será modificado nessa nova imagem.
 
 Vamos ao mesmo exemplo da instalação do nginx no ubuntu 16.04.
 
