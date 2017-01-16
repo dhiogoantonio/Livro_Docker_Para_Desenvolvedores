@@ -1,14 +1,14 @@
 # Processos de administração
 
-Seguindo a lista do modelo [12factor](http://12factor.net/pt_br), temos **“Processos de administração”** como décima segunda e ultima boa prática.
+Seguindo a lista do modelo [12factor](http://12factor.net/pt_br), temos **“Processos de administração”** como décima segunda e última boa prática.
 
 ![](images/admin1.png)
 
-Toda aplicação demanda administração, isso quer dizer que uma vez implantada é possível que ela precise receber determinados comandos para corrigir possíveis problemas ou simplesmente mudar de comportamento. Como exemplos temos migrações de banco de dados, execução de scripts diversos como backup, e também execução de um console para inspeção do serviço.
+Toda aplicação demanda administração. Isso quer dizer que uma vez implantada é possível que ela precise receber determinados comandos para corrigir possíveis problemas ou simplesmente mudar de comportamento. Como exemplos temos migrações de banco de dados, execução de scripts diversos como backup, e também execução de um console para inspeção do serviço.
 
 Essa boa prática recomenda processos de administração executados em ambientes idênticos ao utilizado no código em execução, ou seja, seguindo todas as práticas explicadas até então.
 
-Usando Docker, é possível rodar esses processos utilizando a mesma imagem base no ambiente de execução que se desejar. Tudo isso podendo se beneficiar da comunicação entre os contêineres, uso de volumes que forem necessários e afins.
+Usando Docker é possível rodar esses processos utilizando a mesma imagem base no ambiente de execução que se desejar. Com isso podemos nos beneficiar da comunicação entre os contêineres, uso de volumes que forem necessários e afins.
 
 Para exemplificar essa boa prática criamos o arquivo **reset.py**:
 

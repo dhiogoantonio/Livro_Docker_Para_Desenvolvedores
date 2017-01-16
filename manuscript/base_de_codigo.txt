@@ -46,4 +46,4 @@ Com posse de todos os arquivos na mesma pasta, iniciaremos o ambiente com o segu
 export ENV_APP=devel ; docker-compose -p $ENV_APP up -d
 ```
 
-A depender do valor da variável ENV_APP teremos o serviço rodando com uma configuração diferente. Porém sempre a partir do mesmo código, ou seja, seguindo perfeitamente a ideia dessa primeira boa prática.
+Dependendo do valor da variável ENV_APP teremos o serviço rodando com uma configuração diferente, porém sempre a partir do mesmo código, ou seja, seguindo perfeitamente a ideia dessa primeira boa prática.

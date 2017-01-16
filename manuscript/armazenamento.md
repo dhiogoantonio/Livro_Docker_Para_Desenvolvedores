@@ -8,17 +8,17 @@ Para entender como o docker gerencia seus volumes, primeiro precisamos explicar 
 
 Backend de armazenamento é a parte da solução do Docker que cuida do gerenciamento dos dados. No Docker temos várias possibilidades de backend de armazenamento, mas nesse texto falaremos apenas do que implementa o AUFS.
 
-[AUFS](https://en.wikipedia.org/wiki/Aufs) é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilhá-los uns sobre os outros e fornecer uma única e unificada visão. Como se todos juntos fossem apenas um diretório.
+[AUFS](https://en.wikipedia.org/wiki/Aufs) é um unification filesystem. Isso quer dizer que ele é responsável por gerenciar múltiplos diretórios, empilhá-los uns sobre os outros e fornecer uma única e unificada visão, como se todos juntos fossem apenas um diretório.
 
-Esse único diretório é utilizado para apresentar o container, e funciona como se fosse um único sistema de arquivo comum. Cada diretório usado nessa pilha é correspondente a uma camada, e é dessa forma que o Docker unifica as camadas e proporciona a reutilização entre containeres, pois o mesmo diretório correspondente a uma imagem pode ser montado em várias pilhas de vários containeres.
+Esse único diretório é utilizado para apresentar o container, e funciona como se fosse um único sistema de arquivos comum. Cada diretório usado nessa pilha corresponde a uma camada, e é dessa forma que o Docker as unifica e proporciona a reutilização entre containeres, pois o mesmo diretório correspondente a uma imagem pode ser montado em várias pilhas de vários containeres.
 
 Com exceção da pasta (camada) correspondente ao container, todas as outras são montadas com permissão de somente leitura, pois caso contrário as mudanças de um container poderia interferir em um outro, o que de fato é totalmente contra os princípios do Linux Container.
 
-Caso seja necessário modificar um arquivo que esteja nas camadas (pastas) referentes a imagens é utilizado a tecnologia [Copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write) (CoW), que é responsável por copiar o arquivo necessário para a pasta (camada) do container e fazer todas as modificações nesse nível, dessa forma o arquivo original da camada inferior é sobreposto nessa pilha, ou seja, o container em questão sempre verá apenas os arquivos das camadas mais altas.
+Caso seja necessário modificar um arquivo que esteja nas camadas (pastas) referentes a imagens é utilizada a tecnologia [Copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write) (CoW), que é responsável por copiar o arquivo necessário para a pasta (camada) do container e fazer todas as modificações nesse nível. Dessa forma o arquivo original da camada inferior é sobreposto nessa pilha, ou seja, o container em questão sempre verá apenas os arquivos das camadas mais altas.
 
 ![Removendo um arquivo](images/aufs_delete.jpg)
 
-No caso da remoção o arquivo da camada superior é marcado como whiteout file e assim viabilizando a visualização do arquivo de camadas inferiores.
+No caso da remoção o arquivo da camada superior é marcado como whiteout file, viabilizando assim a visualização do arquivo de camadas inferiores.
 
 ### Problema com performance
 
@@ -26,7 +26,7 @@ O Docker tira proveito da tecnologia Copy-on-write (CoW) do AUFS para permitir o
 
 ### Volume como solução para performance
 
-Ao utilizar volumes o Docker montará essa pasta (camada) no nível imediatamente inferior ao do container, o que nesse caso viabilizaria que todo dado armazenado nessa camada (pasta) fosse acessível rapidamente, ou seja, resolvendo o problema de performance.
+Ao utilizar volumes o Docker montará essa pasta (camada) no nível imediatamente inferior ao do container, o que nesse caso permitiria o acesso rápido de todo dado armazenado nessa camada (pasta), resolvendo assim o problema de performance.
 
 O volume também resolve questões de persistência de dados, pois as informações armazenadas na camada (pasta) do container são perdidas ao remover o container, ou seja, ao utilizar volumes temos uma maior garantia no armazenamento desses dados.
 
@@ -35,7 +35,7 @@ O volume também resolve questões de persistência de dados, pois as informaç�
 #### Mapeamento de pasta específica do host
 
 
-Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e mapeia ela com uma pasta interna do container (Ex. /var), ou seja, dessa forma tudo que é escrita na pasta /var do container é escrita também na pasta /var/lib/container1 do host.
+Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e a mapeia em uma pasta interna do container (Ex. /var). Dessa forma tudo que é escrito na pasta /var do container é escrito também na pasta /var/lib/container1 do host.
 
 Segue abaixo o exemplo de comando usado para esse modelo de mapeamento:
 
@@ -47,7 +47,7 @@ Esse modelo não é portável, pois necessita que o host tenha uma pasta especí
 
 #### Mapeamento via container de dados
 
-Nesse modelo é criado um container e dentro desse é nomeado um volume a ser consumido por outros containeres. Dessa forma não precisa criar uma pasta específica no host para persistir dados, essa pasta será criada automaticamente dentro da pasta raiz do Docker daemon, mas você não precisa se preocupar que pasta é essa, pois toda referência será feita para o container detentor do volume e não a pasta diretamente.
+Nesse modelo é criado um container e dentro desse é nomeado um volume a ser consumido por outros containeres. Dessa forma não é preciso criar uma pasta específica no host para persistir dados. Essa pasta será criada automaticamente dentro da pasta raiz do Docker daemon, mas você não precisa se preocupar que pasta é essa, pois toda referência será feita para o container detentor do volume e não a pasta diretamente.
 
 Segue abaixo um exemplo do uso desse modelo de mapeamento:
 
@@ -67,7 +67,7 @@ Uma desvantagem desse modelo é a necessidade de se manter um container apenas p
 
 #### Mapeamento de volumes
 
-Na versão 1.9 do Docker foi acrescentado a possibilidade de se criar volumes isolados de containeres, ou seja, agora é possível criar um volume portável, sem a necessidade de associá-lo a um container especial.
+Na versão 1.9 do Docker foi acrescentada a possibilidade de se criar volumes isolados de containeres, ou seja, agora é possível criar um volume portável, sem a necessidade de associá-lo a um container especial.
 
 Segue abaixo um exemplo do uso desse modelo de mapeamento:
 
