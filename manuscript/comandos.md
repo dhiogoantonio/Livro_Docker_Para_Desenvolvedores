@@ -12,7 +12,7 @@ Para iniciar um container é necessário saber a partir de qual imagem ele será
 docker images
 ```
 
-As imagens retornadas estão presentes no seu **Docker host** e não demandarão nenhum download da [nuvem pública do Docker](hub.docker.com), a não ser que você deseje atualizá-la, caso exista o que possa ser atualizado. Para atulizar a imagem basta executar o comando abaixo:
+As imagens retornadas estão presentes no seu **Docker host** e não demandarão nenhum download da [nuvem pública do Docker](hub.docker.com), a não ser que você deseje atualizá-la, caso exista o que possa ser atualizado. Para atualizar a imagem basta executar o comando abaixo:
 
 ```
 docker pull python
