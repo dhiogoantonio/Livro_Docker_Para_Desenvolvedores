@@ -10,11 +10,11 @@ Visando sugerir uma série de boas práticas comuns a aplicações web modernas,
 
 "The Twelve-Factor app" (12factor) é um manifesto com uma série de boas práticas para construção de software utilizando formatos declarativos de automação, maximizando portabilidade e minimizando divergências entre ambientes de execução, permitindo a implantação em plataformas de nuvem modernas e facilitando a escalabilidade. Assim, aplicações são construídas sem manter estado (stateless) e conectadas a qualquer combinação de serviços de infraestrutura para retenção de dados (Banco de dados, fila, memória cache e afins).
 
-Nesse capítulo falaremos sobre criação de aplicações como imagems docker com base no 12factor app, ou seja, a ideia é demonstrar as melhores práticas de como se realizar a criação de uma infraestrutura para suportar, empacotar e disponibilizar a sua aplicação com alto nível de maturidade e agilidade.
+Nesse capítulo falaremos sobre criação de aplicações como imagens docker com base no 12factor app, ou seja, a ideia é demonstrar as melhores práticas de como se realizar a criação de uma infraestrutura para suportar, empacotar e disponibilizar a sua aplicação com alto nível de maturidade e agilidade.
 
 O uso do 12factor com Docker é uma combinação perfeita, pois muitos dos recursos do Docker são melhores aproveitados caso sua aplicação tenha sido pensada para tal. Dessa forma, nesse texto daremos uma ideia de como aproveitar todo potencial da sua solução.
 
-Como exemplo, usaremos duas aplicações como modelo. Uma usando linguágem dinâmica (Python) e outra compilada (Java).
+Como exemplo, usaremos duas aplicações como modelo. Uma usando linguagem dinâmica (Python) e outra compilada (Java).
 
 Como exemplo teremos um modelo de aplicação simples. Através de um serviço HTTP, ela exibe quantas vezes foi acessada. Essa informação é armazenada através de um contador numa instância Redis.
 

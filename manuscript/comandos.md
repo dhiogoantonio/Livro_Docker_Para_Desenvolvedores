@@ -43,7 +43,7 @@ Os parâmetros mais utilizados na execução do container são:
 |--rm        | Automaticamente remove o continer após finalização (**Não funciona com -d**) |
 |--name      | Nomear o container                                                           |
 |-v          | Mapeamento de volume                                                         |
-|-p          | Mapemento de porta                                                           |
+|-p          | Mapeamento de porta                                                           |
 |-m          | Limitar o uso de memória RAM                                                 |
 |-c          | Balancear o uso de CPU                                                       |
 
@@ -67,7 +67,7 @@ O uso de armazenamento será melhor explicado em capítulos futuros, sendo assim
 
 ### Mapeamento de portas
 
-Para realizar o mapemento de portas basta saber qual porta será mapeada no host e qual deve receber essa conexão dentro do container.
+Para realizar o mapeamento de portas basta saber qual porta será mapeada no host e qual deve receber essa conexão dentro do container.
 
 ```
 docker run -it --rm -p "<host>:<container>" python
