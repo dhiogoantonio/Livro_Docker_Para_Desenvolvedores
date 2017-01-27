@@ -1,23 +1,23 @@
 # Agradecimentos
-Meu primeiro agradecimento vai para a pessoa que me deu a chance de estar aqui e poder escrever esse livro. Minha mãe, a famosa Cigana, ou Dona Arlete. Essa pessoa maravilhosa, que pra mim é um exemplo de ser humano.
+Meu primeiro agradecimento vai para a pessoa que me deu a chance de estar aqui e poder escrever esse livro: minha mãe. A famosa Cigana, ou Dona Arlete, pessoa maravilhosa, que pra mim é um exemplo de ser humano.
 
 Quero agradecer também a minha segunda mãe, Dona Maria, que tanto cuidou de mim quando eu era criança, enquanto Dona Arlete tomava conta dos outros dois filhos e um sobrinho. Me sinto sortudo por ter duas, enquanto muitos não tem ao menos uma mãe.
 
-Aproveito para agradecer a pessoa que me apresentou o Docker, [Robinho](https://twitter.com/robinhopeixoto), também conhecido como Robson Peixoto. Em uma conversa informal no evento Linguágil, em Salvador-BA, ele me falou: "Estude Docker!" e aqui estou eu terminando um livro que transformou a minha vida. Obrigado de verdade Robinho!
+Aproveito para agradecer a pessoa que me apresentou o Docker, [Robinho](https://twitter.com/robinhopeixoto), também conhecido como Robson Peixoto. Em uma conversa informal no evento Linguágil, em Salvador (BA), ele me falou: "Estude Docker!" E, aqui estou eu terminando um livro que transformou a minha vida. Obrigado de verdade Robinho!
 
 Obrigado a Luís Armando Bianchin, que começou como autor junto comigo, mas depois por força do destino
-acabou não podendo continuar, mas fica aqui meu agradecimento, pois foi com seu feedback constante que
+acabou não podendo continuar. Fica aqui meu agradecimento, pois foi com seu feedback constante que
 pude continuar a fazer o livro.
 
-Obrigado a Paulo Caroli que tanto me incentivou a escrever o livro e me indicou a plataforma Leanpub pra fazer isso. Se não fosse ele, o livro não teria saído tão rápido.
+Obrigado a Paulo Caroli que tanto me incentivou a escrever o livro e indicou a plataforma Leanpub pra fazer isso. Se não fosse ele, o livro não teria saído tão rápido.
 
-Quero agradecer a belíssima capa feita pela fantástica [Emma Pinheiro](https://twitter.com/n3k00n3).
+Obrigada a fantástica [Emma Pinheiro](https://twitter.com/n3k00n3), pela belíssima capa. 
 
-Quero agradecer muito as pessoas fantásticas do [Raul Hacker Club](http://raulhc.cc/) que tanto me incentivaram em todo esse tempo.
+Quero agradecer muito as pessoas incríveis do [Raul Hacker Club](http://raulhc.cc/) que tanto me incentivaram em todo esse tempo.
 
-Quero agradecer a mãe do meu filho, minha ex-companheira, Eriane Soares, que hoje é uma grande amiga e que tanto me incentivou a escrever o livro enquanto estávamos morando juntos!
+Quero agradecer a mãe do meu filho, Eriane Soares, hoje minha grande amiga que tanto me incentivou a escrever o livro enquanto morávamos juntos!
 
-Como todo produto de conhecimento aberto, esse livro não seria possível sem ajuda dessa vibrante comunidade Docker Brasil. Alguns membros aqui darei destaque pelo empenho ao ler diversos capítulos inúmeras vezes e gastar seu precioso tempo sugerindo melhorias:
+Como todo produto de conhecimento aberto, esse livro não seria possível sem ajuda dessa vibrante comunidade Docker Brasil. Para alguns membros darei destaque pelo empenho ao ler diversos capítulos inúmeras vezes e dedicar seu precioso tempo sugerindo melhorias:
 
  * Gjuniioor <gjuniioor@protonmail.ch>
  * [Marco Antonio Martins Junior](https://twitter.com/somatorio) - Escreveu os capítulos "Posso rodar aplicações GUI" e "Comandos úteis".
@@ -30,4 +30,4 @@ Como todo produto de conhecimento aberto, esse livro não seria possível sem aj
  * Igor Garcia
  * [Diogo Fernandes](https://twitter.com/diogocfernandes)
 
-Obs: É bem possível que eu tenha esquecido o nome de pessoas aqui, mas a medida que eu for resgatando meus logs, vou atualizar.
+É bem possível que eu tenha esquecido o nome de pessoas aqui, mas a medida que for resgatando meus logs, vou atualizar.
