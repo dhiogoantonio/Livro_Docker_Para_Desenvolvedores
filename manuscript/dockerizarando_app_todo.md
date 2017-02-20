@@ -14,8 +14,6 @@ Nesse capítulo, falaremos sobre criação de aplicações com imagens Docker ba
 
 O uso do 12factor com Docker é uma combinação perfeita, pois muitos dos recursos do Docker são melhores aproveitados caso a aplicação tenha sido pensada para tal. Dessa forma, daremos uma ideia de como aproveitar todo potencial da sua solução.
 
-Usaremos duas aplicações como modelo: linguagem dinâmica (Python) e compilada (Java).
-
-Como exemplo, teremos um modelo de aplicação simples através de serviço HTTP que, exibe quantas vezes foi acessada. Essa informação é armazenada através de contador numa instância Redis.
+Como aplicação exemplo, teremos um serviço HTTP, escrito em python, que exibe quantas vezes foi acessada. Essa informação é armazenada através de contador numa instância Redis.
 
 Agora vamos às boas práticas!
