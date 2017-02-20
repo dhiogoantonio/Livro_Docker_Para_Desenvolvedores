@@ -49,7 +49,7 @@ O retorno deve ser algo parecido com isto:
 
 ![](images/resultado_macos_windows.png)
 
-Uma máquina virtual foi criada, dentro dela temos um sistema operacional GNU/Linux com Docker Host instalado. Esse serviço Docker está escutando (executando?) na porta TCP 2376 do endereço 192.168.99.100. Essa interface utiliza uma rede específica entre seu computador e as máquinas do virtualbox.
+Uma máquina virtual foi criada, dentro dela temos um sistema operacional GNU/Linux com Docker Host instalado. Esse serviço Docker está escutando na porta TCP 2376 do endereço 192.168.99.100. Essa interface utiliza uma rede específica entre seu computador e as máquinas do virtualbox.
 
 Para desligar a máquina virtual, basta executar o comando abaixo:
 
