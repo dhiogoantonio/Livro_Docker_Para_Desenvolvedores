@@ -108,7 +108,7 @@ Tratamento de problema conhecido: caso esteja utilizando Docker-machine no MacOS
 
 #### Nuvem
 
-Para esse exemplo usamos o driver danuvem mais utilizada, [AWS](http://aws.amazon.com/). Para tanto, precisamos de uma conta na AWS para que [esse driver](https://docs.docker.com/machine/drivers/aws/) funcione adequadamente.
+Para esse exemplo usamos o driver da nuvem mais utilizada, [AWS](http://aws.amazon.com/). Para tanto, precisamos de uma conta na AWS para que [esse driver](https://docs.docker.com/machine/drivers/aws/) funcione adequadamente.
 
 É necessário que suas credenciais estejam no arquivo ~/.aws/credentials da seguinte forma:
 
