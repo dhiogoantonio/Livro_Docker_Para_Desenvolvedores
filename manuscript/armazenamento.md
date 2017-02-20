@@ -4,7 +4,7 @@ Para entender como o docker gerencia seus volumes, primeiro precisamos explicar 
 
 ![](images/aufs_layers.jpg)
 
-### Como funciona um backend do Docker (Ex. AUFS)
+### Como funciona um backend do Docker (Ex.: AUFS)
 
 Backend de armazenamento é a parte da solução do Docker que cuida do gerenciamento dos dados. No Docker temos várias possibilidades de backend de armazenamento, mas nesse texto falaremos apenas do que implementa o AUFS.
 
@@ -35,7 +35,7 @@ O volume também resolve questões de persistência de dados, pois as informaç�
 #### Mapeamento de pasta específica do host
 
 
-Nesse modelo o usuário escolhe uma pasta específica do host (Ex. /var/lib/container1) e a mapeia em uma pasta interna do container (Ex. /var). O que é escrito na pasta /var do container é escrito também na pasta /var/lib/container1 do host.
+Nesse modelo o usuário escolhe uma pasta específica do host (Ex.: /var/lib/container1) e a mapeia em uma pasta interna do container (Ex.: /var). O que é escrito na pasta /var do container é escrito também na pasta /var/lib/container1 do host.
 
 Segue o exemplo de comando usado para esse modelo de mapeamento:
 
