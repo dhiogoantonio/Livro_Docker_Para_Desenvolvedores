@@ -1,26 +1,24 @@
 # Configurações
 
-Seguindo a lista do modelo [12factor](http://12factor.net/), temos **“Configurações”** como terceira boa prática.
+Seguindo a lista do modelo [12factor](http://12factor.net/), **“Configurações”** é terceira boa prática.
 
-Quando estamos criando um software aplicamos um determinado comportamento dentro do código e normalmente ele não é parametrizável, ou seja, para que essa aplicação se comporte de uma forma diferente será necessário mudar uma parte do código.
+Quando estamos criando um software, aplicamos determinado comportamento dentro do código e normalmente ele não é parametrizável. Para que a aplicação se comporte de forma diferente, será necessário mudar parte do código.
 
-A necessidade de modificar o código para trocar o comportamento da aplicação inviabiliza que a mesma seja executa em sua máquina (desenvolvimento) da mesma forma que será usada para atender os usuários (produção) e com isso acabamos com toda possibilidade de portabilidade, e sem isso qual seria a vantagem de se usar contêineres, certo?
+A necessidade de modificar o código para trocar o comportamento da aplicação, inviabiliza que, a mesma seja executa na máquina (desenvolvimento) da mesma forma que é usada para atender os usuários (produção). E, com isso, acabamos com a possibilidade de portabilidade. E, sem portabilidade, qual a vantagem de se usar contêineres, certo?
 
-O objetivo dessa boa prática é viabilizar a configuração da aplicação sem a necessidade de modificar o código da mesma.
+O objetivo da boa prática é viabilizar a configuração da aplicação sem a necessidade de modificar o código. Já que, o comportamento da aplicação varia de acordo com o ambiente onde é executada, as configurações devem considerar o ambiente.
 
-Como o comportamento da aplicação varia de acordo com o ambiente onde ela está executando, sendo assim, as configurações devem ser feitas baseadas nisso.
+Seguem alguns exemplo:
 
-Seguem abaixo alguns exemplo:
-
- - Configuração de banco de dados que normalmente são diferentes entre os ambientes
- - Credenciais para acesso a serviços remotos (Ex. Digital Ocean ou Twitter)
+ - Configuração de banco de dados que, normalmente, são diferentes entre ambientes
+ - Credenciais para acesso a serviços remotos (Ex.: Digital Ocean ou Twitter)
  - Qual nome de DNS será usado pela aplicação
 
-Como já falamos anteriormente, quando a configuração está estaticamente explícita no código, será necessário modificar manualmente e efetuar um novo build dos binários a cada reconfiguração do sistema.
+Como já mencionamos, quando a configuração está estaticamente explícita no código, é necessário modificar manualmente e efetuar novo build dos binários a cada reconfiguração do sistema.
 
-Como demonstramos na boa prática codebase, usamos uma variável de ambiente para modificar qual o volume que usaremos no redis, ou seja, de certa forma já estamos seguindo essa boa prática, mas iremos um pouco além e mudaremos não somente o comportamento da infraestrutura, mas sim algo inerente ao código em si.
+Como demonstramos na boa prática codebase, usamos uma variável de ambiente para modificar o volume que usaremos no redis. De certa forma, já estamos seguindo a boa prática, mas podemos ir além e mudarmos não somente o comportamento da infraestrutura, mas sim algo inerente ao código em si.
 
-Segue abaixo a aplicação modificada:
+Segue a aplicação modificada:
 
 ```
 from flask import Flask
@@ -38,11 +36,11 @@ if __name__ == "__main__":
    app.run(host=host_run, debug=debug)
 ``` 
 
-Lembrando! Para acessar o código dessa prática basta clonar [esse repositório](https://github.com/gomex/exemplo-12factor-docker) e acessar a pasta **“factor3“**.
+Lembrando! Para acessar o código da prática, basta clonar [esse repositório](https://github.com/gomex/exemplo-12factor-docker) e acessar a pasta **“factor3“**.
 
-Como podemos perceber, adicionamos alguns parâmetros na configuração do endereço usado para iniciar a aplicação web, que será parametrizado com base no valor da variável de ambiente **“HOST_RUN”** e a possibilidade de efetuar ou não o debug dessa aplicação com a variável de ambiente **“DEBUG“**.
+Como podemos notar, adicionamos alguns parâmetros na configuração do endereço usado para iniciar a aplicação web que será parametrizada com base no valor da variável de ambiente **“HOST_RUN”**. E, a possibilidade de efetuar, ou não, o debug da aplicação com a variável de ambiente **“DEBUG“**.
 
-Vale salientar que nesse caso a variável de ambiente precisa ser passada para o contêiner, ou seja, não basta ter essa variável no docker host. Ela precisa ser enviada para o contêiner usando o parâmetro “-e” caso utilize o comando “docker run” ou a instrução “environment” no docker-compose.yml:
+Vale salientar: nesse caso a variável de ambiente precisa ser passada para o contêiner, não basta ter a variável no Docker Host. É preciso enviá-la para o contêiner usando o parâmetro “-e”, caso utilize o comando “docker run” ou, a instrução “environment” no Docker-compose.yml:
 
 ```
 version: "2"
@@ -69,15 +67,14 @@ volumes:
     external: false
 ```
 
-Para executar o docker-compose, deveríamos fazer da seguinte maneira:
+Para executar o Docker-Compose, deveríamos fazer da seguinte maneira:
 
 ```
 export HOST_RUN="0.0.0.0"; export DEBUG=True ; docker-compose up -d
 ```
 
-Como podem perceber no comando acima ele usará as variáveis de ambiente **“HOST_RUN”** e **“DEBUG”** do docker host para enviar para as variáveis de ambiente com os mesmos nomes dentro do contêiner, que por sua vez será consumido pelo código python. Em caso de não haver parâmetros ele assume os valores padrões estipulados no código.
+No comando acima, usamos as variáveis de ambiente **“HOST_RUN”** e **“DEBUG”** do Docker Host para enviar às variáveis de ambiente com os mesmos nomes dentro do contêiner que, por sua vez, é consumido pelo código Python. Caso não haja parâmetros, o contêiner assume os valores padrões estipulados no código.
 
-Essa boa prática é seguida com ajuda do Docker, pois o código é o mesmo e a configuração é um anexo da solução, que pode ser parametrizada de maneira distinta com base no que for configurado nas variáveis de ambiente.
+Essa boa prática é seguida com ajuda do Docker, pois o código é o mesmo e, a configuração, um anexo da solução que pode ser parametrizada de maneira distinta com base no que for configurado nas variáveis de ambiente.
 
-Se aplicação crescer bastante, as variáveis podem ser carregadas em arquivo e parametrizadas no docker-compose.yml com a opção “env_file”.
-
+Se a aplicação crescer, as variáveis podem ser carregadas em arquivos e parametrizadas no Docker-Compose.yml com a opção “env_file”.
