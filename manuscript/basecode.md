@@ -6,7 +6,7 @@ Para essa explicação, usamos o sistema de controle de versão Git e o serviço
 
 Perceba que todo código está dentro do repositório, organizado por prática em cada pasta, para facilitar a reprodução. Lembre-se de entrar na pasta correspondente a cada boa prática apresentada.
 
-O Docker tem uma infraestrutura que permite a utilização de variável de ambiente para parametrização da infraestrutura. Sendo assim, a mesma aplicação terá comportamento distinto com base no valor das variáveis de ambiente.
+O Docker tem possibilidade de utilizar variável de ambiente para parametrização da infraestrutura. Sendo assim, a mesma aplicação terá comportamento distinto com base no valor das variáveis de ambiente.
 
 Aqui usamos o Docker Compose para realizar a composição de diferentes serviços pertinentes para a aplicação em tempo de execução. Desse modo, devemos definir a configuração desses distintos serviços e a forma como se comunicam.
 
