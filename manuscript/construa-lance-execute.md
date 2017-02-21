@@ -1,30 +1,28 @@
 # Construa, lance, execute
 
-Seguindo a lista do modelo [12factor](http://12factor.net/pt_br/), temos “Construa, lance, execute” como quinta boa prática.
+O próximo item da lista do modelo [12factor](http://12factor.net/pt_br/), “Construa, lance, execute” é a quinta boa prática..
 
-Em um processo de automatização de infraestrutura de implantação de software, precisamos ter alguns cuidados para que o comportamento do processo esteja dentro das expectativas e que erros humanos causem baixo impacto no processo completo do desenvolvimento ao lançamento em produção.
+No processo de automatização de infraestrutura de implantação de software precisamos cuidado para que o comportamento do processo esteja dentro das expectativas e erros humanos causem baixo impacto no processo completo do desenvolvimento, do lançamento à produção.
 
 ![](images/release.png)
 
-Visando organizar, dividir responsabilidade e deixar o processo mais claro, o 12factor indica que o código base para ser colocado em produção deva passar por três fases:
+Visando organizar, dividir responsabilidade e tornar o processo mais claro, o 12factor indica que o código base, para ser colocado em produção, deva passar por três fases:
 
-- **Construa** é quando o código do repositório é convertido em um pacote executável. Nesse processo é onde se obtém todas as dependências, compila-se o binário e todos os ativos desse código.
-- **Lance** é quando o pacote produzido pela fase de **construir** é combinado com sua configuração. O resultado é o ambiente completo, configurado e pronto para ser colocado em **execução**.
-- **Execute** (também como conhecido como “runtime”) é quando um **lançamento** (aplicação + configuração daquele ambiente) é colocado em **execução**, iniciado com base nas configurações especificas do seu ambiente requerido.
+- **Construa** - converter código do repositório em pacote executável. Nesse processo se obtém as dependências, compila-se o binário e os ativos do código.
+- **Lance** - pacote produzido na fase **construir** é combinado com a configuração. O resultado é o ambiente completo, configurado e pronto para ser colocado em **execução**.
+- **Execute** (também conhecido como “runtime”) - inicia a **execução** do **lançamento** (aplicação + configuração daquele ambiente), com base nas configurações específicas do ambiente requerido.
 
-Essa boa prática indica que sua aplicação tenha separações explícitas nas fases de **Construa**, **Lance** e **Execute**. Assim cada mudança no código da aplicação é construída apenas uma vez na etapa de **Construa**. Mudanças da configuração não necessitam de uma nova **construção**, sendo apenas necessário passar pelas etapas de **lançar** e **executar**.
+A boa prática indica que a aplicação tenha separações explícitas nas fases de **Construa**, **Lance** e **Execute**. Assim, cada mudança no código da aplicação, é construída apenas uma vez na etapa de **Construa**. Mudanças da configuração não necessitam nova **construção**, sendo necessário, apenas, as etapas de **lançar** e **executar**.
 
-Dessa forma é possível criar controles e processos claros em cada etapa, ou seja, caso algo ocorra na **construção** do código, uma medida pode ser tomada e até mesmo abortado o lançamento do mesmo, para que o código em produção não seja comprometido por conta do possível erro.
+De tal forma, é possível criar controles e processos claros em cada etapa. Caso algo ocorra na **construção** do código, uma medida pode ser tomada ou mesmo se cancela o lançamento, para que o código em produção não seja comprometido por conta do possível erro.
 
-Com a separação das responsabilidades é possível saber exatamente em qual etapa o problema aconteceu e atuar manualmente caso necessário.
+Com a separação das responsabilidades é possível saber em qual etapa o problema aconteceu e atuar manualmente, caso necessário.
 
-Os artefatos produzidos devem sempre ter um identificador de **lançamento** único, que pode ser o timestamp (como 2011-04-06-20:32:17) ou um número incremental (como v100).
+Os artefatos produzidos devem ter um identificador de **lançamento** único. Pode ser o timestamp (como 2011-04-06-20:32:17) ou um número incremental (como v100). Com o artefato único é possível garantir o uso de versão antiga, seja para plano de retorno ou, até mesmo, para comparar comportamentos após mudanças no código.
 
-Com o uso de artefato único é possível garantir o uso de uma versão antiga, seja para um plano de retorno ou até mesmo para comparar comportamentos após mudanças no código.
+Para atendermos a boa prática precisamos construir a imagem Docker com a aplicação dentro. Ela será nosso artefato.
 
-Para atendermos essa boa prática precisamos primeiro construir a imagem Docker com a aplicação dentro, ou seja, ela será nosso artefato.
-
-Teremos um script novo, que aqui chamaremos de build.sh, nesse arquivo teremos o seguinte conteúdo:
+Teremos um script novo, aqui chamado build.sh, com o seguinte conteúdo:
 
 ```
 #!/bin/bash
@@ -43,17 +41,17 @@ docker push ${USER}/app:${TIMESTAMP}
 docker push ${USER}/app:latest
 ```
 
-Como podem ver no script acima, além de construir a imagem ele envia a mesma para o [repositório](http://hub.docker.com/) de imagem do docker.
+Além de construir a imagem, a envia para o [repositório](http://hub.docker.com/) de imagem do Docker.
 
-Lembre-se que o código acima e todos os outros dessa boa prática estão [nesse repositório](https://github.com/gomex/exemplo-12factor-docker) na pasta **“factor5“**.
+Lembre-se que, o código acima e os demais da boa prática, estão [no repositório](https://github.com/gomex/exemplo-12factor-docker) na pasta **“factor5“**.
 
-O envio da imagem para o repositório é parte importante da boa prática em questão, pois isso faz com que o processo seja isolado, ou seja, caso a imagem não fosse enviada para um repositório, ela estaria apenas no servidor que executou o processo de **construção** da imagem, sendo assim a próxima etapa precisaria necessariamente ser executada no mesmo servidor, pois ela precisará da imagem disponível.
+O envio da imagem para o repositório é parte importante da boa prática em questão, pois isola o processo. Caso a imagem não seja enviada para o repositório, permanece apenas no servidor que executou o processo de **construção**, sendo assim, a próxima etapa precisa, necessariamente, ser executada no mesmo servidor, pois tal etapa precisa da imagem disponível.
 
-No modelo proposto a imagem estando no repositório central, ela estará disponível para ser baixada no servidor caso ela não exista localmente. Caso você utilize uma ferramenta de pipeline é importante você ao invés de utilizar a data para tornar o artefato único, utilize variáveis do seu produto para garantir que a imagem que será consumida na etapa de Executar seja a mesma construída no Lançar. Ex. no GoCD temos as variáveis **GO_PIPELINE_NAME** e **GO_PIPELINE_COUNTER** que podem ser usadas em conjunto para garantir isso.
+No modelo proposto, a imagem no repositório central fica disponível para ser baixada no servidor. Caso utilize uma ferramenta de pipeline, é importante - ao invés de utilizar a data para tornar o artefato único - usar variáveis do produto para garantir que a imagem a ser consumida na etapa Executar, seja a mesma construída na etapa Lançar. Exemplo no GoCD: variáveis **GO_PIPELINE_NAME** e **GO_PIPELINE_COUNTER** podem ser usadas em conjunto como garantia.
 
-Com a geração da imagem podemos garantir que a etapa **Construir** foi atendida perfeitamente, pois agora temos um artefato construído e pronto para ser reunido a sua configuração.
+Com a geração da imagem podemos garantir que a etapa **Construir** foi atendida perfeitamente, pois, agora temos um artefato construído e pronto para ser reunido à configuração.
 
-A etapa de **Lançamento** é o arquivo docker-compose.yml em si, pois o mesmo deve receber as configurações devidas para o ambiente que se deseja colocar a aplicação em questão, sendo assim o arquivo docker-compose.yml muda um pouco e deixará de fazer **construção** da imagem, pois agora ele será utilizado apenas para **Lançamento** e **Execução** (posteriormente):
+A etapa de **Lançamento** é o arquivo docker-compose.yml em si, pois o mesmo recebe as configurações devidas para o ambiente no qual se deseja colocar a aplicação. Sendo assim, o arquivo docker-compose.yml muda um pouco e deixa de fazer a **construção** da imagem, já que, agora, será utilizado apenas para **Lançamento** e **Execução** (posteriormente):
 
 ```
 version: "2"
@@ -82,11 +80,11 @@ volumes:
     external: false
 ```
 
-No exemplo **docker-compose.yml** acima usamos a tag latest para garantir que ele usará sempre a ultima imagem **construída** nesse processo, mas como falei anteriormente, caso utilize alguma ferramenta de entrega contínua (Ex. GoCD) faça uso das suas variáveis para garantir o uso da imagem criada naquela execução específica do pipeline.
+No exemplo **docker-compose.yml** acima, usamos a tag latest para garantir que busque sempre a última imagem **construída** no processo. Mas como já mencionamos, caso utilize alguma ferramenta de entrega contínua (como GoCD, por exemplo) faça uso das variáveis, para garantir a imagem criada na execução específica do pipeline.
 
-Dessa forma, **lançamento** e **execução** sempre utilizarão o mesmo artefato, a imagem Docker, construída na fase de construção..
+Dessa forma, **lançamento** e **execução** utilizarão o mesmo artefato: a imagem Docker, construída na fase de construção.
 
-E etapa de **execução** basicamente é executar o docker-compose com o comando abaixo:
+A etapa de **execução**, basicamente, executa o Docker-Compose com o comando abaixo:
 
 ```
 docker-compose up -d
