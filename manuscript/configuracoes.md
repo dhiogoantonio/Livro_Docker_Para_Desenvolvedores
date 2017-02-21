@@ -40,7 +40,7 @@ Lembrando! Para acessar o código da prática, basta clonar [esse repositório](
 
 Como podemos notar, adicionamos alguns parâmetros na configuração do endereço usado para iniciar a aplicação web que será parametrizada com base no valor da variável de ambiente **“HOST_RUN”**. E, a possibilidade de efetuar, ou não, o debug da aplicação com a variável de ambiente **“DEBUG“**.
 
-Vale salientar: nesse caso a variável de ambiente precisa ser passada para o contêiner, não basta ter a variável no Docker Host. É preciso enviá-la para o contêiner usando o parâmetro “-e”, caso utilize o comando “docker run” ou, a instrução “environment” no Docker-compose.yml:
+Vale salientar: nesse caso a variável de ambiente precisa ser passada para o contêiner, não basta ter a variável no Docker Host. É preciso enviá-la para o contêiner usando o parâmetro “-e”, caso utilize o comando “docker run” ou, a instrução “environment” no docker-compose.yml:
 
 ```
 version: "2"
@@ -77,4 +77,4 @@ No comando acima, usamos as variáveis de ambiente **“HOST_RUN”** e **“DEB
 
 Essa boa prática é seguida com ajuda do Docker, pois o código é o mesmo e, a configuração, um anexo da solução que pode ser parametrizada de maneira distinta com base no que for configurado nas variáveis de ambiente.
 
-Se a aplicação crescer, as variáveis podem ser carregadas em arquivos e parametrizadas no Docker-Compose.yml com a opção “env_file”.
+Se a aplicação crescer, as variáveis podem ser carregadas em arquivos e parametrizadas no docker-compose.yml com a opção “env_file”.
