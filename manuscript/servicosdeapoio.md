@@ -28,7 +28,7 @@ if __name__ == "__main__":
    app.run(host=host_run, debug=True)
 ```
 
-Como pode perceber no código acima, a aplicação agora recebe variáveis de ambiente para configurar o hostname e a porta do serviço Redis. Nesse caso, é possível configurar o host e a porta da Redis que deseja conectar. E isso pode e deve ser especificado no Docker-Compose.yml que também passou por mudança para se adequar a nova boa prática:
+Como pode perceber no código acima, a aplicação agora recebe variáveis de ambiente para configurar o hostname e a porta do serviço Redis. Nesse caso, é possível configurar o host e a porta da Redis que deseja conectar. E isso pode e deve ser especificado no docker-compose.yml que também passou por mudança para se adequar a nova boa prática:
 
 ```
 version: "2"
@@ -59,6 +59,6 @@ volumes:
 
 Como observamos nos códigos já tratados, a vantagem da boa prática passa pela possibilidade de mudança de comportamento sem mudança do código. Mais uma vez é possível viabilizar que, o mesmo código construído em um momento, possa ser reutilizado de forma semelhante, tanto no notebook do desenvolvedor como no servidor de produção.
 
-Fique atento para armazenamento de segredos dentro do Docker-Compose.yml, pois esse arquivo é enviado para o repositório de controle de versão e é importante pensar outra estratégia de manutenção de segredos.
+Fique atento para armazenamento de segredos dentro do docker-compose.yml, pois esse arquivo é enviado para o repositório de controle de versão e é importante pensar outra estratégia de manutenção de segredos.
 
-Uma estratégia possível é a manutenção de variáveis de ambiente no Docker Host. Dessa forma, você precisa usar variáveis do tipo **${variavel}** dentro do Docker-Compose.yml para repassar a configuração ou, utilizar outro recurso mais avançado de gerenciamento de segredos.
+Uma estratégia possível é a manutenção de variáveis de ambiente no Docker Host. Dessa forma, você precisa usar variáveis do tipo **${variavel}** dentro do docker-compose.yml para repassar a configuração ou, utilizar outro recurso mais avançado de gerenciamento de segredos.
