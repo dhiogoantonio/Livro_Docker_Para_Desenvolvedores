@@ -6,7 +6,7 @@ Com o advento da automatização e devida inteligência na manutenção das apli
 
 ![](images/processos.png)
 
-A boa prática indica que processos de aplicações 12factor são stateless (não armazenam estado) e share-nothing. Quaisquer dados que precisem persistir devem ser armazenados em serviço de apoio stateful (armazena o estado), típica base de dados.
+A boa prática indica que processos de aplicações 12factor são stateless (não armazenam estado) e share-nothing. Quaisquer dados que precisem persistir devem ser armazenados em serviço de apoio stateful (armazena o estado), normalmente é usado uma base de dados.
 
 O objetivo final dessa prática não faz distinção se a aplicação é executada na máquina do desenvolvedor ou em produção, pois, nesse caso, o que muda é a quantidade de processos iniciados para atender as respectivas demandas. Na máquina do desenvolvedor pode ser apenas um e, em produção, um número maior.
 
