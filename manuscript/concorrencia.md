@@ -1,26 +1,26 @@
 # Concorrência
 
-Seguindo a lista do modelo [12factor](http://12factor.net/pt_br), temos **“Concorrência”** como oitava boa prática.
+A oitava boa prática da lista do modelo [12factor](http://12factor.net/pt_br), é **“Concorrência”**.
 
-Durante o processo de desenvolvimento de uma aplicação é difícil imaginar o volume de requisição que ela terá no momento que for colocada em produção. Por outro lado, ter um serviço que suporte grandes volumes de uso é algo esperado nas soluções modernas, pois nada é mais frustante do que solicitar acesso a uma aplicação e ela não estar disponível. Demonstra falta de cuidado e de profissionalismo na maioria dos casos.
+Durante o processo de desenvolvimento de uma aplicação é difícil imaginar o volume de requisição que ela terá no momento que for colocada em produção. Por outro lado, um serviço que suporte grandes volumes de uso é esperado nas soluções modernas. Nada é mais frustante que solicitar acesso a uma aplicação e ela não estar disponível. Sugere falta de cuidado e profissionalismo, na maioria dos casos.
 
-Quando uma aplicação é colocada em produção normalmente ela é dimensionada para uma determinada carga esperada, porém é importante que o serviço esteja pronto para escalar, ou seja, a solução deve ser capaz de iniciar novos processo da mesma aplicação caso necessário, sem que isso afete negativamente o produto. A figura abaixo apresenta um gráfico de escalabilidade de serviços.
+Quando a aplicação é colocada em produção, normalmente é dimensionada para determinada carga esperada, porém é importante que o serviço esteja pronto para escalar. A solução deve ser capaz de iniciar novos processo da mesma aplicação, caso necessário, sem afetar o produto. A figura abaixo, apresenta gráfico de escalabilidade de serviços.
 
 ![](images/concorrencia1.png)
 
-Com objetivo de evitar que exista qualquer problema na escalabilidade do serviço, esta boa prática indica que as aplicações devem suportar execuções concorrentes, tal que quando um processo está em execução deve ser possível instanciar um outro em paralelo e o serviço possa ser atendido sem perda alguma.
+Com objetivo de evitar qualquer problema na escalabilidade do serviço, a boa prática indica que as aplicações devem suportar execuções concorrentes e, quando um processo está em execução, instanciar outro em paralelo e o serviço atendido, sem perda alguma.
 
-Para que isto aconteça, é importante dividir as tarefas corretamente. É interessante que os processos se atenham aos seus objetivos, ou seja, caso seja necessário executar alguma atividade em backend e depois retornar uma página para o navegador, é salutar que existam dois serviços que tratem as duas atividades de forma separada. O Docker torna essa tarefa mais simples, pois nesse modelo basta especificar um container para cada função e configurar corretamente a rede entre eles.
+Para tal, é importante dividir as tarefas corretamente. É interessante o processo se ater aos objetivos, caso seja necessário executar alguma atividade em backend e, depois retornar uma página para o navegador, é salutar que haja dois serviços tratando as duas atividades, de forma separada. O Docker torna essa tarefa mais simples, pois, nesse modelo, basta especificar um container para cada função e configurar corretamente a rede entre eles.
 
-Para exemplificar essa boa prática, usaremos a arquitetura demonstrada na figura abaixo:
+Para exemplificar a boa prática, usaremos a arquitetura demonstrada na figura abaixo:
 
 ![](images/concorrencia2.png)
 
-O serviço web será responsável por receber a requisição e balancear entre os workers, os quais são responsáveis por processar a requisição, conectar ao redis e retornar uma tela de “Hello World” informando quantas vezes ela foi obtida e qual nome do worker que está respondendo essa requisição (Para ter certeza que está balanceando a carga), como podemos ver na figura abaixo:
+O serviço web é responsável por receber a requisição e balancear entre os workers, os quais são responsáveis por processar a requisição, conectar ao redis e retornar a tela de “Hello World” informando quantas vezes foi obtida e qual nome de worker está respondendo a requisição (para ter certeza que está balanceando a carga), como podemos ver na figura abaixo:
 
 ![](images/concorrencia3.png)
 
-O arquivo **docker-compose.yml** exemplifica essa boa prática:
+O arquivo **docker-compose.yml** exemplifica a boa prática:
 
 ```
 version: "2"
@@ -54,9 +54,9 @@ networks:
       driver: bridge
 ```
 
-Para efetuar a construção desse balanceador de carga, temos o diretório web contendo os arquivos Dockerfile (responsável por criar a imagem utilizada) e nginx.conf (arquivo de configuração do balanceador de carga utilizado).
+Para efetuar a construção do balanceador de carga, temos o diretório web contendo arquivos Dockerfile (responsável por criar a imagem utilizada) e nginx.conf (arquivo de configuração do balanceador de carga utilizado).
 
-Segue abaixo o conteúdo do DockerFile do web:
+Segue o conteúdo DockerFile do web:
 
 ```
 FROM nginx:1.9
@@ -66,7 +66,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-Segue o conteúdo do arquivo nginx.conf:
+E, o conteúdo do arquivo nginx.conf:
 
 ```
 user nginx;
@@ -93,15 +93,13 @@ http {
 }
 ```
 
-No arquivo de configuração acima, foram introduzidas algumas novidades. A primeira é o **“resolver 127.0.0.11“**, que é o serviço DNS interno do Docker. Usando essa abordagem será possível efetuar o balanceamento de carga via nome, usando um recurso interno do Docker.
+No arquivo de configuração acima, foram introduzidas algumas novidades. A primeira, **“resolver 127.0.0.11“**, é o serviço DNS interno do Docker. Usando essa abordagem é possível efetuar o balanceamento de carga via nome, usando recurso interno do Docker. Para mais detalhes sobre o funcionamento do DNS interno do Docker, veja esse documento ([https://docs.docker.com/engine/userguide/networking/configure-dns/](https://docs.docker.com/engine/userguide/networking/configure-dns/)) (apenas em inglês).
 
-Para mais detalhes sobre o funcionamento do DNS interno do Docker, veja esse documento ([https://docs.docker.com/engine/userguide/networking/configure-dns/](https://docs.docker.com/engine/userguide/networking/configure-dns/)) (apenas em inglês).
+A segunda novidade, função set **$alias “apps”;**, responsável por especificar o nome **“apps”** usado na configuração do proxy reverso, em seguida **“proxy_pass http://$alias;“**. Vale salientar, o **“apps”** é o nome da rede especificada dentro do arquivo **docker-compose.yml**. Nesse caso, o balanceamento é feito para a rede, todo novo contêiner que entra nessa rede é automaticamente adicionado ao balanceamento de carga.
 
-A segunda novidade é a função set **$alias “apps”;** que é responsável por especificar o nome **“apps”** que será usado na configuração do proxy reverso em seguida **“proxy_pass http://$alias;“**. Vale salientar que o **“apps”** é o nome da rede especificada dentro do arquivo **docker-compose.yml**. Nesse caso o balanceamento será feito para a rede, ou seja, todo novo contêiner que entrar nessa rede será automaticamente adicionado no balanceamento de carga.
+Para efetuar a construção do **worker** temos o diretório **worker**  contendo os arquivos **Dockerfile** (responsável por criar a imagem utilizada), **app.py** (aplicação usada em todos os capítulos) e **requirements.txt** (descreve as dependências do app.py).
 
-Para efetuar a construção do **worker** temos o diretório **worker**  contendo os arquivos **Dockerfile** (responsável por criar a imagem utilizada), **app.py** (que é a aplicação que usamos em todos os outros capítulos) e **requirements.txt** (descreve todas as dependências do app.py).
-
-Segue abaixo o conteúdo do arquivo **app.py** modificado para essa prática:
+Segue abaixo o conteúdo do arquivo **app.py** modificado para a prática:
 
 ```
 from flask import Flask
@@ -123,14 +121,14 @@ if __name__ == "__main__":
    app.run(host="0.0.0.0", debug=True)
 ```
 
-Segue abaixo o conteúdo do **requirements.txt**:
+Segue o conteúdo do **requirements.txt**:
 
 ```
 flask==0.11.1
 redis==2.10.5
 ```
 
-E por fim o **Dockerfile** do **worker** tem o seguinte conteúdo:
+E por fim, o **Dockerfile** do **worker** tem o seguinte conteúdo:
 
 ```
 FROM python:2.7
@@ -141,27 +139,24 @@ WORKDIR /code
 CMD python app.py
 ```
 
-No serviço **redis**, não há construção da imagem, pois usaremos a imagem oficial para efeitos de exemplificação.
+No serviço **redis** não há construção da imagem, usaremos a imagem oficial para efeitos de exemplificação.
 
-Para realizar o teste de tudo que apresentado até então, realize o clone do repositório ([https://github.com/gomex/exemplo-12factor-docker](https://github.com/gomex/exemplo-12factor-docker)) e acesse a pasta **factor8**, executando o comando abaixo para iniciar os contêineres:
+Para testar o que foi apresentado até então, realize o clone do repositório ([https://github.com/gomex/exemplo-12factor-docker](https://github.com/gomex/exemplo-12factor-docker)) e acesse a pasta **factor8**, executando o comando, abaixo, para iniciar os contêineres:
 
 ```
 docker-compose up -d
 ```
 
-Acesse os contêineres através do navegador na porta 80 do endereço localhost. Tente atualizar a página e veja que apenas um nome aparecerá.
+Acesse os contêineres através do navegador na porta 80 do endereço localhost. Atualize a página e veja que apenas um nome aparece.
 
-Por padrão o docker-compose executa apenas uma instância de cada serviço explicitado em seu **docker-compose.yml**. Para aumentar a quantidade de contêineres **“worker”** de apenas um para dois execute o comando abaixo:
+Por padrão, o Docker-Compose executa apenas uma instância de cada serviço explicitado no **docker-compose.yml**. Para aumentar a quantidade de contêineres **“worker”**, de um para dois, execute o comando abaixo:
 
 ```
 docker-compose scale worker=2
 ```
 
-Atualize a página no navegador novamente e verá que o nome do host vai alternar entre duas possibilidades, ou seja, as requisições estão sendo balanceadas para ambos contêineres.
+Atualize a página no navegador e veja que o nome do host alterna entre duas possibilidades, ou seja, as requisições estão sendo balanceadas para ambos contêineres.
 
-Nessa nova proposta de ambiente, o serviço **web** se encarregará de receber todas requisições HTTP e fazer o balanceamento de carga. Então o **worker** será responsável por processar essas requisições, que basicamente é obter seu nome de host, acessar o **redis** e obter a contagem de quantas vezes esse serviço foi requisitado e então gerar o retorno, para então devolvê-lo para o serviço **web**, que por sua vez responderá ao usuário. Como podem perceber, cada instância desse ambiente tem sua função bem definida e com isso será muito mais fácil escalá-lo.
+Nessa nova proposta de ambiente, o serviço **web** se encarrega de receber as requisições HTTP e fazer o balanceamento de carga. Então, o **worker** é responsável por processar as requisições, basicamente obter o nome de host, acessar o **redis** e a contagem de quantas vezes o serviço foi requisitado e, então, gerar o retorno para devolvê-lo ao serviço **web** que, por sua vez, responde ao usuário. Como podemos perceber, cada instância do ambiente tem função definida e, com isso, é mais fácil escalá-lo.
 
-Aproveito para dar os créditos ao capitão [Marcosnils](https://twitter.com/marcosnils), que foi a pessoa que me mostrou que é possível balancear carga pelo nome da rede docker.
-
-
-
+Aproveitamos para dar os créditos ao capitão [Marcosnils](https://twitter.com/marcosnils), que nos mostrou como é possível balancear carga pelo nome da rede docker.
