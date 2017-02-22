@@ -8,7 +8,7 @@ De acordo com a lista do modelo [12factor](http://12factor.net/pt_br), a sétima
 
 A boa prática sugere que o aplicativo em questão seja auto-contido e dependa de um servidor de aplicação, tal como Jboss, Tomcat e afins. O software deve exportar um serviço HTTP e lidar com as requisições que chegam por ele. Significa que, qualquer aplicação adicional é desnecessária para o código estar disponível à comunicação externa.
 
-Tradicionalmente, a implantação de aplicações em serviços de aplicação web, tal como Tomcat e Jboss, exige a geração de um artefato e, esse, é enviado para o serviço web em questão. Mas no modelo de contêiner Docker, a idéia é que o artefato do processo de implantação seja o próprio contêiner.
+Tradicionalmente, a implantação de artefato em servidor de aplicação, tal como Tomcat e Jboss, exige a geração de um artefato e, esse, é enviado para o serviço web em questão. Mas no modelo de contêiner Docker, a idéia é que o artefato do processo de implantação seja o próprio contêiner.
 
 O processo antigo de implantação do artefato em servidor de aplicação, normalmente, não tinha retorno rápido, o que aumentava demasiadamente o processo de implantação de um serviço, pois, cada alteração demandava enviar o artefato para o serviço de aplicação web; e, esse tinha a responsabilidade de importar, ler e executar o novo artefato.
 
