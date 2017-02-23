@@ -1,41 +1,40 @@
 # Dicas para uso do Docker
 
-Se você leu a primeira parte desse livro já sabe o básico de Docker, mas agora que pretende começar a usar com mais frequência alguns desconfortos podem surgir, pois como qualquer ferramenta, Docker tem seu próprio conjunto de boas práticas e dicas para ser efetivo.
+Se você leu a primeira parte do livro já sabe o básico sobre Docker, mas agora que pretende começar a usar com mais frequência, alguns desconfortos podem surgir, pois, como qualquer ferramenta, o Docker tem o próprio conjunto de boas práticas e dicas.
 
-O objetivo dessse texto é demonstrar algumas dicas para o bom uso do Docker. Isso não quer dizer que a forma que você executa hoje seja necessariamente errada. 
+O objetivo dessse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada. 
 
-Toda ferramenta demanda de algumas melhores práticas para tornar o seu uso mais efetivo e com menor possibilidade de problemas futuros.
+Toda ferramenta demanda algumas melhores práticas para tornar o uso mais efetivo e com menor possibilidade de problemas futuros.
 
-Esse capítulo está separado em duas seções: Dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
+Esse capítulo foi separado em duas seções: dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
 
 ## Dicas para Rodar
 
-Lembre-se que cada comando `docker run` cria um novo container com base em uma imagem especificada e inicia um processo dentro dele a partir de um comando (`CMD` especificado no Dockerfile).
+Lembre-se, cada comando `docker run` cria novo contêiner com base em uma imagem específica e inicia um processo dentro dele, a partir de um comando (`CMD` especificado no Dockerfile).
 
-### Containers descartáveis
+### Contêiners descartáveis
 
-É esperado que os containers executados possam ser descartados sem qualquer problema, sendo assim é importante utilizar containers verdadeiramente efêmeros. 
+É esperado que os contêiners executados possam ser descartados sem qualquer problema. Sendo assim, é importante utilizar contêiners verdadeiramente efêmeros. 
 
-Para tal utilize o argumento `--rm`. Isso faz com que todos o container, e todos seus dados, sejam removidos após o termino da execução, evitando consumir disco de maneira desnecessária.
+Para tal, utilize o argumento `--rm`. Isso faz com que todos os contêiners, e seus dados, sejam removidos após o termino da execução, evitando consumir disco desnecessariamente.
 
-Em geral, pode-se utilizar o comando `run` conforme o exemplo:
+Em geral, pode-se utilizar o comando `run` como no exemplo:
 
 ```sh
 docker run --rm -it debian /bin/bash
 ```
 
-Note aqui que `-it` significa `--interactive --tty`. Ele é usado para fixar a linha de comando com o container, assim após esse `docker run` todos comandos serão executados pelo `bash` de dentro do container. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um container em primeiro plano.
+Note aqui que `-it` significa `--interactive --tty`. É usado para fixar a linha de comando com o contêiner, assim, após esse `docker run`, todos os comandos são executados pelo `bash` de dentro do contêiner. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um contêiner em primeiro plano.
 
 ### Verifique variáveis de ambiente
 
-Às vezes se faz necessário verificar que metadados estão definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter esta informação:
-
+Às vezes faz-se necessário verificar qual metadados são definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter essa informação:
 
 ```sh
 docker run --rm -it debian env
 ```
 
-Para verificar as variáveis de ambiente passados de um container já criado:
+Para verificar as variáveis de ambientes passados de um contêiner já criado:
 
 ```sh
 docker inspect --format '{{.Config.Env}}' <container>
@@ -46,7 +45,8 @@ Para outros metadados, use variações do comando `docker inspect`.
 ### Logs
 
 Docker captura logs da saída padrão (`STDOUT`) e saída de erros (`STDERR`).
-Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que podem ser especificado através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker run`.
+
+Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que, podem ser especificados através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker run`.
 
 Quando utilizado o driver padrão `json-file` (e também `journald`), pode-se utilizar o seguinte comando para recuperar os logs:
 
@@ -58,23 +58,23 @@ Observe também o argumento `-f` para acompanhar as próximas mensagens de log d
 
 ### Backup
 
-Dados em containers Docker são expostos e compartilhados através de argumentos de volumes utilizados ao criar e iniciar o container. Esse volumes não seguem as regras do [Union File System](https://docs.docker.com/engine/reference/glossary/#union-file-system), pois os dados desse volume são persistidos mesmo quando o container é removido.
+Dados em contêiners Docker são expostos e compartilhados através de argumentos de volumes utilizados ao criar e iniciar o contêiner. Esses volumes não seguem as regras do [Union File System](https://docs.docker.com/engine/reference/glossary/#union-file-system), pois os dados persistem mesmo quando o contêiner é removido.
 
-Para criar um volume em um determinado container, execute da seguinte forma:
+Para criar um volume em determinado contêiner, execute da seguinte forma:
 
 ```sh
 docker run --rm -v /usr/share/nginx/html --name nginx_teste nginx
 ```
 
-Com a execução desse container teremos um serviço Nginx que usará o volume criado para persistir seus dados, ou seja, os dados persistirão mesmo após o container seja removido.
+Com a execução desse container, teremos serviço Nginx que usa o volume criado para persistir seus dados; os dados persistirão mesmo após o contêiner ser removido.
 
-É boa prática de administração de sistema fazer cópias de segurança (backups) periodicamente e para executar essa atividade (extrair dados), use comando a seguir:
+É boa prática de administração de sistema fazer cópias de segurança (backups) periodicas e, para executar essa atividade (extrair dados), use o comando:
 
 ```sh
 docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -cvf /backup/backup_nginx.tar /usr/share/nginx/html
 ```
 
-Após a execução desse comando teremos um arquivo chamado `backup_nginx.tar` dentro da pasta /tmp do **Docker host**.
+Após a execução do comando, temos um arquivo `backup_nginx.tar` dentro da pasta /tmp do **Docker host**.
 
 Para restaurar esse backup utlize:
 
@@ -82,7 +82,7 @@ Para restaurar esse backup utlize:
 docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -xvf /backup/backup.tar /usr/share/nginx/html
 ```
 
-Mais informação também pode ser encontrada [nessa resposta](http://stackoverflow.com/a/34776997/1046584), onde também é possível encontrar alguns *aliases* para esses dois comandos. Esse *aliases* também estão disponíveis abaixo na seção *Aliases*.
+Mais informação também podem ser encontradas [na resposta](http://stackoverflow.com/a/34776997/1046584), onde é possível encontrar alguns *aliases* para esses dois comandos. Esses *aliases* também estão disponíveis abaixo, na seção *Aliases*.
 
 Outras fontes são:
 
@@ -91,16 +91,16 @@ Outras fontes são:
  * Uma ferramenta de backup (atualmente deprecada): [docker-infra/docker-backup](https://github.com/docker-infra/docker-backup)
 
 
-### Use docker exec para "entrar num container"
+### Use docker exec para "entrar em um contêiner"
 
-Eventualmente é necessário entrar em um container em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*). 
-Nunca instale o daemon SSH em um container docker. Use `docker exec` para entrar em um container e rodar um comando:
+Eventualmente, é necessário entrar em um contêiner em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*). 
+Nunca instale o daemon SSH em um contêiner Docker. Use `docker exec` para entrar em um contêiner e rodar comandos:
 
 ```sh
 docker exec -it <nome do container em execução> bash
 ```
 
-Essa funcionalidade é muito útil em desenvolvimento local e experimentações. Mas evite utilizá-lo em produção ou automatizar ferramentas em volta dele.
+A funcionalidade é útil em desenvolvimento local e experimentações. Mas evite utilizar o contêiner em produção ou automatizar ferramentas em volta dele.
 
 Verifique a [documentação](https://docs.docker.com/engine/reference/commandline/exec/) do mesmo.
 
