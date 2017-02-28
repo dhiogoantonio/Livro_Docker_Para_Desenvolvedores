@@ -46,7 +46,7 @@ Junto à facilidade de uso dos contêiners, o Docker agregou o conceito de nuvem
 
 Com o uso do serviço de nuvem do Docker, podemos perceber que a adoção do modelo de contêiners ultrapassa a questão técnica e adentra assuntos de processo, gerência e atualização do ambiente; onde, agora é possível compartilhar facilmente as mudanças e viabilizar uma gestão centralizada das definições de ambiente.
 
-Utilizando a nuvem Docker agora, é possível disponibilizar ambientes de teste mais leves, permitindo que, em plena reunião com o chefe, você pode baixar a solução para um problema que ele descreve e mostrar antes que ele saia da sala. Permite também que você consiga disponibilizar padrão de melhores práticas para determinado serviço e compartilhar com todos da sua empresa ealém, onde pode receber críticas e executar modificações com o passar do tempo.
+Utilizando a nuvem Docker agora, é possível disponibilizar ambientes de teste mais leves, permitindo que, em plena reunião com o chefe, você pode baixar a solução para um problema que ele descreve e mostrar antes que ele saia da sala. Permite também que você consiga disponibilizar padrão de melhores práticas para determinado serviço e compartilhar com todos da sua empresa e além, onde pode receber críticas e executar modificações com o passar do tempo.
 
 ### Conclusão
 
