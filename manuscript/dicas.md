@@ -108,18 +108,20 @@ Verifique a [documentação](https://docs.docker.com/engine/reference/commandlin
 
 Ao executar contêiners e construir imagens várias vezes, o espaço em disco pode se tornar escasso. Quando isso acontece, é necessário limpar alguns contêiners, imagens e logs.
 
-Uma maneira rápida de limpar contêiners e imagens é utilizar os seguintes comandos:
-
-Para remover containêrs:
+Uma maneira rápida de limpar contêiners e imagens é utilizar o seguinte comando:
 
 ```sh
-docker container prune
+docker system prune
 ```
-Para remover imagens não utilizadas
 
-```sh
-docker image prune
-```
+Com esse comando você removerá:
+
+* Todos os contêiners que não estão em uso no momento
+* Todos os volumes que não estão em uso por ao menos um contêiner
+* Todas as redes que não estão em uso por ao menos um contêiner
+* Todas as imagens *dangling*
+
+Obs: Pra não aprofundar muito no conceito baixo nível do Docker, podemos dizer que imagens *dangling* são simplesmente sem ponteiros e assim desnecessárias para o uso convencional.
 
 Dependendo do tipo de aplicação, logs também podem ser volumosos. O gerenciamento depende muito de qual [driver](https://docs.docker.com/engine/admin/logging/overview/) é utilizado. No driver padrão (`json-file`) a limpeza pode se dar através da execução do seguinte comando dentro do **Docker Host**:
 
