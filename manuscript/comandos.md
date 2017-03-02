@@ -9,13 +9,13 @@ Não abordaremos os comandos de criação de imagem e tratamento de problemas (t
 Para iniciar um container é necessário saber a partir de qual imagem será executado. Para listar as imagens que seu **Docker host** tem localmente, execute o comando abaixo:
 
 ```
-docker images
+docker image list
 ```
 
 As imagens retornadas estão presentes no seu **Docker host** e não demandam qualquer download da [nuvem pública do Docker](hub.docker.com), a menos que deseje atualizá-la. Para atualizar a imagem basta executar o comando abaixo:
 
 ```
-docker pull python
+docker image pull python
 ```
 
 Usamos a imagem chamada **python** como exemplo, mas caso deseje atualizar qualquer outra imagem, basta colocar seu nome no lugar de **python**.
@@ -23,14 +23,14 @@ Usamos a imagem chamada **python** como exemplo, mas caso deseje atualizar qualq
 Caso deseje inspecionar a imagem que acabou de atualizar, basta usar o comando abaixo:
 
 ```
-docker inspect python
+docker image inspect python
 ```
-O comando [inspect](https://docs.docker.com/engine/reference/commandline/inspect/) é responsável por informar todos os dados referentes à imagem. 
+O comando [inspect](https://docs.docker.com/engine/reference/commandline/inspect/) é responsável por informar todos os dados referentes à imagem.
 
 Agora que temos a imagem atualizada e inspecionada, podemos iniciar o container. Mas antes de simplesmente copiar e colar o comando, vamos entender como ele realmente funciona.
 
 ```
-docker run <parâmetros> <imagem> <CMD> <argumentos>
+docker container run <parâmetros> <imagem> <CMD> <argumentos>
 ```
 
 Os parâmetros mais utilizados na execução do container são:
@@ -50,18 +50,18 @@ Os parâmetros mais utilizados na execução do container são:
 Segue um exemplo simples no seguinte comando:
 
 ```
-docker run -it --rm --name meu_python python bash
+docker container run -it --rm --name meu_python python bash
 ```
 De acordo com o comando acima, será iniciado um container com o nome **meu_python**, criado a partir da imagem **python** e o processo executado nesse container será o **bash**.
 
-Vale lembrar que, caso o **CMD** não seja especificado no comando **docker run**, é utilizado o valor padrão definido no **Dockerfile** da imagem utilizada. No nosso caso é **python** e seu comando padrão executa o binário **python**, ou seja, se não fosse especificado o **bash**, no final do comando de exemplo acima, ao invés de um shell bash do GNU/Linux, seria exibido um shell do **python**.
+Vale lembrar que, caso o **CMD** não seja especificado no comando **docker container run**, é utilizado o valor padrão definido no **Dockerfile** da imagem utilizada. No nosso caso é **python** e seu comando padrão executa o binário **python**, ou seja, se não fosse especificado o **bash**, no final do comando de exemplo acima, ao invés de um shell bash do GNU/Linux, seria exibido um shell do **python**.
 
 ### Mapeamento de volumes
 
 Para realizar mapeamento de volume basta especificar qual origem do dado no host e onde deve ser montado dentro do container.
 
 ```
-docker run -it --rm -v "<host>:<container>" python
+docker container run -it --rm -v "<host>:<container>" python
 ```
 O uso de armazenamento é melhor explicado em capítulos futuros, por isso não detalharemos o uso desse parâmetro.
 
@@ -70,12 +70,12 @@ O uso de armazenamento é melhor explicado em capítulos futuros, por isso não 
 Para realizar o mapeamento de portas basta saber qual porta será mapeada no host e qual deve receber essa conexão dentro do container.
 
 ```
-docker run -it --rm -p "<host>:<container>" python
+docker container run -it --rm -p "<host>:<container>" python
 ```
 Um exemplo com a porta 80 do host para uma porta 8080 dentro do container tem o seguinte comando:
 
 ```
-docker run -it --rm -p 80:8080 python
+docker container run -it --rm -p 80:8080 python
 ```
 
 Com o comando acima temos a porta **80** acessível no **Docker host** que repassa todas as conexões para a porta **8080** dentro do **container**. Ou seja, não é possível acessar a porta **8080** no endereço IP do **Docker host**, pois essa porta está acessível apenas dentro do **container** que é isolada a nível de rede, como já dito anteriormente.
@@ -87,19 +87,19 @@ Na inicialização dos containers é possível especificar alguns limites de uti
 Para limitar o uso de memória RAM que pode ser utilizada por esse container, basta executar o comando abaixo:
 
 ```
-docker run -it --rm -m 512M python
+docker container run -it --rm -m 512M python
 ```
 
 Com o comando acima estamos limitando esse container a utilizar somente 512 MB de RAM.
 
-Para balancear o uso da CPU pelos containers, utilizamos especificação de pesos para cada container, quanto menor o peso, menor sua prioridade no uso. Os pesos podem oscilar de **1** a **1024**. 
+Para balancear o uso da CPU pelos containers, utilizamos especificação de pesos para cada container, quanto menor o peso, menor sua prioridade no uso. Os pesos podem oscilar de **1** a **1024**.
 
 Caso não seja especificado o peso do container, ele usará o maior peso possível, nesse caso **1024**.
 
 Usaremos como exemplo o peso **512**:
 
 ```
-docker run -it --rm -c 512 python
+docker container run -it --rm -c 512 python
 ```
 
 Para entendimento, vamos imaginar que três containers foram colocados em execução. Um deles tem o peso padrão **1024** e dois têm o peso **512**. Caso os três processos demandem toda CPU o tempo de uso deles será dividido da seguinte maneira:
@@ -114,7 +114,7 @@ Para visualizar a lista de containers de um determinado **Docker host** utilizam
 Esse comando é responsável por mostrar todos os containers, mesmo aqueles não mais em execução.
 
 ```
-docker ps <parâmetros>
+docker container list <parâmetros>
 ```
 
 Os parâmetros mais utilizados na execução do container são:
@@ -135,7 +135,7 @@ Caso deseje desligar o container basta utilizar o comando [docker stop](https://
 Um exemplo de uso:
 
 ```
-docker stop meu_python
+docker container stop meu_python
 ```
 
 No comando acima, caso houvesse um container chamado **meu_python** em execução, ele receberia um sinal **SIGTERM** e, caso não fosse desligado, receberia um **SIGKILL** depois de 10 segundos.
@@ -143,13 +143,8 @@ No comando acima, caso houvesse um container chamado **meu_python** em execuçã
 Caso deseje reiniciar o container que foi desligado e não iniciar um novo, basta executar o comando [docker start](https://docs.docker.com/engine/reference/commandline/start/):
 
 ```
-docker start meu_python
+docker container start meu_python
 ```
 
 > Vale ressaltar que a ideia dos containers é a de serem descartáveis. Caso você use o **mesmo** container por muito tempo sem descartá-lo, provavelmente está usando o Docker incorretamente.
 > O Docker **não** é uma máquina, é um processo em execução. E, como todo processo, deve ser descartado para que outro possa tomar seu lugar na reinicialização do mesmo.
-
-
-
-
-

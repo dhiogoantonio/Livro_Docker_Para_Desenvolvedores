@@ -2,36 +2,36 @@
 
 Se você leu a primeira parte do livro já sabe o básico sobre Docker, mas agora que pretende começar a usar com mais frequência, alguns desconfortos podem surgir, pois, como qualquer ferramenta, o Docker tem seu próprio conjunto de boas práticas e dicas.
 
-O objetivo dessse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada. 
+O objetivo dessse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada.
 
 Toda ferramenta demanda algumas melhores práticas para tornar o uso mais efetivo e com menor possibilidade de problemas futuros.
 
-Esse capítulo foi separado em duas seções: dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
+Esse capítulo foi separado em duas seções: dicas para rodar (`docker container run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
 
 ## Dicas para Rodar
 
-Lembre-se, cada comando `docker run` cria novo contêiner com base em uma imagem específica e inicia um processo dentro dele, a partir de um comando (`CMD` especificado no Dockerfile).
+Lembre-se, cada comando `docker container run` cria novo contêiner com base em uma imagem específica e inicia um processo dentro dele, a partir de um comando (`CMD` especificado no Dockerfile).
 
 ### Contêiners descartáveis
 
-É esperado que os contêiners executados possam ser descartados sem qualquer problema. Sendo assim, é importante utilizar contêiners verdadeiramente efêmeros. 
+É esperado que os contêiners executados possam ser descartados sem qualquer problema. Sendo assim, é importante utilizar contêiners verdadeiramente efêmeros.
 
 Para tal, utilize o argumento `--rm`. Isso faz com que todos os contêiners, e seus dados, sejam removidos após o termino da execução, evitando consumir disco desnecessariamente.
 
 Em geral, pode-se utilizar o comando `run` como no exemplo:
 
 ```sh
-docker run --rm -it debian /bin/bash
+docker container run --rm -it debian /bin/bash
 ```
 
-Note aqui que `-it` significa `--interactive --tty`. É usado para fixar a linha de comando com o contêiner, assim, após esse `docker run`, todos os comandos são executados pelo `bash` de dentro do contêiner. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um contêiner em primeiro plano.
+Note aqui que `-it` significa `--interactive --tty`. É usado para fixar a linha de comando com o contêiner, assim, após esse `docker container run`, todos os comandos são executados pelo `bash` de dentro do contêiner. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um contêiner em primeiro plano.
 
 ### Verifique variáveis de ambiente
 
 Às vezes faz-se necessário verificar qual metadados são definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter essa informação:
 
 ```sh
-docker run --rm -it debian env
+docker container run --rm -it debian env
 ```
 
 Para verificar as variáveis de ambientes passados de um contêiner já criado:
@@ -46,7 +46,7 @@ Para outros metadados, use variações do comando `docker inspect`.
 
 Docker captura logs da saída padrão (`STDOUT`) e saída de erros (`STDERR`).
 
-Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que, podem ser especificados através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker run`.
+Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que, podem ser especificados através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker container run`.
 
 Quando utilizado o driver padrão `json-file` (e também `journald`), pode-se utilizar o seguinte comando para recuperar os logs:
 
@@ -63,7 +63,7 @@ Dados em contêiners Docker são expostos e compartilhados através de argumento
 Para criar um volume em determinado contêiner, execute da seguinte forma:
 
 ```sh
-docker run --rm -v /usr/share/nginx/html --name nginx_teste nginx
+docker container run --rm -v /usr/share/nginx/html --name nginx_teste nginx
 ```
 
 Com a execução desse container, teremos serviço Nginx que usa o volume criado para persistir seus dados; os dados persistirão mesmo após o contêiner ser removido.
@@ -71,7 +71,7 @@ Com a execução desse container, teremos serviço Nginx que usa o volume criado
 É boa prática de administração de sistema fazer cópias de segurança (backups) periodicas e, para executar essa atividade (extrair dados), use o comando:
 
 ```sh
-docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -cvf /backup/backup_nginx.tar /usr/share/nginx/html
+docker container run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -cvf /backup/backup_nginx.tar /usr/share/nginx/html
 ```
 
 Após a execução do comando, temos um arquivo `backup_nginx.tar` dentro da pasta /tmp do **Docker host**.
@@ -79,7 +79,7 @@ Após a execução do comando, temos um arquivo `backup_nginx.tar` dentro da pas
 Para restaurar esse backup utlize:
 
 ```sh
-docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -xvf /backup/backup.tar /usr/share/nginx/html
+docker container run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -xvf /backup/backup.tar /usr/share/nginx/html
 ```
 
 Mais informação também podem ser encontradas [na resposta](http://stackoverflow.com/a/34776997/1046584), onde é possível encontrar alguns *aliases* para esses dois comandos. Esses *aliases* também estão disponíveis abaixo, na seção *Aliases*.
@@ -87,17 +87,17 @@ Mais informação também podem ser encontradas [na resposta](http://stackoverfl
 Outras fontes são:
 
  * Documentação oficial do Docker sobre [Backup, restauração ou migração de dados (em inglês)](https://docs.docker.com/engine/userguide/containers/dockervolumes/#backup-restore-or-migrate-data-volumes)
- 
+
  * Uma ferramenta de backup (atualmente deprecada): [docker-infra/docker-backup](https://github.com/docker-infra/docker-backup)
 
 
-### Use docker exec para "entrar em um contêiner"
+### Use docker container exec para "entrar em um contêiner"
 
-Eventualmente, é necessário entrar em um contêiner em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*). 
-Nunca instale o daemon SSH em um contêiner Docker. Use `docker exec` para entrar em um contêiner e rodar comandos:
+Eventualmente, é necessário entrar em um contêiner em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*).
+Nunca instale o daemon SSH em um contêiner Docker. Use `docker container exec` para entrar em um contêiner e rodar comandos:
 
 ```sh
-docker exec -it <nome do container em execução> bash
+docker container exec -it <nome do container em execução> bash
 ```
 
 A funcionalidade é útil em desenvolvimento local e experimentações. Mas evite utilizar o contêiner em produção ou automatizar ferramentas em volta dele.
@@ -113,12 +113,12 @@ Uma maneira rápida de limpar contêiners e imagens é utilizar os seguintes com
 Para remover containêrs:
 
 ```sh
-docker ps -aq | xargs docker rm
+docker container prune
 ```
 Para remover imagens não utilizadas
 
 ```sh
-docker images -aq -f dangling=true | xargs docker rmi
+docker image prune
 ```
 
 Dependendo do tipo de aplicação, logs também podem ser volumosos. O gerenciamento depende muito de qual [driver](https://docs.docker.com/engine/admin/logging/overview/) é utilizado. No driver padrão (`json-file`) a limpeza pode se dar através da execução do seguinte comando dentro do **Docker Host**:
@@ -129,7 +129,7 @@ echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)
 
 - A proposta de funcionalidade de limpar o histórico de logs foi, na verdade, rejeitada. Mais informação: [https://github.com/docker/compose/issues/1083](https://github.com/docker/compose/issues/1083)
 
-- Considere especificar a opção `max-size` para o _driver_ de log ao executar `docker run`: [https://docs.docker.com/engine/reference/logging/overview/#json-file-options](https://docs.docker.com/engine/reference/logging/overview/#json-file-options)
+- Considere especificar a opção `max-size` para o _driver_ de log ao executar `docker container run`: [https://docs.docker.com/engine/reference/logging/overview/#json-file-options](https://docs.docker.com/engine/reference/logging/overview/#json-file-options)
 
 ### Aliases
 
@@ -138,14 +138,9 @@ Com alias é possível transformar comandos grandes em menores. Temos algumas no
 Utilize esses *aliases* no seu `.zshrc` ou `.bashrc` para limpar imagens e contêiners, fazer backup e restauração, etc.
 
 ```sh
-alias dockercleancontainers="docker ps -aq | xargs docker rm"
-alias dockercleanimages="docker images -aq -f dangling=true | xargs docker rmi"
-alias dockerclean="dockercleancontainers && dockercleanimages"
-alias docker-killall="docker ps -q | xargs docker kill"
-
-# runs docker exec in the latest container
+# runs docker container exec in the latest container
 function docker-exec-last {
-  docker exec -ti $( docker ps -a -q -l) /bin/bash
+  docker container exec -ti $( docker ps -a -q -l) /bin/bash
 }
 
 function docker-get-ip {
@@ -176,30 +171,30 @@ function basher() {
     if [[ $1 = 'run' ]]
     then
         shift
-        docker run -e HIST_FILE=/root/.bash_history -v $HOME/.bash_history:/root/.bash_history "$@"
+        docker container run -e HIST_FILE=/root/.bash_history -v $HOME/.bash_history:/root/.bash_history "$@"
     else
         docker "$@"
     fi
 }
 # backup files from a docker volume into /tmp/backup.tar.gz
 function docker-volume-backup-compressed() {
-  docker run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie tar -czvf /backup/backup.tar.gz "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie tar -czvf /backup/backup.tar.gz "${@:2}"
 }
 # restore files from /tmp/backup.tar.gz into a docker volume
 function docker-volume-restore-compressed() {
-  docker run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie tar -xzvf /backup/backup.tar.gz "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie tar -xzvf /backup/backup.tar.gz "${@:2}"
   echo "Double checking files..."
-  docker run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie ls -lh "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" debian:jessie ls -lh "${@:2}"
 }
 # backup files from a docker volume into /tmp/backup.tar
 function docker-volume-backup() {
-  docker run --rm -v /tmp:/backup --volumes-from "$1" busybox tar -cvf /backup/backup.tar "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" busybox tar -cvf /backup/backup.tar "${@:2}"
 }
 # restore files from /tmp/backup.tar into a docker volume
 function docker-volume-restore() {
-  docker run --rm -v /tmp:/backup --volumes-from "$1" busybox tar -xvf /backup/backup.tar "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" busybox tar -xvf /backup/backup.tar "${@:2}"
   echo "Double checking files..."
-  docker run --rm -v /tmp:/backup --volumes-from "$1" busybox ls -lh "${@:2}"
+  docker container run --rm -v /tmp:/backup --volumes-from "$1" busybox ls -lh "${@:2}"
 }
 ```
 

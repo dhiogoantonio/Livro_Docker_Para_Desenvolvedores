@@ -2,17 +2,13 @@
 
 Seguem alguns comandos úteis e simples abaixo:
 
--   Remover todos os containers  
-`docker rm -f $(docker ps -qa)`
--   Remover os containers parados pela finalização do processo  
-`docker rm $(docker ps -qf status=exited)`
+-   Remover todos os containers sem uso  
+`docker container prune`
 -   Parar todos os containers  
 `docker stop $(docker ps -q)`
 -   Remover todas as imagens locais  
-`docker rmi $(docker images -qa)`
--   Remove imagens sem tag (nome e tag = `<none>` no `docker images`)  
-`docker rmi $(docker images -qf dangling=true)`
+`docker image prune`
 -   Remove volumes "órfãos"  
-`docker volume rm $(docker volume ls -qf dangling=true)`
+`docker volume prune`
 -   Mostra uso de recursos dos containers rodando  
 `docker stats $(docker ps --format {{.Names}})`

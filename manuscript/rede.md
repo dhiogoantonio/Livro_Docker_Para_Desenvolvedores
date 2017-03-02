@@ -27,9 +27,9 @@ Um detalhe a se observar: como os IPs são cedidos automaticamente, não é tare
 A opção “–link” é responsável por associar o IP do container de destino ao seu nome. Caso você inicie um container a partir da imagem docker do mysql com nome “bd”, em seguida inicie outro com nome “app” a partir da imagem tutum/apache-php, você deseja que esse último container possa conectar no mysql usando o nome do container “bd”, basta iniciar da seguinte forma ambos os containers:
 
 ```
-docker run -d --name bd -e MYSQL_ROOT_PASSWORD=minhasenha mysql
+docker container run -d --name bd -e MYSQL_ROOT_PASSWORD=minhasenha mysql
 
-docker run -d -p 80:80 --name app --link db tutum/apache-php
+docker container run -d -p 80:80 --name app --link db tutum/apache-php
 ```
 
 Após executar os comandos, o container com o nome “app” poderá conectar no container do mysql usando o nome “bd”, ou seja, toda vez que ele tentar acessar o nome “bd” ele será automaticamente resolvido para o IP da rede IP 172.17.0.0/16 que o container do mysql obteve na sua inicialização.
@@ -37,7 +37,7 @@ Após executar os comandos, o container com o nome “app” poderá conectar no
 Pra testar, utilizaremos a funcionalidade exec para rodar o comando dentro de um container já existente. Para tal, usaremos o nome do container como parâmetro do comando abaixo:
 
 ```
-docker exec -it app ping db
+docker container exec -it app ping db
 ```
 A ação será responsável por executar o comando “ping db” dentro do container “app”, ou seja, o container “app” enviará pacotes icmp, normalmente usado para testar conectividade entre dois hosts, para o endereço “db”. O nome “db” é traduzido para o IP que o container, iniciado a partir da imagem do mysql, obteve ao iniciar.
 
@@ -71,7 +71,7 @@ Cada rede criada por usuário deve estar associada a um determinado driver. E, c
 
 #### Bridge
 
-Essa é o driver de rede mais simples de utilizar, pois demanda pouca configuração. A rede criada por usuário utilizando o driver bridge assemelha-se bastante à rede padrão do docker denominada “bridge”. 
+Essa é o driver de rede mais simples de utilizar, pois demanda pouca configuração. A rede criada por usuário utilizando o driver bridge assemelha-se bastante à rede padrão do docker denominada “bridge”.
 
 > Mais um ponto que merece atenção: o docker tem uma rede padrão chamada “bridge” que utiliza um driver também chamado de “bridge“. Talvez, por conta disso, a confusão só aumente. Mas é importante deixar claro que são distintas.
 
@@ -89,7 +89,7 @@ docker network create --driver bridge isolated_nw
 Agora verificamos a rede:
 
 ```
-docker network ls
+docker network list
 ```
 O resultado deve ser:
 
@@ -98,7 +98,7 @@ O resultado deve ser:
 Agora iniciamos um container na rede isolated_nw:
 
 ```
-docker run -itd --net isolated_nw alpine sh
+docker container run -itd --net isolated_nw alpine sh
 ```
 
 ![Rede isolada](images/bridge_network.png)

@@ -10,7 +10,7 @@ Em resumo, podemos dizer que aplicações web deveriam ser capazes de remover ra
 
 Com objetivo de evitar que o serviço prestado seja dependente das instâncias que o servem, a boa prática indica que as aplicações devem ser descartáveis, ou seja, desligar uma de suas instâncias não deve afetar a solução como um todo.
 
-O Docker tem a opção de descartar automaticamente um contêiner após o uso - no **docker run** utilize a opção **–rm**. Vale salientar que essa opção não funciona em modo **daemon (-d)**, portanto, só faz sentido utilizar no modo **interativo (-i)**.
+O Docker tem a opção de descartar automaticamente um contêiner após o uso - no **docker container run** utilize a opção **–rm**. Vale salientar que essa opção não funciona em modo **daemon (-d)**, portanto, só faz sentido utilizar no modo **interativo (-i)**.
 
 Outro detalhe importante na boa prática é viabilizar que o código desligue “graciosamente” e reinicie sem erros. Assim, ao escutar um **SIGTERM**, o código deve terminar qualquer requisição em andamento e então desligar o processo sem problemas e de forma rápida, permitindo, também, que seja rapidamente atendido por outro processo.
 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
         print 'Signal handler called with signal', signum
         server.terminate()
         server.join()
-    
+
     signal.signal(signal.SIGTERM, server_handler)
 
     def run_server():

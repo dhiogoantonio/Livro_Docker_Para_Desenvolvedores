@@ -34,13 +34,13 @@ def hello():
    return 'Hello World! %s times.' % redis.get('hits')
 if __name__ == "__main__":
    app.run(host=host_run, debug=debug)
-``` 
+```
 
 Lembrando! Para acessar o código da prática, basta clonar [esse repositório](https://github.com/gomex/exemplo-12factor-docker) e acessar a pasta **“factor3“**.
 
 Como podemos notar, adicionamos alguns parâmetros na configuração do endereço usado para iniciar a aplicação web que será parametrizada com base no valor da variável de ambiente **“HOST_RUN”**. E, a possibilidade de efetuar, ou não, o debug da aplicação com a variável de ambiente **“DEBUG“**.
 
-Vale salientar: nesse caso a variável de ambiente precisa ser passada para o contêiner, não basta ter a variável no Docker Host. É preciso enviá-la para o contêiner usando o parâmetro “-e”, caso utilize o comando “docker run” ou, a instrução “environment” no docker-compose.yml:
+Vale salientar: nesse caso a variável de ambiente precisa ser passada para o contêiner, não basta ter a variável no Docker Host. É preciso enviá-la para o contêiner usando o parâmetro “-e”, caso utilize o comando “docker container run” ou, a instrução “environment” no docker-compose.yml:
 
 ```
 version: "2"

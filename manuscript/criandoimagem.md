@@ -36,7 +36,7 @@ Um **“repositório”** pode conter mais de uma **“tag”** e cada conjunto 
 Execute [o comando](https://docs.docker.com/engine/reference/commandline/images/) abaixo para visualizar todas as imagens que se encontram localmente na sua estação, nesse momento:
 
 ```
-docker images
+docker image list
 ```
 
 ### Como criar imagens
@@ -50,7 +50,7 @@ Há duas formas de criar imagens customizadas: com **commit** e com **Dockerfile
 Vamos ao exemplo. Primeiro criamos um container qualquer:
 
 ```
-docker run -it --name containercriado ubuntu:16.04 bash
+docker container run -it --name containercriado ubuntu:16.04 bash
 ```
 
 Agora que estamos no bash do container, instalamos o nginx:
@@ -64,13 +64,13 @@ exit
 Paramos o container com o comando abaixo:
 
 ```
-docker stop containercriado
+docker container stop containercriado
 ```
 
 Agora, efetuamos o **commit** desse **container** em uma **imagem**:
 
 ```
-docker commit containercriado meuubuntu:nginx
+docker container commit containercriado meuubuntu:nginx
 ```
 
 No exemplo do comando acima, **containercriado** é o nome do container criado e modificado nos passos anteriores; o nome **meuubuntu:nginx** é a imagem resultante do **commit**; o estado do **containercriado** é armazenado em uma imagem chamada **meuubuntu:nginx** que, nesse caso, a única modificação que temos da imagem oficial do ubuntu na versão 16.04 é o pacote **nginx** instalado.
@@ -78,19 +78,19 @@ No exemplo do comando acima, **containercriado** é o nome do container criado e
 Para visualizar a lista de imagens e encontrar a que acabou de criar, execute novamente o comando abaixo:
 
 ```
-docker images
+docker image list
 ```
 
 Para testar sua nova imagem, vamos criar um container a partir dela e verificar se o nginx está instalado:
 
 ```
-docker run -it --rm meuubuntu:nginx dpkg -l nginx
+docker container run -it --rm meuubuntu:nginx dpkg -l nginx
 ```
 
 Se quiser validar, pode executar o mesmo comando na imagem oficial do ubuntu:
 
 ```
-docker run -it --rm ubuntu:16.04 dpkg -l nginx
+docker container run -it --rm ubuntu:16.04 dpkg -l nginx
 ```
 
 > Vale salientar que o método **commit** não é a melhor opção para criar imagens, pois, como verificamos, o processo de modificação da imagem é completamente manual e apresenta certa dificuldade para rastrear as mudanças efetuadas, uma vez que, o que foi modificado manualmente não é registrado, automaticamente, na estrutura do docker.
@@ -133,7 +133,7 @@ No arquivo acima, utilizamos quatro [instruções](https://docs.docker.com/engin
 Após construir seu Dockerfile basta executar o [comando](https://docs.docker.com/engine/reference/commandline/build/) abaixo:
 
 ```
-docker build -t meuubuntu:nginx_auto .
+docker image build -t meuubuntu:nginx_auto .
 ```
 
 Tal comando tem a opção **“-t”**, serve para informar o nome da imagem a ser criada. No caso, será **meuubuntu:nginx_auto** e o **“.”** ao final, informa qual contexto deve ser usado nessa construção de imagem. Todos os arquivos da pasta atual serão enviados para o serviço do docker e apenas eles podem ser usados para manipulações do Dockerfile (exemplo do uso do COPY).

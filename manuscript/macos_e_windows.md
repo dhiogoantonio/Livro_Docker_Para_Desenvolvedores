@@ -91,7 +91,7 @@ Executado na linha de comando do MacOS ou Windows, esse cliente do Docker se con
 Iniciamos um container com o comando abaixo:
 
 ```
-docker run -itd alpine sh
+docker container run -itd alpine sh
 ```
 Agora, verificamos novamente, a lista de containers em execução:
 
@@ -105,7 +105,7 @@ Para verificar o endereço IP da máquina, basta executar o comando abaixo:
 ```
 docker-machine ip
 ```
-Caso o container exponha alguma porta para o Docker Host, seja via parâmetro “-p” do comando “docker run -p porta_host:porta_container” ou via parâmetro “ports” do docker-compose.yml, vale lembrar que o IP para acessar o serviço exposto é o endereço IP do Docker Host que, no exemplo, é “192.168.99.100”.
+Caso o container exponha alguma porta para o Docker Host, seja via parâmetro “-p” do comando “docker container run -p porta_host:porta_container” ou via parâmetro “ports” do docker-compose.yml, vale lembrar que o IP para acessar o serviço exposto é o endereço IP do Docker Host que, no exemplo, é “192.168.99.100”.
 
 Nesse momento, você deve estar se perguntando: como é possível mapear uma pasta da estação “não-linux” para dentro de um container? Aqui entra um novo artíficio do Docker para contornar esse problema.
 
@@ -135,14 +135,14 @@ touch teste
 Iniciamos um container e mapeamos a pasta atual dentro dele:
 
 ```
-docker run -itd -v "$PWD:/tmp" --name teste alpine sh
+docker container run -itd -v "$PWD:/tmp" --name teste alpine sh
 ```
 No comando acima, iniciamos um container que será nomeado como “teste” e terá mapeado a pasta atual (a variável PWD indica o endereço atual no MacOS) na pasta /tmp, dentro do container.
 
 Verificamos se o arquivo que acabamos de criar está dentro do container:
 
 ```
-docker exec teste ls /tmp/teste
+docker container exec teste ls /tmp/teste
 ```
 A linha acima executou o comando “ls /tmp/teste” dentro do container nomeado “teste”, criado no passo anterior.
 

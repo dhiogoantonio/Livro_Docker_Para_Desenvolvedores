@@ -84,7 +84,7 @@ No próximo nível de indentação (feito novamente com mais dois espaços) temo
       args:
         versao: 1
 ```
-Voltando dois níveis de indentação (quatro espaços a menos em relação a linha anterior) temos a definição **ports**, que seria o equivalente ao parâmetro [“-p”](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port-p-expose) do comando [docker run](https://docs.docker.com/engine/reference/commandline/run/). Ele define qual porta do container será exposta no **Docker host**. Que no nosso caso será a porta *5000 do container, com a 5000 do **Docker host**.
+Voltando dois níveis de indentação (quatro espaços a menos em relação a linha anterior) temos a definição **ports**, que seria o equivalente ao parâmetro [“-p”](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port-p-expose) do comando docker container run. Ele define qual porta do container será exposta no **Docker host**. Que no nosso caso será a porta *5000 do container, com a 5000 do **Docker host**.
 
 ```
   web:

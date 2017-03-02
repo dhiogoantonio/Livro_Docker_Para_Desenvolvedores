@@ -37,7 +37,7 @@ Aconselhamos que leia o script que está sendo executado no seu sistema operacio
 Esse procedimento demora um pouco. Após terminar o teste, execute o comando abaixo:
 
 ```
-docker run hello-world
+docker container run hello-world
 ```
 
 #### Tratamento de possíveis problemas
@@ -149,7 +149,7 @@ Para testar, procure e execute o software **Docker Quickstart Terminal**, pois e
 Nesse novo terminal execute o seguinte comando para teste:
 
 ```
-docker run hello-world
+docker container run hello-world
 ```
 
 ## Instalando no Windows
@@ -183,5 +183,5 @@ Para testar, procure e execute o software **Docker Quickstart Terminal**, pois e
 Nesse novo terminal execute o seguinte comando para teste:
 
 ```
-docker run hello-world
+docker container run hello-world
 ```

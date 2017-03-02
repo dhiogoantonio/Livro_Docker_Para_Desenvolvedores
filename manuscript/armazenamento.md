@@ -40,7 +40,7 @@ Nesse modelo o usuário escolhe uma pasta específica do host (Ex.: /var/lib/con
 Segue o exemplo de comando usado para esse modelo de mapeamento:
 
 ```
-docker run -v /var/lib/container1:/var ubuntu
+docker container run -v /var/lib/container1:/var ubuntu
 ```
 
 Esse modelo não é portável. Necessita que o host tenha uma pasta específica para que o container funcione adequadamente.
@@ -59,7 +59,7 @@ No comando acima, criamos um container de dados, onde a pasta /dbdata pode ser c
 Para consumir esse volume do container basta utilizar o comando:
 
 ```
-docker run -d --volumes-from dbdata --name db2 postgres
+docker container run -d --volumes-from dbdata --name db2 postgres
 ```
 Agora o container db2 tem uma pasta /dbdata que é a mesma do container dbdata, tornando esse modelo completamente portável.
 
@@ -79,8 +79,6 @@ No comando acima, o docker criou um volume que pode ser consumido por qualquer c
 A associação do volume ao container acontece de forma parecida à praticada no mapeamento de pasta do host, pois nesse caso você precisa associar o volume a uma pasta dentro do container, como podemos ver abaixo:
 
 ```
-docker run -d -v dbdata:/var/lib/data postgres
+docker container run -d -v dbdata:/var/lib/data postgres
 ```
 Esse modelo é o mais indicado desde o lançamento, pois proporciona portabilidade. Não é removido facilmente quando o container é deletado e ainda é bastante fácil de gerenciar.
-
-

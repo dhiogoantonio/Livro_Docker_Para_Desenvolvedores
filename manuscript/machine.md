@@ -46,7 +46,7 @@ docker-machine create --driver=<nome do driver>  <nome do ambiente>
 
 Para o driver **virtualbox** temos alguns parâmetros que podem ser utilizados:
 
-|Parâmetro   | Explicação | 
+|Parâmetro   | Explicação |
 |-----------|------------|
 |--virtualbox-memory  | Especifica a quantidade de memória RAM que o ambiente pode utilizar. O valor padrão é 1024MB. (Sempre em MB) |
 |--virtualbox-cpu-count | Especifica a quantidade de núcleos de CPU que esse ambiente pode utilizar. O valor padrão é 1 |
@@ -81,7 +81,7 @@ docker-machine ls
 Inicie um container de teste pra testar o novo ambiente
 
 ```
-docker run hello-world
+docker container run hello-world
 ```
 
 Caso deseje mudar para outro ambiente, basta digitar o comando abaixo, usando o nome do ambiente desejado:
@@ -159,7 +159,7 @@ eval $(docker-machine env teste-aws)
 Inicie um container de teste pra verificar o novo ambiente
 
 ```
-docker run hello-world
+docker container run hello-world
 ```
 Caso deseje desligar o ambiente, utilize o comando:
 
@@ -177,8 +177,3 @@ Caso deseje remover o ambiente, utilize o comando:
 docker-machine rm teste-aws
 ```
 Após removido do local, automaticamente removerá a instância EC2, provisionada na AWS.
-
-
-
-
-

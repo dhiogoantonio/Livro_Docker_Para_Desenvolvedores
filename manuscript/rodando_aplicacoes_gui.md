@@ -9,7 +9,7 @@ Antes de mais nada... Em 99% dos casos é preciso liberar ,o acesso ao X: `xhost
 Comando mais simples o possível, monta o socket X11 do host no container e define o display (note que vamos "evoluindo" o comando aos poucos, mas pode usar apenas as flags que achar necessário - as únicas obrigatórias são a montagem de volume do `/tmp/.X11-unix` e a variável de ambiente `DISPLAY`):
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 imagem [comando]
@@ -20,7 +20,7 @@ Em alguns casos a variável `DISPLAY` tem de ser `DISPLAY=unix$DISPLAY` (mas pra
 Para utilizar o suporte a aceleração 3D por hardware:
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -30,7 +30,7 @@ imagem [comando]
 Adicionando audio:
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -41,7 +41,7 @@ imagem [comando]
 Adicionando webcam:
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -53,7 +53,7 @@ imagem [comando]
 Usando a mesma data/hora do host:
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -67,7 +67,7 @@ Atenção: dependendo da distribuição, não há um /etc/localtime, tem de aver
 Mantendo as configurações do aplicativo:
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -82,7 +82,7 @@ Obs: o caminho é apenas um exemplo.
 **Bônus:** Controle do video-game (na verdade qualquer dispositivo de entrada):
 
 ```
-docker run [--rm [-it]|-d] \
+docker container run [--rm [-it]|-d] \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY \
 --device /dev/dri \
@@ -108,7 +108,7 @@ brew cask install xquartz
 open -a XQuartz
 
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
-docker run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
+docker container run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
 ```  
 #### [Windows](https://github.com/docker/docker/issues/8710#issuecomment-135109677)  
 Instalar o xming  
@@ -116,7 +116,7 @@ Instalar o Docker for Windows
 
 ```
 xming :0 -ac -clipboard -multiwindow
-docker run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
+docker container run -e DISPLAY=hostip:0 [...] image OU DISPLAY=hostip:0 docker-compose up [-d]
 ```
 
 Obs: No caso de utilizar o Docker Toolbox colocar o ip da VM (`docker-machine ip default` irá informá-lo)
