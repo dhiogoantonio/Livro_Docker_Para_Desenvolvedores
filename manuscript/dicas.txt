@@ -1,41 +1,40 @@
 # Dicas para uso do Docker
 
-Se você leu a primeira parte desse livro já sabe o básico de Docker, mas agora que pretende começar a usar com mais frequência alguns desconfortos podem surgir, pois como qualquer ferramenta, Docker tem seu próprio conjunto de boas práticas e dicas para ser efetivo.
+Se você leu a primeira parte do livro já sabe o básico sobre Docker, mas agora que pretende começar a usar com mais frequência, alguns desconfortos podem surgir, pois, como qualquer ferramenta, o Docker tem seu próprio conjunto de boas práticas e dicas.
 
-O objetivo dessse texto é demonstrar algumas dicas para o bom uso do Docker. Isso não quer dizer que a forma que você executa hoje seja necessariamente errada. 
+O objetivo dessse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada. 
 
-Toda ferramenta demanda de algumas melhores práticas para tornar o seu uso mais efetivo e com menor possibilidade de problemas futuros.
+Toda ferramenta demanda algumas melhores práticas para tornar o uso mais efetivo e com menor possibilidade de problemas futuros.
 
-Esse capítulo está separado em duas seções: Dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
+Esse capítulo foi separado em duas seções: dicas para rodar (`docker run`) e boas práticas de construção de imagens (`docker build`/`Dockerfile`).
 
 ## Dicas para Rodar
 
-Lembre-se que cada comando `docker run` cria um novo container com base em uma imagem especificada e inicia um processo dentro dele a partir de um comando (`CMD` especificado no Dockerfile).
+Lembre-se, cada comando `docker run` cria novo contêiner com base em uma imagem específica e inicia um processo dentro dele, a partir de um comando (`CMD` especificado no Dockerfile).
 
-### Containers descartáveis
+### Contêiners descartáveis
 
-É esperado que os containers executados possam ser descartados sem qualquer problema, sendo assim é importante utilizar containers verdadeiramente efêmeros. 
+É esperado que os contêiners executados possam ser descartados sem qualquer problema. Sendo assim, é importante utilizar contêiners verdadeiramente efêmeros. 
 
-Para tal utilize o argumento `--rm`. Isso faz com que todos o container, e todos seus dados, sejam removidos após o termino da execução, evitando consumir disco de maneira desnecessária.
+Para tal, utilize o argumento `--rm`. Isso faz com que todos os contêiners, e seus dados, sejam removidos após o termino da execução, evitando consumir disco desnecessariamente.
 
-Em geral, pode-se utilizar o comando `run` conforme o exemplo:
+Em geral, pode-se utilizar o comando `run` como no exemplo:
 
 ```sh
 docker run --rm -it debian /bin/bash
 ```
 
-Note aqui que `-it` significa `--interactive --tty`. Ele é usado para fixar a linha de comando com o container, assim após esse `docker run` todos comandos serão executados pelo `bash` de dentro do container. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um container em primeiro plano.
+Note aqui que `-it` significa `--interactive --tty`. É usado para fixar a linha de comando com o contêiner, assim, após esse `docker run`, todos os comandos são executados pelo `bash` de dentro do contêiner. Para sair use `exit` ou pressione `Control-d`. Esses parâmetros são muito úteis para executar um contêiner em primeiro plano.
 
 ### Verifique variáveis de ambiente
 
-Às vezes se faz necessário verificar que metadados estão definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter esta informação:
-
+Às vezes faz-se necessário verificar qual metadados são definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter essa informação:
 
 ```sh
 docker run --rm -it debian env
 ```
 
-Para verificar as variáveis de ambiente passados de um container já criado:
+Para verificar as variáveis de ambientes passados de um contêiner já criado:
 
 ```sh
 docker inspect --format '{{.Config.Env}}' <container>
@@ -46,7 +45,8 @@ Para outros metadados, use variações do comando `docker inspect`.
 ### Logs
 
 Docker captura logs da saída padrão (`STDOUT`) e saída de erros (`STDERR`).
-Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que podem ser especificado através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker run`.
+
+Esses registros podem ser roteados para diferentes sistemas (`syslog`, `fluentd`, ...) que, podem ser especificados através da [configuração de driver](https://docs.docker.com/engine/admin/logging/overview/) `--log-driver=VALUE` no comando `docker run`.
 
 Quando utilizado o driver padrão `json-file` (e também `journald`), pode-se utilizar o seguinte comando para recuperar os logs:
 
@@ -58,23 +58,23 @@ Observe também o argumento `-f` para acompanhar as próximas mensagens de log d
 
 ### Backup
 
-Dados em containers Docker são expostos e compartilhados através de argumentos de volumes utilizados ao criar e iniciar o container. Esse volumes não seguem as regras do [Union File System](https://docs.docker.com/engine/reference/glossary/#union-file-system), pois os dados desse volume são persistidos mesmo quando o container é removido.
+Dados em contêiners Docker são expostos e compartilhados através de argumentos de volumes utilizados ao criar e iniciar o contêiner. Esses volumes não seguem as regras do [Union File System](https://docs.docker.com/engine/reference/glossary/#union-file-system), pois os dados persistem mesmo quando o contêiner é removido.
 
-Para criar um volume em um determinado container, execute da seguinte forma:
+Para criar um volume em determinado contêiner, execute da seguinte forma:
 
 ```sh
 docker run --rm -v /usr/share/nginx/html --name nginx_teste nginx
 ```
 
-Com a execução desse container teremos um serviço Nginx que usará o volume criado para persistir seus dados, ou seja, os dados persistirão mesmo após o container seja removido.
+Com a execução desse container, teremos serviço Nginx que usa o volume criado para persistir seus dados; os dados persistirão mesmo após o contêiner ser removido.
 
-É boa prática de administração de sistema fazer cópias de segurança (backups) periodicamente e para executar essa atividade (extrair dados), use comando a seguir:
+É boa prática de administração de sistema fazer cópias de segurança (backups) periodicas e, para executar essa atividade (extrair dados), use o comando:
 
 ```sh
 docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -cvf /backup/backup_nginx.tar /usr/share/nginx/html
 ```
 
-Após a execução desse comando teremos um arquivo chamado `backup_nginx.tar` dentro da pasta /tmp do **Docker host**.
+Após a execução do comando, temos um arquivo `backup_nginx.tar` dentro da pasta /tmp do **Docker host**.
 
 Para restaurar esse backup utlize:
 
@@ -82,7 +82,7 @@ Para restaurar esse backup utlize:
 docker run --rm -v /tmp:/backup --volumes-from nginx-teste busybox tar -xvf /backup/backup.tar /usr/share/nginx/html
 ```
 
-Mais informação também pode ser encontrada [nessa resposta](http://stackoverflow.com/a/34776997/1046584), onde também é possível encontrar alguns *aliases* para esses dois comandos. Esse *aliases* também estão disponíveis abaixo na seção *Aliases*.
+Mais informação também podem ser encontradas [na resposta](http://stackoverflow.com/a/34776997/1046584), onde é possível encontrar alguns *aliases* para esses dois comandos. Esses *aliases* também estão disponíveis abaixo, na seção *Aliases*.
 
 Outras fontes são:
 
@@ -91,26 +91,26 @@ Outras fontes são:
  * Uma ferramenta de backup (atualmente deprecada): [docker-infra/docker-backup](https://github.com/docker-infra/docker-backup)
 
 
-### Use docker exec para "entrar num container"
+### Use docker exec para "entrar em um contêiner"
 
-Eventualmente é necessário entrar em um container em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*). 
-Nunca instale o daemon SSH em um container docker. Use `docker exec` para entrar em um container e rodar um comando:
+Eventualmente, é necessário entrar em um contêiner em execução afim de verificar algum problema, efetuar testes ou simplemente depurar (*debug*). 
+Nunca instale o daemon SSH em um contêiner Docker. Use `docker exec` para entrar em um contêiner e rodar comandos:
 
 ```sh
 docker exec -it <nome do container em execução> bash
 ```
 
-Essa funcionalidade é muito útil em desenvolvimento local e experimentações. Mas evite utilizá-lo em produção ou automatizar ferramentas em volta dele.
+A funcionalidade é útil em desenvolvimento local e experimentações. Mas evite utilizar o contêiner em produção ou automatizar ferramentas em volta dele.
 
-Verifique a [documentação](https://docs.docker.com/engine/reference/commandline/exec/) do mesmo.
+Verifique a [documentação](https://docs.docker.com/engine/reference/commandline/exec/).
 
 ### Sem espaço em disco do Docker Host
 
-Ao executar containers e construir imagens várias vezes, o espaço em disco pode tornar-se escassos. Quando isso acontece, torna-se necessário limpar alguns containers, imagens e logs.
+Ao executar contêiners e construir imagens várias vezes, o espaço em disco pode se tornar escasso. Quando isso acontece, é necessário limpar alguns contêiners, imagens e logs.
 
-Uma maneira rápida de limpar containers e imagens é utilizar os seguintes comandos:
+Uma maneira rápida de limpar contêiners e imagens é utilizar os seguintes comandos:
 
-Para remover containers:
+Para remover containêrs:
 
 ```sh
 docker ps -aq | xargs docker rm
@@ -121,20 +121,21 @@ Para remover imagens não utilizadas
 docker images -aq -f dangling=true | xargs docker rmi
 ```
 
-Dependendo do tipo de aplicação, logs também podem ser volumosos. O seu gerenciamento depende muito de qual [driver](https://docs.docker.com/engine/admin/logging/overview/) está sendo utilizado. No driver padrão (`json-file`) a limpeza pode ser feita através da execução do seguinte comando dentro do **Docker host**:
+Dependendo do tipo de aplicação, logs também podem ser volumosos. O gerenciamento depende muito de qual [driver](https://docs.docker.com/engine/admin/logging/overview/) é utilizado. No driver padrão (`json-file`) a limpeza pode se dar através da execução do seguinte comando dentro do **Docker Host**:
 
 ```sh
 echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)
 ```
 
-- A proposta de funcionalidade de limpar o histórico de logs foi na verdade rejeitada, mais informação: [https://github.com/docker/compose/issues/1083](https://github.com/docker/compose/issues/1083)
+- A proposta de funcionalidade de limpar o histórico de logs foi, na verdade, rejeitada. Mais informação: [https://github.com/docker/compose/issues/1083](https://github.com/docker/compose/issues/1083)
+
 - Considere especificar a opção `max-size` para o _driver_ de log ao executar `docker run`: [https://docs.docker.com/engine/reference/logging/overview/#json-file-options](https://docs.docker.com/engine/reference/logging/overview/#json-file-options)
 
 ### Aliases
 
-Com alias é possível transformar comandos grandes em menores, ou seja, dessa forma teremos algumas novas opções para executar tarefas mais complexas.
+Com alias é possível transformar comandos grandes em menores. Temos algumas novas opções para executar tarefas mais complexas.
 
-Utilize esses *aliases* no seu `.zshrc` ou `.bashrc` para limpar imagens e containers, fazer backup e restauração, etc.
+Utilize esses *aliases* no seu `.zshrc` ou `.bashrc` para limpar imagens e contêiners, fazer backup e restauração, etc.
 
 ```sh
 alias dockercleancontainers="docker ps -aq | xargs docker rm"
@@ -209,7 +210,7 @@ Fontes:
 
 ## Boas práticas para construção de imagens
 
-Em Docker, as imagens são tradicionalmente construídas usando um arquivo `Dockerfile`. Existem alguns bons guias sobre as melhores práticas para construir imagens docker. Recomendo dar uma olhada neles:
+Em Docker, as imagens são tradicionalmente construídas usando um arquivo `Dockerfile`. Existem alguns bons guias sobre as melhores práticas para construir imagens Docker. Recomendamos dar uma olhada:
 
 - [Documentação oficial](https://docs.docker.com/engine/articles/dockerfile_best-practices/)
 - [Guia do projeto Atomic](http://www.projectatomic.io/docs/docker-image-author-guidance/)
@@ -218,38 +219,36 @@ Em Docker, as imagens são tradicionalmente construídas usando um arquivo `Dock
 
 ### Use um "linter"
 
-Um *"linter"* é uma ferramenta que fornece dicas e avisos sobre algum código fonte. Para `Dockerfile` existem algumas opções simples, mas ainda é um espaço muito novo e que muito tem a evoluir.
+*"Linter"* é uma ferramenta que fornece dicas e avisos sobre algum código fonte. Para `Dockerfile` existem opções simples, mas é, ainda, um espaço novo em evolução.
 
 Muitas opções foram discutidas [aqui](https://stackoverflow.com/questions/28182047/is-there-a-way-to-lint-the-dockerfile).
 
-Desde Janeiro de 2016, o mais completo parece ser [hadolint](http://hadolint.lukasmartinelli.ch/). Disponível em duas versões: on-line e terminal. O interessante dessa ferramente é que usa o maduro [Shell Check](http://www.shellcheck.net/about.html) para validar os comandos shell.
+Desde janeiro de 2016, o mais completo parece ser [hadolint](http://hadolint.lukasmartinelli.ch/), disponível em duas versões: on-line e terminal. O interessante dessa ferramenta é que usa o maduro [Shell Check](http://www.shellcheck.net/about.html) para validar os comandos shell.
 
 ### O básico
 
-O container produzido pela imagem do `Dockerfile` deve ser o máximo efêmero possível. Isso significa que pode ser parado, destruído e substituído por um novo container construído com o minimo de esforço.
+O contêiner produzido pela imagem do `Dockerfile` deve ser o mais efêmero possível. Significa que deve ser possível para-lo, destruí-lo e substituí-lo por um novo contêiner construído com o minimo de esforço.
 
-As vezes é comum colocar outros arquivos, como documentação, no diretório junto ao `Dockerfile`. Para melhorar a performance de contrução, exclua arquivos e diretórios criando um arquivo [dockerignore](https://docs.docker.com/engine/reference/builder/) no mesmo diretório. Esse arquivo funciona de maneira semelhante ao `.gitignore`. Usá-lo ajuda a minimizar o contexto de contrução que é enviado docker host a cada `docker build`.
+É comum colocar outros arquivos, como documentação, no diretório junto ao `Dockerfile`; para melhorar a performance de construção, exclua arquivos e diretórios criando um arquivo [dockerignore](https://docs.docker.com/engine/reference/builder/) no mesmo diretório. Esse arquivo funciona de maneira semelhante ao `.gitignore`. Usá-lo ajuda a minimizar o contexto de construção enviado -completa com a versão correta- docker host a cada `docker build`.
 
-Evite adicionar pacotes e dependências extras e não necessárias a sua aplicação. Isso minimiza a complexidade, tamanho da imagem, tempo de contrução e superficie de ataque.
+Evite adicionar pacotes e dependências extras não necessárias à aplicação e minimize a complexidade, tamanho da imagem, tempo de contrução e superfície de ataque.
 
-Minimize o número de camadas, sempre que possível agrupe vários comandos. Porém também leve em conta a volatilidade e manutenção dessas camadas.
+Minimize também o número de camadas: sempre que possível agrupe vários comandos. Porém, também leve em conta a volatilidade e manutenção dessas camadas.
 
-Na maioria dos casos, rode apenas um único processo por container. Desacoplando aplicações em vários containers facilida a escalabilidade horizontal, reuso e monitoramento dos containers.
+Na maioria dos casos, rode apenas um único processo por contêiner. Desacoplar aplicações em vários contêiners facilita a escalabilidade horizontal, reuso e monitoramento dos contêiners.
 
 ### Prefira COPY ao invés de ADD
 
 
-O comando `ADD` existe desde o início do Docker. É muito versátil e permite alguns truques além de simplesmente copiar arquivos do contexto de contrução, o que o torna muito mágico e difícil de entender. 
-Ele permite baixar arquivos de urls e automaticamente extrair arquivos de formatos conhecidos (tar, gzip, bzip2, etc.).
+O comando `ADD` existe desde o início do Docker. É versátil e permite truques além de simplesmente copiar arquivos do contexto de construção, o que o torna mágico e difícil de entender. Permite baixar arquivos de urls e, automaticamente, extrair arquivos de formatos conhecidos (tar, gzip, bzip2, etc.).
 
-Por outro lado, `COPY` é um comando muito mais simples para inserir arquivos e pastas do caminho de construção para dentro da imagem Docker. Assim, favoreça `COPY` a menos que tenha certeza absoluta que `ADD` é necessário. Para mais detalhes veja [aqui](https://labs.ctl.io/dockerfile-add-vs-copy/).
+Por outro lado, `COPY` é um comando mais simples para inserir arquivos e pastas do caminho de construção para dentro da imagem Docker. Assim, favoreça `COPY` a menos que tenha certeza absoluta que `ADD` é necessário. Para mais detalhes veja [aqui](https://labs.ctl.io/dockerfile-add-vs-copy/).
 
 ### Execute um "checksum" depois de baixar e antes de usar o arquivo
 
-Em vez de usar `ADD` para baixar e adicionar arquivos à imagem, favoreça a utilização de [curl](https://curl.haxx.se/) e então a verificação através de um `checksum` após o download.
-Isso permite garantir que o arquivo é o esperado e não poderá variar ao longo do tempo. Se o arquivo que a URL aponta mudar, o `checksum` irá mudar e a contrução da imagem irá falhar. Isso é importante pois favorece a reproducibilidade e a segurança na contrução de imagens.
+Em vez de usar `ADD` para baixar e adicionar arquivos à imagem, favoreça a utilização de [curl](https://curl.haxx.se/) e a verificação através de um `checksum` após o download. Isso garante que o arquivo é o esperado e não poderá variar ao longo do tempo. Se o arquivo que a URL aponta mudar, o `checksum` irá mudar e a construção da imagem falhará. Isso é importante, pois, favorece a reproducibilidade e a segurança na construção de imagens.
 
-Um bom exemplo para se inspirar é o [Dockerfile oficial do Jenkins](https://github.com/jenkinsci/docker/blob/83ce6f6070f1670563a00d0f61d04edd62b78f4f/Dockerfile#L36):
+Bom exemplo para inspiração é o [Dockerfile oficial do Jenkins](https://github.com/jenkinsci/docker/blob/83ce6f6070f1670563a00d0f61d04edd62b78f4f/Dockerfile#L36):
 
 ```
 ENV JENKINS_VERSION 1.625.3
@@ -261,19 +260,19 @@ RUN curl -fL http://mirrors.jenkins-ci.org/war-stable/$JENKINS_VERSION/jenkins.w
 
 ### Use uma imagem de base mínima
 
-Sempre que possível utilize imagens oficiais como base para sua imagem. Você pode usar a imagem [`debian`](https://hub.docker.com/_/debian/), por exemplo, que é muito bem controlada e mantida mínima (por volta de 150 mb). Lembre-se também usar *tags* específicas, por exemplo `debian:jessie`.
+Sempre que possível, utilize imagens oficiais como base para sua imagem. Você pode usar a imagem [`debian`](https://hub.docker.com/_/debian/), por exemplo, que é muito bem controlada e mantida mínima (por volta de 150 mb). Lembre-se também usar *tags* específicas, por exemplo, `debian:jessie`.
 
-Se mais ferramentas e dependências são necessários, olhe por imagens como [`buildpack-deps`](https://hub.docker.com/_/buildpack-deps/).
+Se mais ferramentas e dependências são necessárias, olhe por imagens como [`buildpack-deps`](https://hub.docker.com/_/buildpack-deps/).
 
 Porém, caso `debian` ainda seja muito grande, existem imagens minimalistas como [`alpine`](https://hub.docker.com/r/gliderlabs/alpine/) ou mesmo [`busybox`](https://hub.docker.com/r/gliderlabs/alpine/). Evite `alpine` se DNS é necessário, existem [alguns problemas a serem resolvidos](https://github.com/gliderlabs/docker-alpine/blob/master/docs/caveats.md). Além disso, evite-o para linguagens que usam o GCC, como Ruby, Node, Python, etc, isso é porque `alpine` utiliza libc MUSL que pode produzir binários diferentes.
 
-Evite imagens gigantes como [`phusion/baseimage`](https://hub.docker.com/r/phusion/baseimage/). Essa uma imagem é muito grande, que foge da filosofia de um processo por container e muitas das coisas que inclui não são essenciais para containers Docker, [veja mais aqui](https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/) .
+Evite imagens gigantes como [`phusion/baseimage`](https://hub.docker.com/r/phusion/baseimage/). Essa imagem é muito grande, foge da filosofia de processo por contêiner e muito do que a compõe não é essencial para contêiners Docker, [veja mais aqui](https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/) .
 
 [Outras fontes](http://www.iron.io/microcontainers-tiny-portable-containers/)
 
 ### Use o cache de construção de camadas
 
-Uma funcionalidade muito útil que o uso de `Dockerfile` proporciona é as reconstruções rápidas usando o cache de camadas. A fim de aproveitar esse recurso, coloque ferramentas e dependências que mudam com menos frequência no topo do `Dockerfile`.
+Outra funcionalidade útil que o uso de `Dockerfile` proporciona é a reconstrução rápida usando o cache de camadas. A fim de aproveitar o recurso, insira ferramentas e dependências que mudem com menos frequência no topo do `Dockerfile`.
 
 Por exemplo, considere instalar as dependências de código antes de adicionar o código. No caso de NodeJS:
 
@@ -283,8 +282,7 @@ RUN npm install
 COPY . /app
 ```
 
-Para ler um pouco mais sobre isso, veja esse [link](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/).
-
+Para ler mais sobre isso, veja esse [link](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/).
 
 ### Limpe na mesma camada
 
@@ -298,22 +296,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-Em geral deve-se limpar o cache do apt (gerado por `apt-get update`) através da remoção de `/var/lib/apt/lists`. Isso ajuda a manter o tamanho da imagem pequeno.
-Além disso, observe aqui, que `pip` e `curl` também são removidos uma vez que não são necessários para a aplicação de produção. Lembre-se que a limpeza precisa ser feito na mesma camada (comando `RUN`). Caso contrário os dados serão persistidos nessa camada, e removê-lo mais tarde não terá efeito no tamanho da imagem final.
+Em geral, deve-se limpar o cache do apt (gerado por `apt-get update`) através da remoção de `/var/lib/apt/lists`. Isso ajuda a manter reduzido o tamanho da imagem. Além disso, observe que, `pip` e `curl` também são removidos uma vez que são desnecessários para a aplicação de produção. Lembre-se que a limpeza precisa ser feita na mesma camada (comando `RUN`). Caso contrário, os dados serão persistidos nessa camada e removê-los mais tarde não terá efeito no tamanho da imagem final.
 
-Note que, segundo a [documentação](https://github.com/docker/docker/blob/03e2923e42446dbb830c654d0eec323a0b4ef02a/contrib/mkimage/debootstrap#L82-L105), as imagens oficiais de Debian e Ubuntu rodam autoamaticamente `apt-get clean`, logo a invocação explicita não é necesária.
+Note que, segundo a [documentação](https://github.com/docker/docker/blob/03e2923e42446dbb830c654d0eec323a0b4ef02a/contrib/mkimage/debootstrap#L82-L105), as imagens oficiais de Debian e Ubuntu rodam automaticamente `apt-get clean`. Logo, a invocação explícita não é necessária.
 
-Evite rodar `apt-get upgrade` ou `dist-upgrade`, já que várias pacotes da imagem base não vão atualizar dentro de um container desprovido de privilégios. Se há um pacote em específico a ser atualizado, simplesmete use `apt-get install -y foo` para atualizar automaticamente.
+Evite rodar `apt-get upgrade` ou `dist-upgrade`, pois, vários pacotes da imagem base não vão atualizar dentro de um contêiner desprovido de privilégios. Se há um pacote específico a ser atualizado, simplesmete use `apt-get install -y foo` para atualizá-lo automaticamente.
 
-Para ler um pouco mais sobre isso, veja esse [link](http://blog.replicated.com/2016/02/05/refactoring-a-dockerfile-for-image-size/) e esse [outro](
-https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#apt-get).
+Para ler mais sobre o assunto, veja o [link](http://blog.replicated.com/2016/02/05/refactoring-a-dockerfile-for-image-size/) e esse [outro](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#apt-get).
 
-### Use um script "wrapper" como ENTRYPOINT, as vezes
+### Use um script "wrapper" como ENTRYPOINT, às vezes
 
 
-Um *script wrapper* pode ajudar ao tomar a configuração do ambiente e definir a configuração do aplicativo. Ele pode até mesmo definir configurações padrões quando não disponíveis.
+Um *script wrapper* pode ajudar ao tomar a configuração do ambiente e definir a configuração do aplicativo. Pode, até mesmo, definir configurações padrões quando não estão disponíveis.
 
-Um ótimo exemplo é fornecido no artigo de [Kelsey Hightower: 12 Fracturated Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c#.xn2cylwnk):
+Ótimo exemplo é o fornecido no artigo de [Kelsey Hightower: 12 Fracturated Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c#.xn2cylwnk):
 
 ```sh
 #!/bin/sh
@@ -338,16 +334,15 @@ mkdir -p ${APP_DATADIR}
 exec "/app"
 ```
 
-
 Note, **sempre** use `exec` em scripts shell que envolvem a aplicação. Desta forma, a aplicação pode receber sinais Unix.
 
-Considere também usar um sistema de inicialização simples (e.g. [dumb init](https://github.com/Yelp/dumb-init))  como a `CMD` base, desta forma os sinais do Unix podem ser devidamente tratados. Leia mais sobre isso [aqui](http://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html).
+Considere também usar um sistema de inicialização simples (e.g. [dumb init](https://github.com/Yelp/dumb-init)) como a `CMD` base, assim, os sinais do Unix podem ser devidamente tratados. Leia mais [aqui](http://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html).
 
 #### Log para stdout
 
-Aplicações dentro de Docker devem emitir logs para `stdout`. Porém algumas aplicações escrevem esses logs em arquivos. Nestes casos, a solução é criar um *symlink* do arquivo para `stdout`.
+Aplicações dentro de Docker devem emitir logs para `stdout`. Porém, algumas aplicações escrevem os logs em arquivos. Nestes casos, a solução é criar um *symlink* do arquivo para `stdout`.
 
-Um exemplo é o Dockerfile do [nginx](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile):
+Exemplo: Dockerfile do [nginx](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile):
 
 ~~~
 # forward request and error logs to docker log collector
@@ -355,24 +350,24 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 ~~~
 
-Para ler um pouco mais sobre isso, veja esse [link](https://serverfault.com/questions/599103/make-a-docker-application-write-to-stdout).
+Para ler mais, veja esse [link](https://serverfault.com/questions/599103/make-a-docker-application-write-to-stdout).
 
 ### Cuidado ao adicionar dados em um volume no Dockerfile
 
-Lembre de usar a intrução `VOLUME` para expor dados de bancos de dados, configuração ou arquivos e pastas criados pelo container. Use para qualquer dados mutável e partes que são servidas ao usuário do serviço que para qual essa imagem foi criada.
+Lembre-se de usar a instrução `VOLUME` para expor dados de bancos de dados, configuração ou arquivos e pastas criados pelo contêiner. Use para qualquer dado mutável e partes servidas ao usuário do serviço para qual a imagem foi criada.
 
-Evite adicionar muitos dados para uma pasta e, em seguida, transformá-lo em um `VOLUME` apenas na inicialização do container, pois nesse momento pode tornar seu carregamento mais lento. Ao criar container, os dados serão copiados da imagem para o volume montado. Como foi dito antes, use `VOLUME` na criação da imagem.
+Evite adicionar muitos dados em uma pasta e, em seguida, transformá-lo em `VOLUME` apenas na inicialização do contêiner, pois, nesse momento, pode tornar o carregamento mais lento. Ao criar contêiner, os dados serão copiados da imagem para o volume montado. Como dito antes, use `VOLUME` na criação da imagem.
 
-Além disso, ainda em tempo de criação da imagem(`build`), não adicione dados para caminhos que tenham sido previamente declarados como `VOLUME`. Isso não irá funcionar, os dados não serão persistidos pois dados em volumes não são *comitados* em imagens.
+Além disso, ainda em tempo de criação da imagem (`build`), não adicione dados para caminhos previamente declarados como `VOLUME`. Isso não funciona, os dados não serão persistidos, pois, dados em volumes não são *comitados* em imagens.
 
-Leia mais sobre isso aqui na [explicação de Jérôme Petazzoni](https://jpetazzo.github.io/2015/01/19/dockerfile-and-data-in-volumes/).
+Leia mais na [explicação de Jérôme Petazzoni](https://jpetazzo.github.io/2015/01/19/dockerfile-and-data-in-volumes/).
 
 ### EXPOSE de portas
 
-Docker favorece reproducibilidade e portabilidade. Imagens devem ser capazes de rodar em qualquer servidor e quantas vezes forem necessárias. Dessa forma, nunca exponha portas públicas. Porém exponha, de maneira privada, as portas padrões da sua aplicação.
+O Docker favorece reproducibilidade e portabilidade. Imagens devem ser capazes de rodar em qualquer servidor e quantas vezes forem necessárias. Dessa forma, nunca exponha portas públicas. Porém, exponha, de maneira privada, as portas padrões da aplicação.
 
 ```
-# mapeamento publico e privado, evite isso
+# mapeamento público e privado, evite
 EXPOSE 80:8080
 
 # apenas privado
