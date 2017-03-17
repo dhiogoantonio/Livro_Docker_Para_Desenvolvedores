@@ -6,11 +6,18 @@ Esse artigo tem como objetivo explicar de forma detalhada, e com exemplos, o uso
 
 Esse texto é para pessoas que já sabem sobre Docker, mas ainda não sabem como o Docker pode ser utilizado a partir de uma estação “não linux”.
 
-Como já dissemos, o Docker utiliza recursos específicos do kernel hospedeiro e o GNU/Linux é o único sistema operacional que o suporta de forma estável. Significa que não é possível iniciar containers Docker em estação MacOS e Windows, por exemplo.
+Como já dissemos, o Docker utiliza recursos específicos do sistema operacional hospedeiro. Hoje temos suporte para os sistemas operacionais Windows e GNU/Linux. Significa que não é possível iniciar containers Docker em estação MacOS, por exemplo.
 
-Mas não se preocupe, caso você não utilize GNU/Linux como sistema operacional, ainda é possível fazer uso dessa tecnologia, sem, necessariamente, executá-la em seu computador.
+Mas não se preocupe, caso você não utilize GNU/Linux, ou Windows, como sistema operacional, ainda é possível fazer uso dessa tecnologia, sem, necessariamente, executá-la em seu computador.
 
-Um dos produtos da suíte Docker é o [Docker Toolbox](https://www.docker.com/products/docker-toolbox). Essa solução, é na verdade, uma abstração para instalação de todo ambiente necessário para uso do Docker a partir de uma estação MacOS ou Windows.
+Vale salientar que containers e imagens Docker criados no Windows, não funcionarão em um GNU/Linux, por conta da dependência do sistema operacional mencionado anteriormente.
+
+É possível utilizar o Docker no MacOS e Windows a partir de duas maneiras:
+
+* Toolbox
+* Docker For Mac/Windows
+
+Por ser mais complexa, e assim demandar de um contexto maior, trataremos nesse capítulo apenas sobre a instalação e configuração do [Docker Toolbox](https://www.docker.com/products/docker-toolbox). Essa solução, é na verdade, uma abstração para instalação de todo ambiente necessário para uso do Docker a partir de uma estação MacOS ou Windows.
 
 A instalação é simples: tanto no Windows, como no MacOS, basta baixar o instalador correspondente nesse [site](https://www.docker.com/products/docker-toolbox) e executá-lo seguindo os passos descritos nas telas.
 
