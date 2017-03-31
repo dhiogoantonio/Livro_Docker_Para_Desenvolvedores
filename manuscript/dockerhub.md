@@ -4,9 +4,9 @@ Você está aprendendo a fazer algo muito legal ao criar a sua própria imagem, 
 
 #### O que é Dockerhub?
 
-Dockerhub é um Serviço de Web Hosting compartilhado para imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizadas para a comunidade. **imagens oficiais** são disponibilizadas por grandes grupos para facilitar o seu trabalho na hora de criar uma infraestrutura Docker. Por exemplo: Ao necessitar de um container com um sistema de gerenciamento de Banco de Dados e montar você uma imagem, o que demandaria certo tempo, você pode usar a [imagem oficial do MySQL](https://hub.docker.com/_/mysql/), que é mantido pelos próprio time interno da empresa.
+Dockerhub é um Serviço de Web Hosting compartilhado para imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizadas para a comunidade. **imagens oficiais** são disponibilizadas por grandes grupos para facilitar o seu trabalho na hora de criar uma infraestrutura Docker. Por exemplo: Ao necessitar de um container com um sistema de gerenciamento de Banco de Dados e montar você uma imagem, o que demandaria certo tempo, você pode usar a [imagem oficial do MySQL](https://hub.docker.com/_/mysql/), que é mantido pela própria Docker.
 
-Diversas outras empresas também possuem imagens oficiais disponveis na plataforma, como:
+Diversas outras tecnologias também possuem imagens oficiais disponveis na plataforma, como:
 
 + [Nginx](https://hub.docker.com/_/nginx/)
 + [Python](https://hub.docker.com/_/python/)
