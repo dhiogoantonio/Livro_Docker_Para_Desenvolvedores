@@ -42,6 +42,36 @@ Ao utilizar o comando `docker images` seu resultado será similar ao acima.
 
 #### Taggeando a sua imagem
 
+Antes de enviarmos nossa imagem para a nuvem precisamos taggea-la com o comando `docker tag`. Como vimos acima na coluna **REPOSITORY** a imagem **docker-is-cool** não mostra quem a criou em seu nome. Você precisa do comando [docker tag](https://docs.docker.com/engine/reference/commandline/tag/) para associar a imagem a sua conta Dockerhub incluindo um `namespace` antes do nome da imagem. O comando será semelhante ao abaixo.
 
+![Dockertag](images/Dockerhub-tag.png)
 
-#### Como dar Pull e Push na sua imagem
+Funciona da seguinte maneira: Usamos o comando `docker tag` e passamos como parâmetros o ID do container que queremos enviar para o repositório que no caso do exemplo é `8d9495d05463` mas o seu será diferente. Depois informamos o namespace que é o nome da conta do Dockerhub que criamos anteriormente e o nome da imagem, seguindo de dois pontos `:` e a versão ou tag de versão, o nosso exemplo ficaria da seguinte maneira.
+
+`docker tag 8d9495d05463 SEU_DOCKER_ID/docker-is-cool:latest`
+
+Vocẽ pode utilizar o comando `docker images` novamente e verá que a imagem que taggeou estará listada na tabela porém com o seu Docker ID no começo, como fizemos no comando acima, se você conseguiu esse resultado podemos enviá-la para a nuvem.
+
+#### Como dar Pull sua imagem
+
+Antes de aprendermos como empurrar nossa imagem para o Dockerhub precisamos fazer login com a conta que nós criamos. Abra o terminal e digite o comando `docker login`, ele não aceita parãmetros mas solicita o seu usuário e senha para realizar o login como no exemplo abaixo.
+
+```
+docker login
+
+    Username: *****
+    Password: *****
+    Login Succeeded
+```
+
+Após o login realizado com sucesso podemos enviar nossa imagem utilizando o comando `docker push`, o comando gera diversos outputs, não se assuste, isso acontece porque cada camada é pushada separadamente. Ao utilizar o comando seu retorno será similar ao abaixo.
+
+```
+docker push dockerID/docker-is-cool
+
+The push refers to a repository [dockerID/docker-is-cool] (len: 1)
+8d9495d05463: Image already exists
+...
+e9e06b06e14c: Image successfully pushed
+Digest: sha256:ad89e88beb7dc73bf55d456e2c600e0a39dd6c9500d7cd8d1025626c4b985011
+```
