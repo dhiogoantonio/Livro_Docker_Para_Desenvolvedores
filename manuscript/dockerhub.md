@@ -23,12 +23,25 @@ Agora que você está interessado, vamos criar uma conta na plataforma. Esse pro
 
 Ao acessar o endereço você deve inserir um novo ID do Docker (nome de usuário), um endereço de e-mail e uma senha. O navegador irá mostrar uma tela de `Welcome to Docker Hub`. Após o cadastro entre no e-mail informado e procure um e-mail entitulado `Please confirm email for your Docker ID`, caso não encontre, não esqueça de checar a sua caixa de spam.
 
-Abra o e-mail e clique em `Confirm Your Email` o nevagador irá abrir o Dockerhub e redirecionar você para o seu perfil. Nessa página clique em `Create Repository` e preencha um pequeno formulário com o nome do repositório e uma breve descrição, certifique-se de que o repositório esteja como público para que outras pessoas possam visualizar a sua imagem.
+Abra o e-mail e clique em `Confirm Your Email`, o nevagador irá abrir o Dockerhub e redirecionar você para o seu perfil. Nessa página clique em `Create Repository` e preencha um pequeno formulário com o nome do repositório e uma breve descrição, certifique-se de que o repositório esteja como público para que outras pessoas possam visualizar a sua imagem.
 
 A conta gratuita possui direto a um repositório privado. Há [planos](https://hub.docker.com/account/billing-plans/) para que mais repositórios privados fiquem disponveis, geralmente voltado para empresas que usam Docker em sua infraestrutura. 
 
-## Como enviar sua imagem para o Dockerhub
+### Como enviar sua imagem para o Dockerhub
+
+Agora que você já tem a sua conta e criou um repositório vamos enviar a sua imagem para o repositório. Se esse conceito ainda não está claro para você, tente fazer um paralelo com enviar um projeto para o Github utilizando o Git, pois é isso que vamos fazer agora. Ao utilizar o comando `docker images` você verá todas as imagens armazenadas localmente na sua máquina. Vamos imaginar que queremos subir a nossa imagem **docker-is-cool** para o repositório que acabamos de criar pelo navegador.
+
+```
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+docker-is-cool      latest              8d9495d05463        38 minutes ago      193.4 MB
+ambientum/node      6                   cee61c8e3d01        2 weeks ago         346 MB
+nginx               stable-alpine       f94d6dd9b576        3 weeks ago         54 MB
+```
+
+Ao utilizar o comando `docker images` seu resultado será similar ao acima.
 
 #### Taggeando a sua imagem
+
+
 
 #### Como dar Pull e Push na sua imagem
