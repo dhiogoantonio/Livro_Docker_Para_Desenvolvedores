@@ -52,7 +52,7 @@ Funciona da seguinte maneira: Usamos o comando `docker tag` e passamos como par�
 
 Vocẽ pode utilizar o comando `docker images` novamente e verá que a imagem que taggeou estará listada na tabela porém com o seu Docker ID no começo, como fizemos no comando acima, se você conseguiu esse resultado podemos enviá-la para a nuvem.
 
-#### Como dar Pull sua imagem
+#### Como dar Push sua imagem
 
 Antes de aprendermos como empurrar nossa imagem para o Dockerhub precisamos fazer login com a conta que nós criamos. Abra o terminal e digite o comando `docker login`, ele não aceita parãmetros mas solicita o seu usuário e senha para realizar o login como no exemplo abaixo.
 
@@ -74,4 +74,30 @@ The push refers to a repository [dockerID/docker-is-cool] (len: 1)
 ...
 e9e06b06e14c: Image successfully pushed
 Digest: sha256:ad89e88beb7dc73bf55d456e2c600e0a39dd6c9500d7cd8d1025626c4b985011
+```
+
+Após o término do comando você pode acessar o seu perfil no Dockerhub e visualizar a sua imagem na sua lista.
+
+#### Como dar Pull na sua imagem
+
+Como já foi mencionado todo o processo e objetivo é bastante similar ao uso do Git, o `docker pull` permite que você e outras pessoas tenham fácil acesso a suas imagens em qualquer lugar, assim como seus projetos no Github. Porém, você precisa remover a cópia local. Caso contrário, [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) não terá qualquer trabalho a fazer, porque ele vai ver que você já tem a versão mais recente da imagem localmente, pois acabamos de enviar ela para o Dockerhub.
+
+Utilizamos novamente o comando `docker images` para pegarmos o ID da imagem que queremos excluir e utilizamos o comando `docker images rm -f ID_IMAGEM`, outra opção mais curta e mais comum é utilizarmos o comando `docker rmi -f ID`, no nosso caso ficaria da seguinte maneira.
+
+`docker rmi -f 8d9495d05463`
+
+Pronto agora podemos baixar a nossa imagem. Uma maneira inteligente de fazer isso é utilizando o comando `docker run` que automaticamente baixa (puxa) imagens que ainda não existem localmente, cria e inicia um contêiner. Use o comando a seguir para puxar e executar a imagem **docker-is-cool**.
+
+`docker run SEU_USUARIO_DOCKER/docker-is-cool`
+
+Como você já aprendeu, cada camada é baixada separadamente, isso fica claro no output do comando que utilizamos no final a sua saída deve ser similar ao bloco abaixo.
+
+```
+Unable to find image 'SEU_USUARIO_DOCKER/docker-is-cool:latest' locally
+latest: Pulling from SEU_USUARIO_DOCKER/docker-is-cool
+faecf96fd5ab: Pull complete 
+...
+413db2f5215b: Pull complete 
+Digest: sha256:66a9155c820efd2884512ba4b6e6c20a567da6c9a4ee5efdb740912a635fe17d
+Status: Downloaded newer image for SEU_USUARIO_DOCKER/docker-is-cool:latest
 ```
