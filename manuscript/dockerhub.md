@@ -4,7 +4,7 @@ Você está aprendendo a fazer algo muito legal ao criar a sua própria imagem, 
 
 #### O que é Dockerhub?
 
-Dockerhub é um Serviço de Web Hosting compartilhado para imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizadas para a comunidade. **imagens oficiais** são disponibilizadas por grandes grupos para facilitar o seu trabalho na hora de criar uma infraestrutura Docker. Por exemplo: Ao necessitar de um container com um sistema de gerenciamento de Banco de Dados e montar você uma imagem, o que demandaria certo tempo, você pode usar a [imagem oficial do MySQL](https://hub.docker.com/_/mysql/), que é mantido pela própria Docker.
+Dockerhub é um Serviço de Web Hosting compartilhado para imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizadas para a comunidade. **imagens oficiais** são disponibilizadas por grandes grupos para facilitar o seu trabalho na hora de criar uma infraestrutura Docker. Por exemplo: Ao necessitar de um container com um sistema de gerenciamento de Banco de Dados e montar você uma imagem, o que demandaria certo tempo, você pode usar a [imagem oficial do MySQL](https://hub.docker.com/_/mysql/), que é mantido pela própria Docker em parceria com grandes empresas.
 
 Diversas outras tecnologias também possuem imagens oficiais disponveis na plataforma, como:
 
@@ -21,11 +21,11 @@ Agora que você está interessado, vamos criar uma conta na plataforma. Esse pro
 
 ![Dockerhub](images/Dockerhub.png)
 
-Ao acessar o endereço você deve inserir um novo ID do Docker (nome de usuário), um endereço de e-mail e uma senha. O navegador irá mostrar uma tela de `Welcome to Docker Hub`. Após o cadastro entre no e-mail informado e procure um e-mail entitulado `Please confirm email for your Docker ID`, caso não encontre, não esqueça de checar a sua caixa de spam.
+Ao acessar o endereço você deve inserir um novo ID do Docker, (nome de usuário), um endereço de e-mail e uma senha. O navegador irá mostrar uma tela de `Welcome to Docker Hub`. Após o cadastro, entre na conta informada e procure o e-mail intitulado `Please confirm email for your Docker ID`, caso não encontre, não esqueça de checar a sua caixa de spam.
 
 Abra o e-mail e clique em `Confirm Your Email`, o nevagador irá abrir o Dockerhub e redirecionar você para o seu perfil. Nessa página clique em `Create Repository` e preencha um pequeno formulário com o nome do repositório e uma breve descrição, certifique-se de que o repositório esteja como público para que outras pessoas possam visualizar a sua imagem.
 
-A conta gratuita possui direto a um repositório privado. Há [planos](https://hub.docker.com/account/billing-plans/) para que mais repositórios privados fiquem disponveis, geralmente voltado para empresas que usam Docker em sua infraestrutura. 
+A conta gratuita possui direito a um repositório privado. Há [planos](https://hub.docker.com/account/billing-plans/) para que mais repositórios privados fiquem disponveis, geralmente voltado para empresas que usam Docker em sua infraestrutura.
 
 ### Como enviar sua imagem para o Dockerhub
 
