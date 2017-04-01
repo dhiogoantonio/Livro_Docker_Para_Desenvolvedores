@@ -2,8 +2,9 @@
   "title": "Docker para Desenvolvedores",
   "language": "pt",
   "author": "Rafael Gomes",
+  "root": "./manuscript",
   "structure": {
-    "readme": "README.md",
+    "readme": "organizacao.md",
     "glossary": "glossario.md",
     "summary": "sumario.md"
   },
