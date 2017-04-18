@@ -48,38 +48,18 @@ Se o acesso a internet da máquina passar por controle de tráfego (aquele que b
 wget -qO- https://get.docker.com/gpg | sudo apt-key add -
 ```
 
-### Docker compose no GNU/Linux
-
-Acesse o seu terminal preferido do GNU/Linux e torne-se usuário root:
-
-```
-su - root
-```
-ou no caso da utilização de sudo
-
-```
-sudo su - root
-```
-
-Execute o comando abaixo:
-
-```
-curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-```
-Para testar, execute o comando abaixo:
-
-```
-docker-compose version
-```
-
-#### Instalando Docker compose com pip
+### Instalando Docker compose com pip
 
 O [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)) é um gerenciador de pacotes Python e, como o docker-compose, é escrito nessa linguagem, é possível instalá-lo da seguinte forma:
 
 ```
 pip install docker-compose
 ```
+
+#### Tratamento de possíveis problemas
+
+Caso não tenha instalado o comando **pip** em seu computador, normalmente ele pode ser instalado usando
+seu sistema de gerenciamento de pacote com o nome **python-pip** ou semelhante.
 
 ### Docker machine no GNU/Linux
 
@@ -97,7 +77,7 @@ sudo su - root
 Execute o comando abaixo:
 
 ```
-$ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+$ curl -L https://github.com/docker/machine/releases/download/v0.10.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
 chmod +x /usr/local/bin/docker-machine
 ```
 Para testar, execute o comando abaixo:
@@ -110,43 +90,27 @@ Obs.: O exemplo anterior utiliza a versão mais recente no momento desta publica
 
 ## Instalando no MacOS
 
-A instalação das ferramentas do Ecossistema Docker no MacOS é realizada através de um único grande pacote chamado **Docker Toolbox**.
+A instalação das ferramentas do Ecossistema Docker no MacOS pode ser realizada através de um único grande pacote chamado **Docker for Mac**.
 
 Você pode instalar via brew cask com o comando abaixo:
 
 ```
-brew cask install docker-toolbox
+brew cask install docker
 ```
 
-Também pode instalar manualmente acessando [a página de download](https://www.docker.com/products/docker-toolbox) do **Docker toolbox** e baixando o instalador correspondente ao MacOS.
-
-Após duplo clique no instalador, verá essa tela:
+Para efetuar a configuração inicial, você deve executar o aplicativo Docker:
 
 ![](images/mac1.png)
 
-Apenas clique em **Continue**.
+Na tela seguinte selecione a opção **Ok**.
 
 ![](images/mac2.png)
 
-Marque todas as opções e clique **Install**.
-
 Será solicitado seu usuário e senha para liberar a instalação dos softwares. Preencha e continue o processo.
-
-Na próxima tela, será apresentado as ferramentas que podem ser usadas para facilitar sua utilização do Docker no MacOS.
 
 ![](images/mac3.png)
 
-Apenas clique em **Continue**.
-
-Essa é ultima janela que verá no processo de instalação.
-
-![](images/mac4.png)
-
-Apenas clique em **Close** e finalize a instalação.
-
-Para testar, procure e execute o software **Docker Quickstart Terminal**, pois ele fará todo processo necessário para começar a utilizar o Docker.
-
-Nesse novo terminal execute o seguinte comando para teste:
+Para testar, abra um terminal e execute o comando abaixo:
 
 ```
 docker container run hello-world
