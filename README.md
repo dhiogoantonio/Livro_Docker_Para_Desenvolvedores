@@ -36,3 +36,5 @@ Esse livro apresenta a utilização do Docker focando nas melhores práticas de 
 1. [Dicas](manuscript/dicas.md)
 1. [Apêndice](manuscript/apendice.md)
 1. [Container ou máquina virtual?](manuscript/container_vm.md)
+1. [Comandos úteis](manuscript/comandos_uteis.md)
+1. [Posso rodar aplicações GUI?](manuscript/rodando_aplicacoes_gui.md)
