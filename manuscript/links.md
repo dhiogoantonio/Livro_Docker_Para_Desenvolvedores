@@ -1,4 +1,4 @@
-1 - https://12factor.net/pt_br/
+1. https://12factor.net/pt_br/
 2 - https://twitter.com/robinhopeixoto
 3 - https://twitter.com/n3k00n3
 4 - http://raulhc.cc/
