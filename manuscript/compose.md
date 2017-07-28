@@ -24,7 +24,7 @@ Cada linha desse arquivo pode ser definida com uma chave valor ou uma lista. Vam
 version: '2'
 services:
   web:
-    build: .
+    build:
       context: ./dir
       dockerfile: Dockerfile-alternate
       args:
