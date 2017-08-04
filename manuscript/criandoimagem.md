@@ -161,4 +161,3 @@ Caso modifiquemos a terceira linha do arquivo e, ao invés de instalar o nginx, 
 
 Como podemos perceber, de posse do arquivo **Dockerfile**, é possível ter a exata noção de quais mudanças foram efetuadas na imagem e, assim, registrar as modificações no sistema de controle de versão.
 
-### Enviando sua imagem para nuvem
