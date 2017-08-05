@@ -120,7 +120,7 @@ docker container run hello-world
 
 A instalação das ferramentas do Ecossistema Docker no Windows é realizada através de um único grande pacote, que se chama **Docker Toolbox**.
 
-O **Docker Toolbox** funciona apenas em [versões 64bit](https://support.microsoft.com/en-us/kb/827218) do Windows e soemnte para as versões superiores ao Windows 7.
+O **Docker Toolbox** funciona apenas em [versões 64bit](https://support.microsoft.com/en-us/kb/827218) do Windows e somente para as versões superiores ao Windows 7.
 
 É importante salientar também que é necessário habilitar o suporte de virtualização. Na versão 8 do Windows, é possível verificar através do **Task Manager**. Na aba **Performance** clique em **CPU** para visualizar a janela abaixo:
 
