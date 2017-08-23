@@ -144,7 +144,7 @@ Tal comando tem a opção **“-t”**, serve para informar o nome da imagem a s
 
 O resultado de  cada instrução do arquivo é armazenado em cache local. Caso o **Dockerfile** não seja modificado na próxima criação da imagem (**build**), o processo não demorará, pois tudo estará no cache. Se houver alterações, apenas a instrução modificada e as posteriores serão executadas novamente.
 
-A sugestão para melhor aproveitar o cache do **Dockerfile** é sempre manter as instruções frequentemente ateradas mais próximas da base do documento. Vale lembrar de atender também as dependências entre instruções.
+A sugestão para melhor aproveitar o cache do **Dockerfile** é sempre manter as instruções frequentemente alteradas mais próximas da base do documento. Vale lembrar de atender também as dependências entre instruções.
 
 Um exemplo para deixar mais claro:
 
