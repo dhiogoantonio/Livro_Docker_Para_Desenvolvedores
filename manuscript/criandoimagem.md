@@ -160,4 +160,3 @@ CMD bash
 Caso modifiquemos a terceira linha do arquivo e, ao invés de instalar o nginx, mudarmos para apache2, a instrução que faz o update no apt não será executada novamente, e sim a instalação do apache2, pois acabou de entrar no arquivo, assim como o php5 e a cópia do arquivo, pois todos eles são subsequentes a linha modificada.
 
 Como podemos perceber, de posse do arquivo **Dockerfile**, é possível ter a exata noção de quais mudanças foram efetuadas na imagem e, assim, registrar as modificações no sistema de controle de versão.
-
