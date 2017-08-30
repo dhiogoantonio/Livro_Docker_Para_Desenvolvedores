@@ -47,9 +47,9 @@ Antes de enviarmos nossa imagem para a nuvem precisamos taggea-la com o comando 
 
 ![Dockertag](images/Dockerhub-tag.png)
 
-Funciona da seguinte maneira: Usamos o comando `docker tag` e passamos como parâmetros o ID do container que queremos enviar para o repositório que no caso do exemplo é `8d9495d05463` mas o seu será diferente. Depois informamos o namespace que é o nome da conta do Dockerhub que criamos anteriormente e o nome da imagem, seguindo de dois pontos `:` e a versão ou tag de versão, o nosso exemplo ficaria da seguinte maneira.
+Funciona da seguinte maneira: Usamos o comando `docker tag` e passamos como parâmetros o nome ou ID da imagem que queremos aplicar a tag. Que no nosso exemplo será **docker-is-cool**. Depois informamos o namespace que é o nome da conta do Dockerhub que criamos anteriormente e o nome da imagem, seguindo de dois pontos `:` e a versão ou tag de versão, o nosso exemplo ficaria da seguinte maneira.
 
-`docker tag 8d9495d05463 SEU_DOCKER_ID/docker-is-cool:latest`
+`docker tag docker-is-cool SEU_DOCKER_ID/docker-is-cool:latest`
 
 Vocẽ pode utilizar o comando `docker image ls` novamente e verá que a imagem que taggeou estará listada na tabela porém com o seu Docker ID no começo, como fizemos no comando acima, se você conseguiu esse resultado podemos enviá-la para a nuvem.
 
