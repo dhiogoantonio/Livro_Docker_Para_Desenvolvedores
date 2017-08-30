@@ -4,10 +4,11 @@ Você está aprendendo a fazer algo muito legal ao criar a sua própria imagem, 
 
 #### O que é Dockerhub?
 
-Dockerhub é um Serviço de Web Hosting compartilhado para imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizadas para a comunidade. **imagens oficiais** são disponibilizadas por grandes grupos para facilitar o seu trabalho na hora de criar uma infraestrutura Docker. Por exemplo: Ao necessitar de um container com um sistema de gerenciamento de Banco de Dados e montar você uma imagem, o que demandaria certo tempo, você pode usar a [imagem oficial do MySQL](https://hub.docker.com/_/mysql/), que é mantido pela própria Docker em parceria com grandes empresas.
+Dockerhub é um repositório compartilhado de imagens Docker. No capítulo anterior você leu um pouco sobre imagens oficiais e não-oficiais, é no Dockerhub que os **Dockerfiles** são disponibilizados para a comunidade com o objetivo de facilitar a construção do seu ambiente Docker.
 
-Diversas outras tecnologias também possuem imagens oficiais disponveis na plataforma, como:
+Diversas empresas disponibilizam suas imagens oficiais na plataforma, como:
 
++ [MySQL](https://hub.docker.com/_/mysql/)
 + [Nginx](https://hub.docker.com/_/nginx/)
 + [Python](https://hub.docker.com/_/python/)
 + [Node](https://hub.docker.com/_/node/)
@@ -17,7 +18,7 @@ Você pode explorar a [lista completa](https://hub.docker.com/explore/) por sua 
 
 #### Criando sua conta e um repositório
 
-Agora que você está interessado, vamos criar uma conta na plataforma. Esse processso só pode ser feito através do navegador na [página de inscrição](https://hub.docker.com/register/?utm_source=getting_started_guide&utm_medium=embedded_MacOSX&utm_campaign=create_docker_hub_account) do Dockerhub, ou seja, ainda não é possível criar uma conta pelo terminal.
+Agora que você está interessado, vamos criar uma conta na plataforma. Esse processso só pode ser feito através do navegador na [página de inscrição](https://hub.docker.com/register/) do Dockerhub, ou seja, ainda não é possível criar uma conta pelo terminal.
 
 ![Dockerhub](images/Dockerhub.png)
 
@@ -25,11 +26,11 @@ Ao acessar o endereço você deve inserir um novo ID do Docker, (nome de usuári
 
 Abra o e-mail e clique em `Confirm Your Email`, o nevagador irá abrir o Dockerhub e redirecionar você para o seu perfil. Nessa página clique em `Create Repository` e preencha um pequeno formulário com o nome do repositório e uma breve descrição, certifique-se de que o repositório esteja como público para que outras pessoas possam visualizar a sua imagem.
 
-A conta gratuita possui direito a um repositório privado. Há [planos](https://hub.docker.com/account/billing-plans/) para que mais repositórios privados fiquem disponveis, geralmente voltado para empresas que usam Docker em sua infraestrutura.
+A conta gratuita possui direito a um repositório privado. Há [planos](https://hub.docker.com/account/billing-plans/) pagos para que mais repositórios privados fiquem disponíveis.
 
 ### Como enviar sua imagem para o Dockerhub
 
-Agora que você já tem a sua conta e criou um repositório vamos enviar a sua imagem para o repositório. Se esse conceito ainda não está claro para você, tente fazer um paralelo com enviar um projeto para o Github utilizando o Git, pois é isso que vamos fazer agora. Ao utilizar o comando `docker images` você verá todas as imagens armazenadas localmente na sua máquina. Vamos imaginar que queremos subir a nossa imagem **docker-is-cool** para o repositório que acabamos de criar pelo navegador.
+Agora que você já tem a sua conta e criou um repositório vamos enviar a sua imagem para o repositório. Se esse conceito ainda não está claro para você, tente fazer um paralelo com enviar um projeto para o Github utilizando o Git, pois é isso que vamos fazer agora. Ao utilizar o comando `docker image ls` você verá todas as imagens armazenadas localmente na sua máquina. Vamos imaginar que queremos subir a nossa imagem **docker-is-cool** para o repositório que acabamos de criar pelo navegador.
 
 ```
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -38,7 +39,7 @@ ambientum/node      6                   cee61c8e3d01        2 weeks ago         
 nginx               stable-alpine       f94d6dd9b576        3 weeks ago         54 MB
 ```
 
-Ao utilizar o comando `docker images` seu resultado será similar ao acima.
+Ao utilizar o comando `docker image ls` seu resultado será similar ao acima.
 
 #### Taggeando a sua imagem
 
@@ -50,7 +51,7 @@ Funciona da seguinte maneira: Usamos o comando `docker tag` e passamos como par�
 
 `docker tag 8d9495d05463 SEU_DOCKER_ID/docker-is-cool:latest`
 
-Vocẽ pode utilizar o comando `docker images` novamente e verá que a imagem que taggeou estará listada na tabela porém com o seu Docker ID no começo, como fizemos no comando acima, se você conseguiu esse resultado podemos enviá-la para a nuvem.
+Vocẽ pode utilizar o comando `docker image ls` novamente e verá que a imagem que taggeou estará listada na tabela porém com o seu Docker ID no começo, como fizemos no comando acima, se você conseguiu esse resultado podemos enviá-la para a nuvem.
 
 #### Como dar Push sua imagem
 
@@ -64,10 +65,10 @@ docker login
     Login Succeeded
 ```
 
-Após o login realizado com sucesso podemos enviar nossa imagem utilizando o comando `docker push`, o comando gera diversos outputs, não se assuste, isso acontece porque cada camada é pushada separadamente. Ao utilizar o comando seu retorno será similar ao abaixo.
+Após o login realizado com sucesso podemos enviar nossa imagem utilizando o comando `docker image push`, o comando gera diversos outputs, não se assuste, isso acontece porque cada camada é pushada separadamente. Ao utilizar o comando seu retorno será similar ao abaixo.
 
 ```
-docker push dockerID/docker-is-cool
+docker image push dockerID/docker-is-cool
 
 The push refers to a repository [dockerID/docker-is-cool] (len: 1)
 8d9495d05463: Image already exists
@@ -80,13 +81,13 @@ Após o término do comando você pode acessar o seu perfil no Dockerhub e visua
 
 #### Como dar Pull na sua imagem
 
-Como já foi mencionado todo o processo e objetivo é bastante similar ao uso do Git, o `docker pull` permite que você e outras pessoas tenham fácil acesso a suas imagens em qualquer lugar, assim como seus projetos no Github. Porém, você precisa remover a cópia local. Caso contrário, [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) não terá qualquer trabalho a fazer, porque ele vai ver que você já tem a versão mais recente da imagem localmente, pois acabamos de enviar ela para o Dockerhub.
+Como já foi mencionado todo o processo e objetivo é bastante similar ao uso do Git, o `docker image pull` permite que você e outras pessoas tenham fácil acesso a suas imagens em qualquer lugar, assim como seus projetos no Github. Porém, você precisa remover a cópia local. Caso contrário, [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) não terá qualquer trabalho a fazer, porque ele vai ver que você já tem a versão mais recente da imagem localmente, pois acabamos de enviar ela para o Dockerhub.
 
 Utilizamos novamente o comando `docker images` para pegarmos o ID da imagem que queremos excluir e utilizamos o comando `docker images rm -f ID_IMAGEM`, outra opção mais curta e mais comum é utilizarmos o comando `docker rmi -f ID`, no nosso caso ficaria da seguinte maneira.
 
 `docker rmi -f 8d9495d05463`
 
-Pronto agora podemos baixar a nossa imagem. Uma maneira inteligente de fazer isso é utilizando o comando `docker run` que automaticamente baixa (puxa) imagens que ainda não existem localmente, cria e inicia um contêiner. Use o comando a seguir para puxar e executar a imagem **docker-is-cool**.
+Pronto agora podemos baixar a nossa imagem. Uma maneira inteligente de fazer isso é utilizando o comando `docker container run` que automaticamente baixa (puxa) imagens que ainda não existem localmente, cria e inicia um contêiner. Use o comando a seguir para puxar e executar a imagem **docker-is-cool**.
 
 `docker run SEU_USUARIO_DOCKER/docker-is-cool`
 
