@@ -1,13 +1,3 @@
-+++
-title = "Você faz linting do seu Dockerfile? Deveria..."
-slug = "linting-dockerfile"
-date = "2017-04-13T18:44:00Z"
-categories = [ "Docker" ]
-tags = [ "Docker", "Teste", "Lint" ]
-aliases = [ "/pt-br/post/testando-dockerfile/" ]
-author = "somatorio"
-+++  
-
 Então você escreveu seu Dockerfile seguindo as [Melhores práticas](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) e tudo mais, agora não precisa fazer mais nada, certo? Que tal fazer linting do seu Dockerfile?
 
 ## E como posso fazer isso?
