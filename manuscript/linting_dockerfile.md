@@ -32,8 +32,8 @@ Assim o docker hub não irá executar o build automaticamente após cada push e 
 
 Exemplo (com circle-ci):  
 
-1.  ![auto builds](/images/lintdocker1.png)
-2.  ![triggers](/images/lintdocker2.png)
+1.  ![auto builds](images/lintdocker1.png)
+2.  ![triggers](images/lintdocker2.png)
 3.  Exemplo de circle.yml
 
 ```
@@ -54,8 +54,8 @@ deployment:
 
 Exemplo 2 (com travis-ci):  
 
-1.  ![auto builds](/images/lintdocker1.png)
-2.  ![triggers](/images/lintdocker2.png)
+1.  ![auto builds](images/lintdocker1.png)
+2.  ![triggers](images/lintdocker2.png)
 3.  Exemplo de .travis.yml
 
 ```
