@@ -109,7 +109,7 @@ Para entendimento, vamos imaginar que três containers foram colocados em execu�
 
 ## Verificando a lista de containers
 
-Para visualizar a lista de containers de um determinado **Docker host** utilizamos o comando [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/.
+Para visualizar a lista de containers de um determinado **Docker host** utilizamos o comando [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/).
 
 Esse comando é responsável por mostrar todos os containers, mesmo aqueles não mais em execução.
 
