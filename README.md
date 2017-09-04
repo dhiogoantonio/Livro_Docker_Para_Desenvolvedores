@@ -15,6 +15,7 @@ Esse livro apresenta a utilização do Docker focando nas melhores práticas de 
 1. [Instalação](manuscript/instalacao.md)
 1. [Comandos básicos](manuscript/comandos.md)
 1. [Criando sua própria imagem no Docker](manuscript/criandoimagem.md)
+1. [Dockerhub](manuscript/dockerhub.md)
 1. [Entendendo armazenamento no Docker](manuscript/armazenamento.md)
 1. [Entendendo a rede no Docker](manuscript/rede.md)
 1. [Utilizando docker em múltiplos ambientes](manuscript/machine.md)
