@@ -30,3 +30,6 @@
 - [Dicas](dicas.md)
 - [Apêndice](apendice.md)
 - [Container ou máquina virtual?](container_vm.md)
+- [Comandos úteis](comandos_uteis.md)
+- [Posso rodar aplicações GUI?](rodando_aplicacoes_gui.md)
+- [Você faz linting do seu Dockerfile? Deveria...](linting_dockerfile.md)
