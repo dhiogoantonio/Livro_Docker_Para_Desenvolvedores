@@ -54,7 +54,7 @@ Algumas pessoas enviaram dúvidas relacionadas às vantagens que explicitamos ne
 
 Como exemplo de ferramentas de automação de infraestrutura temos o [Puppet](https://puppetlabs.com/), [Ansible](https://www.ansible.com/) e [Chef](https://www.chef.io/chef/). Elas podem garantir ambientes parecidos, uma vez que faz parte do seu papel manter determinada configuração no ativo desejado.
 
-A diferença entre a solução Docker e gerência de configuração pode parecer bem tênue, pois ambas podem suportar a configuração necessária de toda infraestrutura que uma aplicação demanda para ser implantada, mas achamos que uma das distinções mais relevante está no seguinte fato: a imagem é uma abstração completa e não requer qualquer tratamento para lidar com as mais variadas distribuições GNU/Linux existentes, já que a imagem Docker carrega em si uma cópia completa dos arquivos de uma distribuição enxuta.
+A diferença entre a solução Docker e gerência de configuração pode parecer bem tênue, pois ambas podem suportar a configuração necessária de toda infraestrutura que uma aplicação demanda para ser implantada, mas achamos que uma das distinções mais relevantes está no seguinte fato: a imagem é uma abstração completa e não requer qualquer tratamento para lidar com as mais variadas distribuições GNU/Linux existentes, já que a imagem Docker carrega em si uma cópia completa dos arquivos de uma distribuição enxuta.
 
 Carregar em si a cópia de uma distribuição GNU/Linux não costuma ser problema para o Docker, pois utilizando o modelo de camadas, economiza bastante recurso, reutilizando as camadas de base. Leia [esse artigo](http://techfree.com.br/2015/12/entendendo-armazenamentos-de-dados-no-docker/) para entender mais sobre armazenamento do Docker.
 
@@ -70,7 +70,7 @@ Não! A diferença está na perspectiva do hospedeiro. No caso do Docker não im
 
 Não! Quando citamos que é possível o desenvolvedor especificar a infraestrutura, estamos falando da camada mais próxima da aplicação e não de toda a arquitetura necessária (Sistema operacional básico, regras de firewall, rotas de rede e etc).
 
-A ideia do Docker é que os assuntos relevantes e diretamente ligados a aplicação possam ser configurados pelo desenvolvedor. Isso não o obriga a realizar essa atividade. É uma possibilidade que agrada muitos desenvolvedores, mas caso não seja a situação, pode ficar tranquilo, outra equipe tratará dessa parte. Apenas o processo de implantação será pouco mais lento.
+A ideia do Docker é que os assuntos relevantes e diretamente ligados a aplicação possam ser configurados pelo desenvolvedor. Isso não o obriga a realizar essa atividade. É uma possibilidade que agrada muitos desenvolvedores, mas caso não seja a situação, pode ficar tranquilo, outra equipe tratará dessa parte. Apenas o processo de implantação será um pouco mais lento.
 
 #### Muitas pessoas falam de Docker para [micro serviços](https://www.thoughtworks.com/pt/insights/blog/microservices-nutshell). É possível usar o Docker para aplicações monolíticas?
 
