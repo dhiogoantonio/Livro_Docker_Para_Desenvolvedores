@@ -2,7 +2,7 @@
 
 Se você leu a primeira parte do livro já sabe o básico sobre Docker, mas agora que pretende começar a usar com mais frequência, alguns desconfortos podem surgir, pois, como qualquer ferramenta, o Docker tem seu próprio conjunto de boas práticas e dicas.
 
-O objetivo dessse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada.
+O objetivo desse texto é apresentar algumas dicas para o bom uso do Docker. Isso não quer dizer que, a forma que você executa é, necessariamente, errada.
 
 Toda ferramenta demanda algumas melhores práticas para tornar o uso mais efetivo e com menor possibilidade de problemas futuros.
 
@@ -28,7 +28,7 @@ Note aqui que `-it` significa `--interactive --tty`. É usado para fixar a linha
 
 ### Verifique variáveis de ambiente
 
-Às vezes faz-se necessário verificar qual metadados são definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter essa informação:
+Às vezes faz-se necessário verificar quais metadados são definidos como variáveis de ambiente em uma imagem. Use o comando `env` para obter essa informação:
 
 ```sh
 docker container run --rm -it debian env
@@ -228,7 +228,7 @@ O contêiner produzido pela imagem do `Dockerfile` deve ser o mais efêmero poss
 
 É comum colocar outros arquivos, como documentação, no diretório junto ao `Dockerfile`; para melhorar a performance de construção, exclua arquivos e diretórios criando um arquivo [dockerignore](https://docs.docker.com/engine/reference/builder/) no mesmo diretório. Esse arquivo funciona de maneira semelhante ao `.gitignore`. Usá-lo ajuda a minimizar o contexto de construção enviado -completa com a versão correta- docker host a cada `docker build`.
 
-Evite adicionar pacotes e dependências extras não necessárias à aplicação e minimize a complexidade, tamanho da imagem, tempo de contrução e superfície de ataque.
+Evite adicionar pacotes e dependências extras não necessárias à aplicação e minimize a complexidade, tamanho da imagem, tempo de construção e superfície de ataque.
 
 Minimize também o número de camadas: sempre que possível agrupe vários comandos. Porém, também leve em conta a volatilidade e manutenção dessas camadas.
 
