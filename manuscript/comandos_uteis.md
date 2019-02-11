@@ -4,7 +4,7 @@ Seguem alguns comandos úteis e simples abaixo:
 
 -   Remover todos os containers sem uso  
 `docker container prune`
--   Remover todos os containers
+-   Remover todos os containers  
 `docker rm -f $(docker ps -aq)`
 -   Parar todos os containers  
 `docker stop $(docker ps -q)`
@@ -14,11 +14,11 @@ Seguem alguns comandos úteis e simples abaixo:
 `docker volume prune`
 -   Mostra uso de recursos dos containers rodando  
 `docker stats $(docker ps --format {{.Names}})`
--   Listar containers parados
+-   Listar containers parados  
 `docker ps -f "status=exited"`
--   Acessar terminal do container
+-   Acessar terminal do container  
 `docker exec -it container bash`
--   Salvar uma imagem
+-   Salvar uma imagem  
 `docker save -o imagem.docker imagem`
--   Carregar imagem
+-   Carregar imagem  
 `docker load -i imagem.docker`
